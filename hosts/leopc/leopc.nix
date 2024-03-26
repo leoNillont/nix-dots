@@ -16,8 +16,6 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
-
   # Hip workaround
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
@@ -37,7 +35,18 @@
   fileSystems."/media/NAS" = {
     device = "192.168.1.96:/Datos";
     fsType = "nfs";
-    options = [ "timeo=900" "retrans=5" "_netdev" ];
+    options = [ "defaults" "timeo=900" "retrans=5" "_netdev" ];
   };
 
+  # IP Estatica
+  networking = {
+    interfaces = {
+      enp38s0.ipv4.addresses = [ {
+       address = "192.168.1.69";
+       prefixLength = 24;
+      } ];
+    };
+    defaultGateway = "192.168.1.1";
+    nameservers = [ "192.168.1.10" ];
+  };
 }

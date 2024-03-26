@@ -129,7 +129,7 @@
   programs.steam.enable = true;
 
   # Mullvad
-  services.mullvad-vpn.enable = true;
+  #services.mullvad-vpn.enable = true;
   # Syncthing
   #services.syncthing = {
   #  enable = true;
