@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
     ];
   # Use latest linux kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Flakes and Nix command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -160,7 +160,6 @@
   #  wget
     vulkan-tools
     neovim
-    git
     wget
     curl
   ];

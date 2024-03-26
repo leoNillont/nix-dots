@@ -19,13 +19,9 @@
     vesktop
     davinci-resolve
     gh
+    git
+    gh
   ];
-
-  programs.git = {
-    enable = true;
-    userName = "leoNillont";
-    userEmail = "leonillo@proton.me";
-  };
 
   programs.bash = {
     enable = true;
