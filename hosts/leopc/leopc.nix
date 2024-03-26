@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = {
+  imports = [
     ./hardware.nix
-  };
+  ];
 
   # AMD Drivers
   hardware.opengl = {
