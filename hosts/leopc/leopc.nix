@@ -25,4 +25,17 @@
 
   # Hostname
   networking.hostName = "leopc";
+
+  # Disco Extra
+  fileSystems."/media/DiscoExtra" =
+    { device = "/dev/disk/by-uuid/36cab7e8-94ae-4fa3-9147-19192df6c874";
+      fsType = "btrfs";
+    };
+  
+  # NAS
+  fileSystems."/media/NAS" = {
+    device = "192.168.1.96:/Datos";
+    fsType = "nfs";
+  };
+
 }
