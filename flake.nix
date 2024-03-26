@@ -27,7 +27,7 @@
 
 	modules = [
 	  ./configuration.nix
-	  ./hosts/leopc.nix
+	  ./hosts/leopc/leopc.nix
           disko.nixosModules.disko
           ./disko-config.nix
 
@@ -46,7 +46,7 @@
 
         modules = [
           ./configuration.nix
-          ./hosts/leolaptop.nix
+          ./hosts/leolaptop/leolaptop.nix
 
           # Home manager
           home-manager.nixosModules.home-manager
