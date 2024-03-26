@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = {
+    ./hardware.nix
+  };
+
   # AMD Drivers
   hardware.opengl = {
     extraPackages = with pkgs; [

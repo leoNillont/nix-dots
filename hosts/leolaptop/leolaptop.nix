@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./hardware.nix
+  ];
   # Intel Drivers
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };

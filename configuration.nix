@@ -6,10 +6,6 @@
 
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
   # Use latest linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
