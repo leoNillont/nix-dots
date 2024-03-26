@@ -12,9 +12,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Disko
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: {
     nixosConfigurations = {
       "leopc" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -22,6 +28,8 @@
 	modules = [
 	  ./configuration.nix
 	  ./hosts/leopc.nix
+          disko.nixosModules.disko
+          ./disko-config.nix
 
 	  # Home Manager
 	  home-manager.nixosModules.home-manager
