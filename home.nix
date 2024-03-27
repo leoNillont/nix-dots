@@ -22,6 +22,7 @@
     gh
     spotify
     r2modman
+    vlc
   ];
 
   programs.bash = {

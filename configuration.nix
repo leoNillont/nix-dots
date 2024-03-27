@@ -7,7 +7,7 @@
 
 {
   # Use latest linux kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Flakes and Nix command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -27,6 +27,9 @@
   # Zram
   zramSwap.enable = true;
 
+  # CPU governor
+  powerManagement.cpuFreqGovernor = "ondemand";
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -35,6 +38,11 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.ppfeaturemask = "0xffffffff";
+  };
 
   # Enable bluetooth
   hardware.bluetooth = {
@@ -148,9 +156,9 @@
   users.extraGroups.vboxusers.members = [ "leonillo" ];
 
   # Disable power button (Joel Disabler)
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
+  #services.logind.extraConfig = ''
+  #  HandlePowerKey=ignore
+  #'';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
