@@ -21,6 +21,7 @@
     git
     gh
     spotify
+    r2modman
   ];
 
   programs.bash = {

@@ -23,6 +23,7 @@
                 type = "filesystem";
                 format = "bcachefs";
                 mountpoint = "/";
+		mountOptions = [ "compression=zstd:1" "background-compression=zstd:1" ];
               };
             };
           };
