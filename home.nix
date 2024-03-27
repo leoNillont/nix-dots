@@ -20,6 +20,7 @@
     gh
     git
     gh
+    spotify
   ];
 
   programs.bash = {
