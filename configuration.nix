@@ -24,6 +24,9 @@
   };
   boot.kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
 
+  # Zram
+  zramSwap.enable = true;
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -158,6 +161,8 @@
     neovim
     wget
     curl
+    btop
+    htop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

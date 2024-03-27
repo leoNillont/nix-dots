@@ -13,9 +13,8 @@
     #waybar
     #rofi-wayland
     flameshot
-    #mullvad-vpn
     qbittorrent
-    #ciscoPacketTracer8
+    ciscoPacketTracer8
     vesktop
     davinci-resolve
     gh
