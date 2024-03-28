@@ -26,6 +26,7 @@
     obs-studio
     filezilla
     gpu-screen-recorder
+    qpwgraph
   ];
 
   programs.bash = {
