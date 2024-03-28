@@ -23,12 +23,18 @@
     spotify
     r2modman
     vlc
+    obs-studio
+    filezilla
+    gpu-screen-recorder
   ];
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
   };
+
+  # Wayland ozone
+  home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # LEER DOCUMENTACION ANTES DE CAMBIAR ESTO
   home.stateVersion = "23.11"; #LEER DOCUMENTACION
