@@ -20,7 +20,6 @@
     gh
     git
     gh
-    spotify
     r2modman
     vlc
     obs-studio
