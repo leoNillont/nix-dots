@@ -21,6 +21,12 @@
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
+  # Corectrl
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
+  };
+
   # Hostname
   networking.hostName = "leopc";
 
@@ -35,7 +41,7 @@
   fileSystems."/media/NAS" = {
     device = "192.168.1.96:/Datos";
     fsType = "nfs";
-    options = [ "defaults" "timeo=900" "retrans=5" "_netdev" ];
+    options = [ "defaults" "x-systemd.automount" "noauto" "x-systemd.device-timeout=900" "retrans=5" "_netdev" ];
   };
 
   # IP Estatica

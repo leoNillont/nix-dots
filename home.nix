@@ -26,11 +26,34 @@
     filezilla
     gpu-screen-recorder
     qpwgraph
+    meslo-lgs-nf
   ];
 
-  programs.bash = {
+  # Pescao
+  programs.fish = {
     enable = true;
-    enableCompletion = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+    plugins = [
+      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      { name = "done"; src = pkgs.fishPlugins.done.src; }
+    ];
+  };
+
+  # Neovim
+  programs.neovim = {
+    enable = true;
+    extraConfig = ''
+      set number relativenumber
+    '';
+    defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter.withAllGrammars
+      nvim-lspconfig
+      mini-nvim
+      copilot-vim
+    ];
   };
 
   # Wayland ozone

@@ -30,6 +30,9 @@
   # CPU governor
   powerManagement.cpuFreqGovernor = "ondemand";
 
+  # Fish shell
+  programs.fish.enable = true;
+
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Flatpak
@@ -41,11 +44,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.ppfeaturemask = "0xffffffff";
-  };
 
   # Enable bluetooth
   hardware.bluetooth = {
