@@ -128,6 +128,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.leonillo = {
     isNormalUser = true;
+    shell = pkgs.fish;
     description = "Noel";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     #packages = with pkgs; [

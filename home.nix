@@ -27,6 +27,7 @@
     gpu-screen-recorder
     qpwgraph
     meslo-lgs-nf
+    spotify
   ];
 
   # Pescao
