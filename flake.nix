@@ -3,7 +3,7 @@
 
   inputs = {
 
-    # Official NixOS package source
+    # Paquetes oficiales de Nixos (nixpkgs)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # home-manager
@@ -25,9 +25,15 @@
       "leopc" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
+        # importar modulos
 	modules = [
+	  # configuracion general
 	  ./configuration.nix
+
+          # configuracion de host
 	  ./hosts/leopc/leopc.nix
+	  
+	  # modulo de disko
           disko.nixosModules.disko
           ./disko-config.nix
 
@@ -43,10 +49,16 @@
 
       "leolaptop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
+        
+	# importar modulos
         modules = [
+	  # configuracion general
           ./configuration.nix
+
+          # configuracion de host
           ./hosts/leolaptop/leolaptop.nix
+
+	  # modulo de disko
           disko.nixosModules.disko
           ./disko-config.nix
 

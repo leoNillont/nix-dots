@@ -7,14 +7,24 @@
 
   # AMD Drivers
   hardware.opengl = {
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
+    enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      vaapiVdpau
+      libvdpau-va-gl
+      vulkan-loader
+    ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Hip workaround
   systemd.tmpfiles.rules = [

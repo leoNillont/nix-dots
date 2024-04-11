@@ -4,16 +4,34 @@
   imports = [
     ./hardware.nix
   ];
-  # Intel Drivers
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
-  hardware.opengl.extraPackages = with pkgs; [
-    intel-media-driver
-    vaapiIntel
-  ];
+
+  # Drivers de la GPU Intel
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      intel-vaapi-driver
+      vulkan-loader
+      libvdpau-va-gl
+      vaapiVdpau
+    ];
+  };
+
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
   
-  # Nvidia Drivers
+  # Drivers de la GPU Nvidia
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {

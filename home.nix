@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Name and directory
+  # Nombre y directorio
   home.username = "leonillo";
   home.homeDirectory = "/home/leonillo";
 
@@ -19,7 +19,6 @@
     davinci-resolve
     gh
     git
-    gh
     r2modman
     vlc
     obs-studio
@@ -28,9 +27,15 @@
     qpwgraph
     meslo-lgs-nf
     spotify
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.es_ES
+    adoptopenjdk-bin
+    prusa-slicer
   ];
 
-  # Pescao
+  # Configurar fish
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
@@ -42,7 +47,7 @@
     ];
   };
 
-  # Neovim
+  # Configurar Neovim
   programs.neovim = {
     enable = true;
     extraConfig = ''
