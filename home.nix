@@ -32,7 +32,7 @@
     hunspellDicts.en_US
     hunspellDicts.es_ES
     adoptopenjdk-bin
-    prusa-slicer
+    orca-slicer
   ];
 
   # Configurar fish
