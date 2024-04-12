@@ -77,7 +77,7 @@
   services.desktopManager.plasma6.enable = true;
 
   # Activar Hyprland
-  #programs.hyprland.enable = true;
+  programs.hyprland.enable = true;
 
   # Activar cups (impresora)
   #services.printing.enable = true;
