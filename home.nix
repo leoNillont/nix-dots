@@ -9,9 +9,9 @@
     neofetch
     firefox
     prismlauncher
-    #kitty
-    #waybar
-    #rofi-wayland
+    kitty
+    waybar
+    rofi-wayland
     flameshot
     qbittorrent
     ciscoPacketTracer8
