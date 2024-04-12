@@ -68,10 +68,10 @@
       layout = "us";
       variant = "colemak";
     };
-
-    # Enable SDDM
-    displayManager.sddm.enable = true;
   };
+
+  # Activar SDDM
+  services.displayManager.sddm.enable = true;
 
   # Activar Plasma 6
   services.desktopManager.plasma6.enable = true;
