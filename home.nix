@@ -12,6 +12,9 @@
     kitty
     waybar
     rofi-wayland
+    mako
+    nwg-bar
+    swaylock
     flameshot
     qbittorrent
     ciscoPacketTracer8
@@ -33,6 +36,9 @@
     hunspellDicts.es_ES
     adoptopenjdk-bin
     orca-slicer
+    catppuccin-gtk
+    catppuccin-kvantum
+    tidal-hifi
   ];
 
   # Configurar fish
