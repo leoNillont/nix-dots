@@ -276,7 +276,7 @@
 	};
       };
     };
-    # Configuracion de estilo
+    # Configuracion de estilo, ubicado en home/style.css
     style = home/sytle.css;
   };
 
