@@ -276,6 +276,8 @@
 	};
       };
     };
+    # Configuracion de estilo
+    style = home/sytle.css;
   };
 
   # Wayland ozone
