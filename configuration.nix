@@ -43,6 +43,9 @@
   # Idioma
   i18n.defaultLocale = "es_ES.UTF-8";
 
+  # Wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   # Locales 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "es_ES.UTF-8";
