@@ -36,6 +36,7 @@
 
   # Activar NetworkManager
   networking.networkmanager.enable = true;
+  networking.wireless.iwd.enable = true;
 
   # Zona horaria
   time.timeZone = "Europe/Madrid";
@@ -77,7 +78,7 @@
   services.displayManager.sddm.enable = true;
 
   # Activar Plasma 6
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
   # Activar Hyprland
   programs.hyprland.enable = true;
@@ -126,6 +127,12 @@
     curl
     btop
     htop
+  ];
+
+  # Fuentes
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
+    font-awesome
   ];
 
   # This value determines the NixOS release from which the default
