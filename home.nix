@@ -17,7 +17,7 @@
     swaylock
     flameshot
     qbittorrent
-    ciscoPacketTracer8
+    #ciscoPacketTracer8
     vesktop
     davinci-resolve
     gh
@@ -139,7 +139,7 @@
 	"mako"
 	"[workspace 1 silent] kitty"
 	"[workspace 2 silent] firefox"
-	"[workspace 3 silent] vesktop"
+	"[workspace 4 silent] vesktop"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)

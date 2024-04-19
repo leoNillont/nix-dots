@@ -1,14 +1,17 @@
 {
   disko.devices = {
     disk = {
-      vdb = {
-        device = "/dev/nvme0n1";
+      nvme = {
         type = "disk";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              end = "500M";
+              priority = 1;
+              name = "ESP";
+              start = "1M";
+              end = "1G";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -17,13 +20,34 @@
               };
             };
             root = {
-              name = "root";
-              end = "-0";
+              size = "100%";
               content = {
-                type = "filesystem";
-                format = "bcachefs";
-                mountpoint = "/";
-		mountOptions = [ "compression=zstd:1" "background-compression=zstd:1" ];
+                type = "btrfs";
+                extraArgs = [ "-f" ]; 
+                subvolumes = {
+                  "@" = {
+                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
+                    mountpoint = "/";
+                  };
+                  "@home" = {
+                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
+                    mountpoint = "/home";
+                  };
+                  "@nix" = {
+                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
+                    mountpoint = "/nix";
+                  };
+                  "@swap" = {
+                    mountpoint = "/.swap";
+                    swap = {
+                      swapfile.size = "8G";
+                    };
+                  };
+                  "@log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
+                  };
+                };
               };
             };
           };
@@ -32,3 +56,4 @@
     };
   };
 }
+
