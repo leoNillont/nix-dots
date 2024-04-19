@@ -127,6 +127,14 @@
     curl
     btop
     htop
+    git
+    gh
+    zip
+    unzip
+    p7zip
+    unrar-free
+    brightnessctl
+    ranger
   ];
 
   # Fuentes
