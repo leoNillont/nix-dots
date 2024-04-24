@@ -69,6 +69,16 @@
       copilot-vim
     ];
   };
+  
+  # Git y Gh
+  programs.git = {
+    enable = true;
+    package = pkgs.git;
+  };
+  programs.gh = {
+    enable = true;
+    package = pkgs.gh;
+  };
 
   # Configuracion del tema del cursor
   home.pointerCursor = {
@@ -94,6 +104,7 @@
       name = "ePapirus-Dark";
     };
   };
+
   
   # Wayland ozone
   home.sessionVariables.NIXOS_OZONE_WL = "1";
