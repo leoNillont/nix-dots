@@ -22,7 +22,7 @@
     swaylock-effects
     flameshot
     #qbittorrent
-    #ciscoPacketTracer8
+    ciscoPacketTracer8
     vesktop
     davinci-resolve
     r2modman
