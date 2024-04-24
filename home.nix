@@ -56,19 +56,21 @@
   };
 
   # Configurar Neovim
-  programs.neovim = {
-    enable = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
-    defaultEditor = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      nvim-lspconfig
-      mini-nvim
-      copilot-vim
-    ];
-  };
+  #programs.neovim = {
+  #  enable = true;
+  #  extraConfig = ''
+  #    set number relativenumber
+  #  '';
+  #  defaultEditor = true;
+  #  plugins = with pkgs.vimPlugins; [
+  #    #nvim-treesitter.withAllGrammars
+  #    #nvim-lspconfig
+  #    #mini-nvim
+  #    #copilot-vim
+  #    nvchad
+  #    nvchad-ui
+  #  ];
+  #};
   
   # Git y Gh
   programs.git = {

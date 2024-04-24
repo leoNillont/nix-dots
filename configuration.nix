@@ -75,7 +75,10 @@
   };
 
   # Activar SDDM
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    theme = "catppuccin";
+  };
 
   # Activar Plasma 6
   #services.desktopManager.plasma6.enable = true;
@@ -114,7 +117,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Noel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
   };
 
   # Permitir paquetes no libres
@@ -126,6 +129,19 @@
   # QEMU/KVM + Virt Manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
+
+  # Docker
+  virtualisation.docker = { 
+    enable = true;
+    storageDriver = "btrfs";
+  };
+
+  # MySQL (para las practicas)
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
+
 
   # Paquetes globales
   environment.systemPackages = with pkgs; [
@@ -141,7 +157,8 @@
     unrar-free
     brightnessctl
     ranger
-    (callPackage custompkgs/catppuccin-sddm.nix {})
+    catppuccin-sddm-corners
+    distrobox
   ];
 
   # Fuentes
