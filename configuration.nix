@@ -77,9 +77,8 @@
   # Activar SDDM
   services.displayManager.sddm = {
     enable = true;
-    theme = "where_is_my_sddm_theme";
-    #extraPackages = [(pkgs.callPackage ./custompkgs/catppuccin-sddm.nix {})];
-    extraPackages = [ pkgs.where-is-my-sddm-theme ];
+    package = pkgs.kdePackages.sddm;
+    theme = "catppuccin-mocha";
   };
 
   # Activar Plasma 6
@@ -119,7 +118,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Noel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
   };
 
   # Permitir paquetes no libres
@@ -133,10 +132,10 @@
   programs.virt-manager.enable = true;
 
   # Docker
-  virtualisation.docker = { 
-    enable = true;
-    storageDriver = "btrfs";
-  };
+  #virtualisation.docker = { 
+  #  enable = true;
+  #  storageDriver = "btrfs";
+  #};
 
   # MySQL (para las practicas)
   services.mysql = {
@@ -159,7 +158,7 @@
     unrar-free
     brightnessctl
     ranger
-    distrobox
+    (callPackage ./custompkgs/catppuccin-sddm.nix {})
   ];
 
   # Fuentes
