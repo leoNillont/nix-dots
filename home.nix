@@ -97,7 +97,7 @@
         accents = [ "mauve" ];
 	variant = "mocha";
       };
-      name = "Catppuccin Mocha Mauve";
+      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
     };
     iconTheme = {
       package = pkgs.epapirus-icon-theme;
@@ -105,7 +105,6 @@
     };
   };
 
-  
   # Wayland ozone
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 

@@ -86,6 +86,14 @@
   # Activar cups (impresora)
   #services.printing.enable = true;
 
+  # Syncthing
+  services.syncthing = {
+    enable = true;
+    user = "leonillo";
+    dataDir = "/home/leonillo/Syncthings";
+    configDir = "/home/leonillo/Syncthings/.config/syncthing";
+  };
+
   # Activar y configurar pipewire (sonido)
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -133,6 +141,7 @@
     unrar-free
     brightnessctl
     ranger
+    (callPackage custompkgs/catppuccin-sddm.nix {})
   ];
 
   # Fuentes
