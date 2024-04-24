@@ -9,6 +9,7 @@
   imports = [
     home/waybar.nix
     home/hyprland.nix
+    home/kitty.nix
   ];
 
   home.packages = with pkgs; [
@@ -41,6 +42,8 @@
     tidal-hifi
     hyprpaper
     pcmanfm
+    vscode
+    pavucontrol
   ];
 
   # Configurar fish

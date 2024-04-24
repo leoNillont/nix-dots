@@ -77,7 +77,9 @@
   # Activar SDDM
   services.displayManager.sddm = {
     enable = true;
-    theme = "catppuccin";
+    theme = "where_is_my_sddm_theme";
+    #extraPackages = [(pkgs.callPackage ./custompkgs/catppuccin-sddm.nix {})];
+    extraPackages = [ pkgs.where-is-my-sddm-theme ];
   };
 
   # Activar Plasma 6
@@ -157,7 +159,6 @@
     unrar-free
     brightnessctl
     ranger
-    catppuccin-sddm-corners
     distrobox
   ];
 
@@ -165,6 +166,7 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
     font-awesome
+    meslo-lgs-nf
   ];
 
   # This value determines the NixOS release from which the default
