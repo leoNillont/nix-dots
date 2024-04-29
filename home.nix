@@ -60,7 +60,7 @@
 
   # Configurar Neovim
   home.file."./.config/nvim/" = {
-    source = ./home/nvim/;
+    source = ./home/nvim;
     recursive = true;
   };
   

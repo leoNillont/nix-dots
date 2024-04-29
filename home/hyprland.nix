@@ -103,6 +103,15 @@
           "workspaces, 1, 3, default"
         ];
       };
+
+      # General
+      general = {
+        gaps_in = 3;
+        gaps_out = 5;
+        border_size = 2;
+        "col.active_border" = "rgb(cba6f7)";
+        "col.inactive_border" = "rgba(45475aaa)";
+      };
     };
   };
 }
