@@ -30,10 +30,41 @@
         "$mod shift, o, movewindow, r"
         "$mod shift, e, movewindow, u"
         "$mod shift, i, movewindow, d"
-        "$mod control, n, resizeactive, l"
-        "$mod control, o, resizeactive, r"
-        "$mod control, e, resizeactive, u"
-        "$mod control, i, resizeactive, d"
+        "$mod control, n, resizeactive, -40 0"
+        "$mod control, o, resizeactive, 0 40"
+        "$mod control, e, resizeactive, 0 -40"
+        "$mod control, i, resizeactive, 40 0"
+        "$mod, F, fullscreen,"
+        "$mod, J, togglesplit"
+        "$mod, space, togglefloating,"
+        "$mod, P, pin"
+
+        # Workspace especial
+        "$mod, t, togglespecialworkspace,"
+        "$mod SHIFT, t, movetoworkspace, special"
+
+        # Teclas de control de volumen y media
+        ", XF86AudioRaiseVolume, exec, pamixer -i 5"
+        ", XF86AudioLowerVolume, exec, pamixer -d 5"
+        ", XF86AudioMute, exec, pamixer -t"
+
+        # Teclas de brillo
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set -5%"
+        
+        # Swaylock
+        "$mod, L, exec, swaylock --effect-blur 10x4 -S"
+
+        # Apps
+        "$mod, X, exec, thunar"
+        "$mod, B, exec, firefox"
+
+        # Screenshots
+        ", Print, exec, grim"
+        "$mod SHIFT, S, exec, grim -g $(slurp) - | wl-copy"
+
+        # Power menu
+        "$mod SHIFT, F, exec, nwg-bar"
       ]
       ++ (
         # workspaces
@@ -72,7 +103,8 @@
         "mako"
         "[workspace 1 silent] kitty"
         "[workspace 2 silent] firefox"
-        "[workspace 4 silent] vesktop"
+        "[workspace 4 silent] sleep 1 & vesktop --enable-features=VaapiIgnoreDriverChecks,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform --ozone-platform=wayland"
+        "steam -silent"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)
@@ -110,8 +142,24 @@
         gaps_out = 5;
         border_size = 2;
         "col.active_border" = "rgb(cba6f7)";
-        "col.inactive_border" = "rgba(45475aaa)";
+        "col.inactive_border" = "rgb(45475a)";
       };
+
+      # Miscelano
+      misc = {
+        vrr = 1;
+        animate_manual_resizes = true;
+        no_direct_scanout = false;
+      };
+      
+      
+      # Windowrules
+      windowrulev2 = [
+        "workspace 1, class:kitty"
+        "workspace 2, class:firefox"
+        "workspace 3, class:tidal-hifi"
+        "workspace 4, class:vesktop"
+      ];
     };
   };
 }
