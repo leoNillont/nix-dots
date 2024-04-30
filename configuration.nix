@@ -77,6 +77,9 @@
   # GVFS pal pcmanfm
   services.gvfs.enable = true;
 
+  # Fixeo pal swaylock
+  security.pam.services.swaylock = {};
+
   # Activar SDDM
   services.displayManager.sddm = {
     enable = true;
