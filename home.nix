@@ -44,6 +44,11 @@
     pcmanfm
     vscode
     pavucontrol
+    pamixer
+    grim
+    slurp
+    wl-clipboard
+    cliphist
   ];
 
   # Configurar fish
@@ -63,7 +68,36 @@
     source = ./home/nvim;
     recursive = true;
   };
-  
+
+  # Configurar nwg-bar
+  home.file."./.config/nwg-bar" = {
+    source = ./home/nwg-bar;
+    recursive = true;
+  };
+
+  # Configurar mako
+  home.file."./.config/mako" = {
+    source = ./home/mako;
+    recursive = true;
+  };
+
+  # Configurar swaylock
+  home.file."./.config/swaylock" = {
+    source = ./home/swaylock;
+    recursive = true;
+  };
+
+  # Configurar rofi 
+  home.file."./.config/rofi" = {
+    source = ./home/rofi;
+    recursive = true;
+  };
+
+  home.file."./.local/share/rofi/themes" = {
+    source = ./home/rofi-theme;
+    recursive = true;
+  };
+
   # Git y Gh
   programs.git = {
     enable = true;

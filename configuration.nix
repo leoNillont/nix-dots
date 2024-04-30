@@ -16,8 +16,8 @@
   
     plymouth = {
       enable = true;
-      #themePackages = "catppuccin";
-      #theme = "catppuccin";
+      themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
+      theme = "catppuccin-mocha";
     };
     kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
   };
@@ -74,11 +74,15 @@
     };
   };
 
+  # GVFS pal pcmanfm
+  services.gvfs.enable = true;
+
   # Activar SDDM
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
     theme = "catppuccin-mocha";
+    wayland.enable = true;
   };
 
   # Activar Plasma 6

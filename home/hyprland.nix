@@ -19,7 +19,7 @@
         # Rofi
         "$mod, r, exec, rofi -show drun"
         "$mod, w, exec, rofi -show window"
-        "$mod, c, exec, rofi -show clipboard"
+        "$mod, v, exec, rofi -show clipboard"
 
         # Movimiento de y entre ventanas
         "$mod, n, movefocus, l"
@@ -56,7 +56,7 @@
         "$mod, L, exec, swaylock --effect-blur 10x4 -S"
 
         # Apps
-        "$mod, X, exec, thunar"
+        "$mod, X, exec, pcmanfm"
         "$mod, B, exec, firefox"
 
         # Screenshots
@@ -105,6 +105,9 @@
         "[workspace 2 silent] firefox"
         "[workspace 4 silent] sleep 1 & vesktop --enable-features=VaapiIgnoreDriverChecks,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform --ozone-platform=wayland"
         "steam -silent"
+        # Wayland cliphist
+        "wl-paste --type text --watch cliphist store"
+        "wl-paste --type image --watch cliphist store"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)
