@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 
+let
+  variant = "Mocha";
+  accent = "Mauve";
+  kvantumThemePackage = pkgs.catppuccin-kvantum.override {
+    inherit variant accent;
+  };
+in
 {
   # Nombre y directorio
   home.username = "leonillo";
@@ -37,7 +44,6 @@
     hunspellDicts.es_ES
     adoptopenjdk-bin
     orca-slicer
-    catppuccin-kvantum
     tidal-hifi
     hyprpaper
     pcmanfm
@@ -51,6 +57,7 @@
     grimblast
     xarchiver
     cool-retro-term
+    (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
   ];
 
   # Configurar fish
@@ -140,6 +147,18 @@
       package = pkgs.epapirus-icon-theme;
       name = "ePapirus-Dark";
     };
+  };
+
+  # Configuracion de QT 
+  qt = {
+    enable = true;
+    platformTheme.name = "qtct";
+    style.name = "kvantum";
+  };
+
+  xdg.configFile = {
+    "Kvantum/Catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/Catppuccin-${variant}-${accent}";
+    "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Catppuccin-${variant}-${accent}";
   };
 
   # Wayland ozone

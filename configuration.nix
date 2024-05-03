@@ -177,6 +177,7 @@
     brightnessctl
     ranger
     (callPackage ./custompkgs/catppuccin-sddm.nix {})
+    (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
   ];
 
   # Fuentes
