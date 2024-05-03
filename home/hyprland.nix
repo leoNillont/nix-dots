@@ -11,6 +11,7 @@
       bind = [
         # Terminal
         "$mod, Return, exec, kitty"
+        "$mod SHIFT, Return, exec, cool-retro-term"
 
         # Cosas
         "$mod, q, killactive,"
@@ -61,7 +62,7 @@
 
         # Screenshots
         ", Print, exec, grim"
-        "$mod SHIFT, S, exec, grim -g $(slurp) - | wl-copy"
+        "$mod SHIFT, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"

@@ -21,7 +21,6 @@
     mako
     nwg-bar
     swaylock-effects
-    flameshot
     #qbittorrent
     #ciscoPacketTracer8
     vesktop
@@ -49,6 +48,9 @@
     slurp
     wl-clipboard
     cliphist
+    grimblast
+    xarchiver
+    cool-retro-term
   ];
 
   # Configurar fish
@@ -115,6 +117,13 @@
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Ice";
     size = 24;
+  };
+
+  # Mime-types
+  xdg.mimeApps = {
+    associations.added = {
+      "inode/directory" = [ "pcmanfm.desktop" ];
+    };
   };
 
   # Configuracion de GTK
