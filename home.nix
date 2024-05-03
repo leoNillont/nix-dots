@@ -58,6 +58,8 @@ in
     xarchiver
     cool-retro-term
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
+    git
+    gh
   ];
 
   # Configurar fish
@@ -105,16 +107,6 @@ in
   home.file."./.local/share/rofi/themes" = {
     source = ./home/rofi-theme;
     recursive = true;
-  };
-
-  # Git y Gh
-  programs.git = {
-    enable = true;
-    package = pkgs.git;
-  };
-  programs.gh = {
-    enable = true;
-    package = pkgs.gh;
   };
 
   # Configuracion del tema del cursor
