@@ -104,8 +104,8 @@
         "mako"
         "[workspace 1 silent] kitty"
         "[workspace 2 silent] firefox"
-        "[workspace 4 silent] sleep 1 & vesktop --enable-features=VaapiIgnoreDriverChecks,VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization,UseMultiPlaneFormatForHardwareVideo,UseOzonePlatform --ozone-platform=wayland"
-        "steam -silent"
+        "[workspace 4 silent] vesktop"
+        "[workspace 5 silent] steam -silent"
         # Wayland cliphist
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
