@@ -363,7 +363,7 @@
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
         margin-right: 2px;
-        margin: 2px 0px;
+        margin: 2px 2px;
       }
 
       #tray > .passive {
