@@ -47,7 +47,6 @@ in
     orca-slicer
     tidal-hifi
     hyprpaper
-    pcmanfm
     vscode
     pavucontrol
     pamixer

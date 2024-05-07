@@ -31,6 +31,24 @@
   # Governador de CPU
   powerManagement.cpuFreqGovernor = "ondemand";
 
+  # Mullvad VPN
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
+
+  # Thunar
+  programs.thunar = {
+    enable = true;
+    plugins = [
+      thunar-volman
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      ffmpegthumbnailer
+    ];
+  };
+  services.tumbler.enable = true;
+
   # Activar la shell Fish
   programs.fish.enable = true;
 
