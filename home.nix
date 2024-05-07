@@ -28,7 +28,7 @@ in
     mako
     nwg-bar
     swaylock-effects
-    #qbittorrent
+    qbittorrent
     #ciscoPacketTracer8
     #(vesktop.override { withSystemVencord = false; })
     vesktop
@@ -60,13 +60,15 @@ in
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     git
     gh
+    imv
+    mpv
   ];
 
   # Configurar fish
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      set fish_greeting # Disable greeting
+      set fish_greeting
     '';
     plugins = [
       { name = "tide"; src = pkgs.fishPlugins.tide.src; }
