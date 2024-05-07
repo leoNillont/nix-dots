@@ -30,6 +30,7 @@ in
     swaylock-effects
     #qbittorrent
     #ciscoPacketTracer8
+    #(vesktop.override { withSystemVencord = false; })
     vesktop
     davinci-resolve
     r2modman
