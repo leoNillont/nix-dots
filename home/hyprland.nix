@@ -5,7 +5,7 @@
     enable = true;
     xwayland.enable = true;
     settings = {
-      monitor = "eDP-1,highrr,0x0,1";
+      monitor = ",highrr,0x0,1";
       # Bindeos de teclas y raton
       "$mod" = "SUPER";
       bind = [

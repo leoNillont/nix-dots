@@ -60,7 +60,7 @@ in
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     git
     gh
-    imv
+    oculante
     mpv
   ];
 
