@@ -22,10 +22,8 @@
     driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
-      intel-vaapi-driver
       vulkan-loader
       libvdpau-va-gl
-      vaapiVdpau
     ];
   };
 
