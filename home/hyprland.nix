@@ -57,7 +57,7 @@
         "$mod, L, exec, swaylock --effect-blur 10x4 -S"
 
         # Apps
-        "$mod, X, exec, pcmanfm"
+        "$mod, X, exec, thunar"
         "$mod, B, exec, firefox"
 
         # Screenshots

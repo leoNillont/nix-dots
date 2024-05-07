@@ -40,11 +40,13 @@
   # Thunar
   programs.thunar = {
     enable = true;
-    plugins = [
-      thunar-volman
-      thunar-archive-plugin
-      thunar-media-tags-plugin
+    plugins = with pkgs; [
+      xfce.thunar-volman
+      xfce.thunar-archive-plugin
+      xfce.thunar-media-tags-plugin
       ffmpegthumbnailer
+      f3d
+      webp-pixbuf-loader
     ];
   };
   services.tumbler.enable = true;
