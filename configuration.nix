@@ -29,7 +29,7 @@
   zramSwap.enable = true;
 
   # Governador de CPU
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   # Mullvad VPN
   services.mullvad-vpn = {
