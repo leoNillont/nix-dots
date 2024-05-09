@@ -62,7 +62,6 @@ in
     gh
     oculante
     mpv
-    lunarvim
   ];
 
   # Configurar fish
