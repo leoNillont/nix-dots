@@ -123,7 +123,7 @@ in
   # Mime-types
   xdg.mimeApps = {
     associations.added = {
-      "inode/directory" = [ "pcmanfm.desktop" ];
+      "inode/directory" = [ "thunar.desktop" ];
     };
   };
 
