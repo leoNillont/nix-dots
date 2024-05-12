@@ -62,6 +62,7 @@ in
     gh
     oculante
     mpv
+    heroic
   ];
 
   # Configurar fish
