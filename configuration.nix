@@ -47,6 +47,7 @@
       ffmpegthumbnailer
       f3d
       webp-pixbuf-loader
+      xarchiver
     ];
   };
   services.tumbler.enable = true;
