@@ -50,8 +50,8 @@
         ", XF86AudioMute, exec, pamixer -t"
 
         # Teclas de brillo
-        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl set -5%"
+        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
         
         # Swaylock
         "$mod, L, exec, swaylock --effect-blur 10x4 -S"
@@ -109,6 +109,7 @@
         # Wayland cliphist
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        "[workspace 3 silent] mullvad-gui"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)
