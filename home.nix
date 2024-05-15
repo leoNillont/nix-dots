@@ -55,7 +55,6 @@ in
     wl-clipboard
     cliphist
     grimblast
-    xarchiver
     cool-retro-term
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     git

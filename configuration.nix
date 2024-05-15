@@ -47,10 +47,10 @@
       ffmpegthumbnailer
       f3d
       webp-pixbuf-loader
-      xarchiver
     ];
   };
   services.tumbler.enable = true;
+  programs.file-roller.enable = true;
 
   # Activar la shell Fish
   programs.fish.enable = true;
