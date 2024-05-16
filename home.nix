@@ -127,6 +127,12 @@ in
     };
   };
 
+  # Directorios de usuario de xdg
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   # Configuracion de GTK
   gtk = {
     enable = true;
