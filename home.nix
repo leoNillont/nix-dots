@@ -66,7 +66,7 @@ in
     yt-dlp
     kdenlive
     anydesk
-    fastfectch
+    fastfetch
     gimp
   ];
 
