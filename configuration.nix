@@ -60,8 +60,7 @@
   networking.wireless.iwd.enable = true;
 
   # Systemd-resolved
-  networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-
+  #networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
     enable = true;
     dnssec = "true";
@@ -177,10 +176,10 @@
   #};
 
   # MySQL (para las practicas)
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
+  #services.mysql = {
+  #  enable = true;
+  #  package = pkgs.mariadb;
+  #};
 
 
   # Paquetes globales

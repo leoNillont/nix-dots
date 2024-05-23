@@ -62,6 +62,13 @@ in
     oculante
     mpv
     heroic
+    element-desktop
+    yt-dlp
+    kdenlive
+    anydesk
+    fastfectch
+    gimp
+    mpv
   ];
 
   # Configurar fish
@@ -98,6 +105,7 @@ in
   home.file."./.config/swaylock" = {
     source = ./home/swaylock;
     recursive = true;
+    imv
   };
 
   # Configurar rofi 
