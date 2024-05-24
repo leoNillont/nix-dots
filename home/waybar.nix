@@ -318,8 +318,8 @@
       }
 
       #pulseaudio.muted {
-        background-color: #90b1b1;
-        color: #2a5c45;
+        background-color: #6c7086;
+        color: #f38ba8;
       }
 
       #wireplumber {
