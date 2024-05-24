@@ -68,6 +68,7 @@ in
     anydesk
     fastfetch
     gimp
+    satty
   ];
 
   # Configurar fish

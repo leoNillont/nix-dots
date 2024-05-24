@@ -63,6 +63,7 @@
         # Screenshots
         ", Print, exec, grim"
         "$mod SHIFT, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'"
+        "$mod CONTROL, S, exec, satty --filename $(grimblast --notify copysave area)"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"
