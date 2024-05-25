@@ -32,10 +32,10 @@
   ];
 
   # Corectrl
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-  };
+  #programs.corectrl = {
+  #  enable = true;
+  #  gpuOverclock.enable = true;
+  #};
 
   # Hostname
   networking.hostName = "leopc";
