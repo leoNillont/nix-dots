@@ -11,6 +11,7 @@
       systemd-boot.enable = true;
       systemd-boot.consoleMode = "max";
       efi.canTouchEfiVariables = true;
+      timeout = 0;
     };
     initrd.systemd.enable = true;
   
@@ -20,6 +21,7 @@
       theme = "catppuccin-mocha";
     };
     kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
+
   };
 
   # Activar kernel linux-zen
