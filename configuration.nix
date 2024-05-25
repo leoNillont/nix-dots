@@ -197,6 +197,7 @@
     p7zip
     unrar-free
     brightnessctl
+    lm_sensors
     ranger
     (callPackage ./custompkgs/catppuccin-sddm.nix {})
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
