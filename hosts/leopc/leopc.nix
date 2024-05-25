@@ -37,6 +37,8 @@
   #  gpuOverclock.enable = true;
   #};
 
+  boot.kernelParams = [ "amd_pstate=guided" ];
+
   # Hostname
   networking.hostName = "leopc";
 
