@@ -50,7 +50,7 @@
 	 format = "{}% ";
 	};
 	"temperature" = {
-	 hwmon_path = "/sys/class/hwmon/hwmon2/temp1_input";
+	 hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
 	 critical-threshold = 80;
 	 format = "{temperatureC}°C {icon}";
 	 format-critical = "{temperatureC}°C {icon}";
