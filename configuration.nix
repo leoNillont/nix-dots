@@ -166,6 +166,8 @@
 
   # Steam
   programs.steam.enable = true;
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
 
   # QEMU/KVM + Virt Manager
   virtualisation.libvirtd.enable = true;

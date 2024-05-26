@@ -28,16 +28,16 @@ in
     mako
     nwg-bar
     swaylock-effects
-    qbittorrent
+    #qbittorrent
     #ciscoPacketTracer8
     #(vesktop.override { withSystemVencord = false; })
     vesktop
-    davinci-resolve
+    #davinci-resolve
     r2modman
-    vlc
+    #vlc
     obs-studio
     filezilla
-    gpu-screen-recorder
+    #gpu-screen-recorder
     qpwgraph
     libreoffice-qt
     hunspell
@@ -46,7 +46,7 @@ in
     adoptopenjdk-bin
     orca-slicer
     tidal-hifi
-    hyprpaper
+    #hyprpaper
     vscode
     pavucontrol
     pamixer
@@ -55,7 +55,7 @@ in
     wl-clipboard
     cliphist
     grimblast
-    cool-retro-term
+    #cool-retro-term
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     git
     gh
@@ -65,10 +65,12 @@ in
     element-desktop
     yt-dlp
     kdenlive
-    anydesk
+    #anydesk
     fastfetch
     gimp
     satty
+    bubblewrap
+    protonup-qt
   ];
 
   # Configurar fish
