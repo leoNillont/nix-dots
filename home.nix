@@ -71,6 +71,7 @@ in
     satty
     bubblewrap
     protonup-qt
+    anydesk
   ];
 
   # Configurar fish
