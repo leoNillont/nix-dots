@@ -37,7 +37,7 @@ in
     #vlc
     obs-studio
     filezilla
-    #gpu-screen-recorder
+    gpu-screen-recorder
     qpwgraph
     libreoffice-qt
     hunspell
@@ -65,13 +65,15 @@ in
     element-desktop
     yt-dlp
     kdenlive
-    #anydesk
+    anydesk
     fastfetch
     gimp
     satty
     bubblewrap
     protonup-qt
     anydesk
+    (python3.withPackages (pp: [ pp.pygobject3 ]))
+    playerctl
   ];
 
   # Configurar fish
