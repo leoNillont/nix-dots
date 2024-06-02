@@ -5,7 +5,12 @@
     enable = true;
     xwayland.enable = true;
     settings = {
-      monitor = ",highrr,0x0,1";
+      monitor = [
+        "eDP-1,highrr,0x0,1"
+        "DP-1,highrr,0x0,1"
+        "HDMI-A-1,1920x1080@60,0x1440,1"
+        "HDMI-A-2,1920x1080@60,0x1080,1"
+      ];
       # Bindeos de teclas y raton
       "$mod" = "SUPER";
       bind = [
