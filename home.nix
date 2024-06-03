@@ -72,8 +72,7 @@ in
     bubblewrap
     protonup-qt
     anydesk
-    (python3.withPackages (pp: [ pp.pygobject3 ]))
-    playerctl
+    krita
   ];
 
   # Configurar fish
