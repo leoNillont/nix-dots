@@ -66,12 +66,6 @@
     };
   };
 
-  # Abrir puerto 8000, para la web de tests
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 8000 ];
-  };
-
   # Thermald
   services.thermald.enable = true;
 

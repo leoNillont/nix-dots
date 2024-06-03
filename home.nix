@@ -88,10 +88,10 @@ in
   };
 
   # Configurar Neovim
-  home.file."./.config/nvim/" = {
-    source = ./home/nvim;
-    recursive = true;
-  };
+  #home.file."./.config/nvim/" = {
+  #  source = ./home/nvim;
+  #  recursive = true;
+  #};
 
   # Configurar nwg-bar
   home.file."./.config/nwg-bar" = {
