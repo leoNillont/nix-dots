@@ -128,7 +128,12 @@
   programs.hyprland.enable = true;
 
   # Activar cups (impresora)
-  #services.printing.enable = true;
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Syncthing
   services.syncthing = {
@@ -153,12 +158,18 @@
   # Activar Flatpak
   services.flatpak.enable = true;
 
+  # Activar xdg desktop portal
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
+
   # Crear mi usuario
   users.users.leonillo = {
     isNormalUser = true;
     shell = pkgs.fish;
-    description = "Noel";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    description = "leoNillo";
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "wireshark" ];
   };
 
   # Permitir paquetes no libres
@@ -168,6 +179,12 @@
   programs.steam.enable = true;
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
+
+  # Wireshark
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark-qt;
+  };
 
   # QEMU/KVM + Virt Manager
   virtualisation.libvirtd.enable = true;
