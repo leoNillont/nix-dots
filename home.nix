@@ -73,6 +73,7 @@ in
     protonup-qt
     anydesk
     krita
+    rustup
   ];
 
   # Configurar fish
@@ -150,9 +151,11 @@ in
     theme = {
       package = pkgs.catppuccin-gtk.override {
         accents = [ "mauve" ];
-	variant = "mocha";
+	      variant = "mocha";
+        size = "standard";
       };
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+      #name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+      name = "catppuccin-mocha-mauve-standard+default";
     };
     iconTheme = {
       package = pkgs.epapirus-icon-theme;

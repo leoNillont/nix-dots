@@ -25,7 +25,10 @@
   };
 
   # Activar kernel linux-zen
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  #boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # Activar linux xanmod
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   # Activar Zram
   zramSwap.enable = true;
@@ -190,6 +193,9 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # Waydroid
+  #virtualisation.waydroid.enable = true;
+
   # Docker
   #virtualisation.docker = { 
   #  enable = true;
@@ -220,6 +226,23 @@
     ranger
     (callPackage ./custompkgs/catppuccin-sddm.nix {})
     (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
+    clang
+  ];
+
+  # Fixeo temporal para catppuccin
+  nixpkgs.overlays = [
+    (final: prev: {
+      catppuccin-gtk = prev.catppuccin-gtk.overrideAttrs (old: {
+        src = prev.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "gtk";
+          rev = "v${old.version}";
+          fetchSubmodules = true;
+          hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
+        };
+        postUnpack = "";
+      });
+    })
   ];
 
   # Fuentes
