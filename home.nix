@@ -155,11 +155,14 @@
       name = "kvantum";
       catppuccin = {
         enable = true;
-        flavor = "mocha";
-        accent = "mauve";
         apply = true;
       };
     };
+  };
+
+  programs.btop = {
+    enable = true;
+    catppuccin.enable = true;
   };
 
   # Wayland ozone
