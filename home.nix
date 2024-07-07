@@ -1,12 +1,5 @@
 { config, pkgs, ... }:
 
-let
-  variant = "Mocha";
-  accent = "Mauve";
-  kvantumThemePackage = pkgs.catppuccin-kvantum.override {
-    inherit variant accent;
-  };
-in
 {
   # Nombre y directorio
   home.username = "leonillo";
@@ -28,13 +21,8 @@ in
     mako
     nwg-bar
     swaylock-effects
-    #qbittorrent
-    #ciscoPacketTracer8
-    #(vesktop.override { withSystemVencord = false; })
     vesktop
-    #davinci-resolve
     r2modman
-    #vlc
     obs-studio
     filezilla
     gpu-screen-recorder
@@ -46,7 +34,6 @@ in
     adoptopenjdk-bin
     orca-slicer
     tidal-hifi
-    #hyprpaper
     vscode
     pavucontrol
     pamixer
@@ -55,8 +42,6 @@ in
     wl-clipboard
     cliphist
     grimblast
-    #cool-retro-term
-    (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     git
     gh
     oculante
@@ -124,13 +109,16 @@ in
     recursive = true;
   };
 
-  # Configuracion del tema del cursor
-  home.pointerCursor = {
-    gtk.enable = true;
-    # x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
+  # Enable catppuccin globally
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "mauve";
+    pointerCursor = {
+      enable = true;
+      accent = "mauve";
+      flavor = "mocha";
+    };
   };
 
   # Mime-types
@@ -149,31 +137,29 @@ in
   # Configuracion de GTK
   gtk = {
     enable = true;
-    theme = {
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "mauve" ];
-	      variant = "mocha";
-        size = "standard";
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "mauve";
+      icon = {
+        enable = true;
       };
-      #name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      name = "catppuccin-mocha-mauve-standard+default";
-    };
-    iconTheme = {
-      package = pkgs.epapirus-icon-theme;
-      name = "ePapirus-Dark";
     };
   };
 
   # Configuracion de QT 
   qt = {
     enable = true;
-    platformTheme.name = "qtct";
-    style.name = "kvantum";
-  };
-
-  xdg.configFile = {
-    "Kvantum/Catppuccin-${variant}-${accent}".source = "${kvantumThemePackage}/share/Kvantum/Catppuccin-${variant}-${accent}";
-    "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=Catppuccin-${variant}-${accent}";
+    platformTheme.name = "kvantum";
+    style = {
+      name = "kvantum";
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+        accent = "mauve";
+        apply = true;
+      };
+    };
   };
 
   # Wayland ozone
