@@ -18,49 +18,59 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Catppuccin
+    catppuccin.url = "github:catppuccin/nix";
+
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: {
     nixosConfigurations = {
       "leopc" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         # importar modulos
-	modules = [
-	  # configuracion general
-	  ./configuration.nix
-
+	      modules = [
+	        # configuracion general
+	        ./configuration.nix
+          
           # configuracion de host
-	  ./hosts/leopc/leopc.nix
-	  
-	  # modulo de disko
+	        ./hosts/leopc/leopc.nix
+	        
+	        # modulo de disko
           disko.nixosModules.disko
           ./disko-config.nix
 
-	  # Home Manager
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.leonillo = import ./home.nix;
-	  }
+          # Catppuccin
+          catppuccin.nixosModules.catppuccin
+          
+	        # Home Manager
+	        home-manager.nixosModules.home-manager
+	        {
+	          home-manager.useGlobalPkgs = true;
+	          home-manager.useUserPackages = true;
+	          home-manager.users.leonillo = import ./home.nix;
+            catppuccin.homeManagerModules.catppuccin
+	        }
         ];
       };
 
-      "leolaptop" = nixpkgs.lib.nixosSystem {
+    "leolaptop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         
-	# importar modulos
+	      # importar modulos
         modules = [
-	  # configuracion general
+	        # configuracion general
           ./configuration.nix
 
           # configuracion de host
           ./hosts/leolaptop/leolaptop.nix
 
-	  # modulo de disko
+	        # modulo de disko
           disko.nixosModules.disko
           ./disko-config.nix
+
+          # Catppuccin
+          catppuccin.nixosModules.catppuccin
 
           # Home manager
           home-manager.nixosModules.home-manager
@@ -68,6 +78,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.leonillo = import ./home.nix;
+            catppuccin.homeManagerModules.catppuccin
           }
         ];
       };
