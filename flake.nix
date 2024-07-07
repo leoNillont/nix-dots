@@ -48,8 +48,12 @@
 	        {
 	          home-manager.useGlobalPkgs = true;
 	          home-manager.useUserPackages = true;
-	          home-manager.users.leonillo = import ./home.nix;
-            catppuccin.homeManagerModules.catppuccin
+	          home-manager.users.leonillo = {
+              imports = [
+                ./home.nix
+                catppuccin.homeManagerModules.catppuccin
+              ];
+            };
 	        }
         ];
       };
