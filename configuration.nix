@@ -15,17 +15,19 @@
     };
     initrd.systemd.enable = true;
   
-    plymouth = {
-      enable = true;
-      themePackages = [ (pkgs.catppuccin-plymouth.override { variant = "mocha"; }) ];
-      theme = "catppuccin-mocha";
-    };
+    plymouth.enable = true;
     kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
 
   };
 
   # Activar kernel linux-zen
   #boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # Enable catppuccin
+  catppuccin = {
+    accent = "mauve";
+    flavor = "mocha";
+  };
 
   # Activar linux xanmod
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
@@ -120,7 +122,7 @@
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
-    theme = "catppuccin-mocha";
+    #theme = "catppuccin-mocha";
     wayland.enable = true;
   };
 
@@ -233,26 +235,26 @@
     brightnessctl
     lm_sensors
     ranger
-    (callPackage ./custompkgs/catppuccin-sddm.nix {})
-    (catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
+    #(callPackage ./custompkgs/catppuccin-sddm.nix {})
+    #(catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     clang
   ];
 
   # Fixeo temporal para catppuccin
-  nixpkgs.overlays = [
-    (final: prev: {
-      catppuccin-gtk = prev.catppuccin-gtk.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "gtk";
-          rev = "v${old.version}";
-          fetchSubmodules = true;
-          hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
-        };
-        postUnpack = "";
-      });
-    })
-  ];
+  #nixpkgs.overlays = [
+  #  (final: prev: {
+  #    catppuccin-gtk = prev.catppuccin-gtk.overrideAttrs (old: {
+  #      src = prev.fetchFromGitHub {
+  #        owner = "catppuccin";
+  #        repo = "gtk";
+  #        rev = "v${old.version}";
+  #        fetchSubmodules = true;
+  #        hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
+  #      };
+  #      postUnpack = "";
+  #    });
+  #  })
+  #];
 
   # Fuentes
   fonts = {
