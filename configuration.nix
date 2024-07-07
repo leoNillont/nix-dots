@@ -178,10 +178,19 @@
   # Permitir paquetes no libres
   nixpkgs.config.allowUnfree = true;
 
-  # Steam
-  programs.steam.enable = true;
+  # Steam, gamescope y gamemode
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
+
+  # Java
+  programs.java = {
+    enable = true;
+    package = pkgs.temurin-bin;
+  };
 
   # Wireshark
   programs.wireshark = {
@@ -246,11 +255,19 @@
   ];
 
   # Fuentes
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
-    font-awesome
-    meslo-lgs-nf
-  ];
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
+      font-awesome
+      meslo-lgs-nf
+    ];
+    fontconfig = {
+      antialias = true;
+      cache32Bit = true;
+      hinting.enable = true;
+      hinting.autohint = true;
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

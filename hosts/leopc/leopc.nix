@@ -11,9 +11,9 @@
     #driSupport = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      #rocmPackages.clr.icd
-      #vaapiVdpau
-      #libvdpau-va-gl
+      rocmPackages.clr.icd
+      vaapiVdpau
+      libvdpau-va-gl
       vulkan-loader
     ];
   };
@@ -60,11 +60,30 @@
     };
   
   # NAS
-  fileSystems."/media/NAS" = {
-    device = "192.168.1.96:/Datos";
-    fsType = "nfs";
-    options = [ "defaults" "x-systemd.automount" "noauto" "x-systemd.device-timeout=900" "retrans=5" "_netdev" ];
-  };
+  #fileSystems."/media/NAS" = {
+  #  device = "192.168.1.96:/Datos";
+  #  fsType = "nfs";
+  #  options = [ "defaults" "x-systemd.automount" "noauto" "x-systemd.device-timeout=5" "retrans=5" "_netdev" ];
+  #};
+
+  # NAS, but with sysetmd
+  services.rpcbind.enable = true; # needed for NFS
+  systemd.mounts = [{
+    type = "nfs";
+    mountConfig = {
+      Options = [ "noatime" ];
+    };
+    what = "192.168.1.96:/Datos";
+    where = "/media/NAS";
+  }];
+
+  systemd.automounts = [{
+    wantedBy = [ "multi-user.target" ];
+    automountConfig = {
+      TimeoutIdleSec = "600";
+    };
+    where = "/media/NAS";
+  }];
 
   # IP Estatica
   networking = {
