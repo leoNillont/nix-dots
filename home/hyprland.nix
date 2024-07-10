@@ -16,7 +16,6 @@
       bind = [
         # Terminal
         "$mod, Return, exec, kitty"
-        "$mod SHIFT, Return, exec, cool-retro-term"
 
         # Cosas
         "$mod, q, killactive,"
@@ -41,7 +40,7 @@
         "$mod control, e, resizeactive, 0 -40"
         "$mod control, i, resizeactive, 40 0"
         "$mod, F, fullscreen,"
-        "$mod, J, togglesplit"
+        "$mod, J, togglesplit,"
         "$mod, space, togglefloating,"
         "$mod, P, pin"
 
