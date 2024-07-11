@@ -9,6 +9,7 @@
         #"eDP-1,highrr,0x0,1"
         "DP-1,highrr,0x0,1"
         #"HDMI-A-1,1920x1080@60,0x1440,1"
+        ",1920x1080@60,auto,1,mirror,DP-1"
         #"HDMI-A-2,1920x1080@60,0x1080,1"
       ];
       # Bindeos de teclas y raton
@@ -101,6 +102,7 @@
         # Raton
         accel_profile = "flat";
         mouse_refocus = false;
+        force_no_accel = true;
       };
 
       # Autostart
@@ -153,6 +155,7 @@
         border_size = 2;
         "col.active_border" = "rgb(cba6f7)";
         "col.inactive_border" = "rgb(45475a)";
+        allow_tearing = true;
       };
 
       # Miscelano
@@ -169,6 +172,12 @@
         "workspace 2, class:firefox"
         "workspace 3, class:tidal-hifi"
         "workspace 4, class:vesktop"
+        "immediate, class:^(cs2)$"
+      ];
+
+      # Variables de entorno
+      env = [
+        "WLR_DRM_NO_ATOMIC,1"
       ];
     };
   };

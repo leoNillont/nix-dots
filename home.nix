@@ -60,6 +60,7 @@
     krita
     rustup
     obsidian
+    bottles
   ];
 
   # Configurar fish
