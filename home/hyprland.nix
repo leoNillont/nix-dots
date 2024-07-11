@@ -6,7 +6,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        #"eDP-1,highrr,0x0,1"
+        "eDP-1,highrr,0x0,1"
         "DP-1,highrr,0x0,1"
         #"HDMI-A-1,1920x1080@60,0x1440,1"
         ",1920x1080@60,auto,1,mirror,DP-1"
@@ -98,7 +98,7 @@
       input = {
         # Colemak
         kb_layout = "us";
-        kb_variant = "colemak";
+        #kb_variant = "colemak";
         # Raton
         accel_profile = "flat";
         mouse_refocus = false;
