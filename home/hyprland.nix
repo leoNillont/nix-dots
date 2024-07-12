@@ -98,7 +98,7 @@
       input = {
         # Colemak
         kb_layout = "us";
-        #kb_variant = "colemak";
+        kb_variant = "colemak";
         # Raton
         accel_profile = "flat";
         mouse_refocus = false;
