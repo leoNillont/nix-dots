@@ -155,14 +155,14 @@
         border_size = 2;
         "col.active_border" = "rgb(cba6f7)";
         "col.inactive_border" = "rgb(45475a)";
-        allow_tearing = true;
+        #allow_tearing = true;
       };
 
       # Miscelano
       misc = {
         vrr = 1;
         animate_manual_resizes = true;
-        no_direct_scanout = true;
+        no_direct_scanout = false;
         force_default_wallpaper = "2";
       };
       
@@ -173,7 +173,7 @@
         "workspace 2, class:firefox"
         "workspace 3, class:tidal-hifi"
         "workspace 4, class:vesktop"
-        "immediate, class:^(cs2)$"
+        #"immediate, class:^(cs2)$"
       ];
 
       # Variables de entorno
