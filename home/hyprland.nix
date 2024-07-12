@@ -6,7 +6,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        "eDP-1,highrr,0x0,1"
+        "eDP-1,2560x1440@180,0x0,1,vrr,1"
         "DP-1,highrr,0x0,1"
         #"HDMI-A-1,1920x1080@60,0x1440,1"
         ",1920x1080@60,auto,1,mirror,DP-1"
@@ -102,7 +102,7 @@
         # Raton
         accel_profile = "flat";
         mouse_refocus = false;
-        force_no_accel = true;
+        #force_no_accel = true;
       };
 
       # Autostart
@@ -162,7 +162,8 @@
       misc = {
         vrr = 1;
         animate_manual_resizes = true;
-        no_direct_scanout = false;
+        no_direct_scanout = true;
+        force_default_wallpaper = "2";
       };
       
       
@@ -176,9 +177,9 @@
       ];
 
       # Variables de entorno
-      env = [
-        "WLR_DRM_NO_ATOMIC,1"
-      ];
+      #env = [
+      #  "WLR_DRM_NO_ATOMIC,1"
+      #];
     };
   };
 }
