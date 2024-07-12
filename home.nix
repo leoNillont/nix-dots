@@ -61,6 +61,7 @@
     rustup
     obsidian
     bottles
+    piper
   ];
 
   # Configurar fish

@@ -116,6 +116,9 @@
   # GVFS pal pcmanfm
   services.gvfs.enable = true;
 
+  # Activar ratbag, para configurar el raton
+  services.ratbagd.enable = true;
+
   # Fixeo pal swaylock
   security.pam.services.swaylock = {};
 
