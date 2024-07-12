@@ -45,6 +45,9 @@
     package = pkgs.mullvad-vpn;
   };
 
+  # Ratbagd (para piper)
+  services.ratbagd.enable = true;
+
   # Thunar
   programs.thunar = {
     enable = true;
@@ -116,9 +119,6 @@
   # GVFS pal pcmanfm
   services.gvfs.enable = true;
 
-  # Activar ratbag, para configurar el raton
-  services.ratbagd.enable = true;
-
   # Fixeo pal swaylock
   security.pam.services.swaylock = {};
 
@@ -178,7 +178,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "wireshark" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "wireshark" "games" ];
   };
 
   # Permitir paquetes no libres
