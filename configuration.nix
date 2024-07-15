@@ -48,6 +48,17 @@
   # Ratbagd (para piper)
   services.ratbagd.enable = true;
 
+  # Activar ALVR
+  programs.alvr = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # Reglas udev para sidequest
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", OWNER="leonillo"
+  '';
+
   # Thunar
   programs.thunar = {
     enable = true;
@@ -154,7 +165,7 @@
 
   # Activar y configurar pipewire (sonido)
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  #hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
