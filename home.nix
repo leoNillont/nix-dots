@@ -62,6 +62,7 @@
     obsidian
     bottles
     piper
+    sidequest
   ];
 
   # Configurar fish
