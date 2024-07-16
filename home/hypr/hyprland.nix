@@ -72,6 +72,10 @@
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"
+
+        # GPU-SCREEN-RECORDER
+        "$mod, G, exec, ~/.config/hypr/replay/guardar.sh"
+        "$mod SHIFT, G, exec, nwg-bar -t ~/.config/hypr/replay/nwg-bar/bar.json"
       ]
       ++ (
         # workspaces
