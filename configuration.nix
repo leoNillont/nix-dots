@@ -258,6 +258,7 @@
     clang
     pulseaudio
     libnotify
+    killall
   ];
 
   # Fixeo temporal para catppuccin
