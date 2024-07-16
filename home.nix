@@ -105,9 +105,14 @@
     source = ./home/rofi;
     recursive = true;
   };
-
   home.file."./.local/share/rofi/themes" = {
     source = ./home/rofi-theme;
+    recursive = true;
+  };
+
+  # Scripts de gpu-screen-recorder
+  home.file."./.config/hypr/replay" = {
+    source = ./home/hypr/replay;
     recursive = true;
   };
 
