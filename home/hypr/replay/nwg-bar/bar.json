@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Iniciar",
+    "exec": "bash /home/leonillo/.config/hypr/replay/iniciar.sh",
+    "icon": "/usr/share/nwg-bar/images/system-shutdown.svg"
+  },
+  {
+    "label": "Guardar",
+    "exec": "bash /home/leonillo/.config/hypr/replay/guardar.sh",
+    "icon": "/usr/share/nwg-bar/images/system-reboot.svg"
+  },
+  {
+    "label": "Parar",
+    "exec": "bash /home/leonillo/.config/hypr/replay/parar.sh",
+    "icon": "/usr/share/nwg-bar/images/system-suspend.svg"
+  }
+]

@@ -8,7 +8,7 @@
   # Importar modulos que se hicieron demasiado largos
   imports = [
     home/waybar.nix
-    home/hyprland.nix
+    home/hypr/hyprland.nix
     home/kitty.nix
   ];
 
@@ -23,9 +23,8 @@
     swaylock-effects
     vesktop
     r2modman
-    obs-studio
+    #obs-studio
     filezilla
-    gpu-screen-recorder
     qpwgraph
     libreoffice-qt
     hunspell
@@ -162,10 +161,21 @@
       };
     };
   };
-
+  
+  # Configurar btop
   programs.btop = {
     enable = true;
     catppuccin.enable = true;
+  };
+
+  # Configurar OBS
+  programs.obs-studio = {
+    enable = true;
+    plugins = with pkgs; [
+      obs-studio-plugins.obs-vkcapture
+      obs-studio-plugins.obs-vaapi
+      obs-studio-plugins.obs-pipewire-audio-capture
+    ];
   };
 
   # Wayland ozone

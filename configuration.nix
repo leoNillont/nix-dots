@@ -54,6 +54,9 @@
     openFirewall = true;
   };
 
+  # Activar GPU screen recorder
+  programs.gpu-screen-recorder.enable = true;
+
   # Reglas udev para sidequest
   services.udev.extraRules = ''
     SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", OWNER="leonillo"
