@@ -256,6 +256,8 @@
     #(callPackage ./custompkgs/catppuccin-sddm.nix {})
     #(catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     clang
+    pulseaudio
+    libnotify
   ];
 
   # Fixeo temporal para catppuccin
