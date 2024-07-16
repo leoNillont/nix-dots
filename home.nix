@@ -62,6 +62,7 @@
     bottles
     piper
     sidequest
+    qbittorrent
   ];
 
   # Configurar fish
