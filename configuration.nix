@@ -184,7 +184,7 @@
   # Activar xdg desktop portal
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk ];
   };
 
   # Crear mi usuario
@@ -199,12 +199,14 @@
   nixpkgs.config.allowUnfree = true;
 
   # Steam, gamescope y gamemode
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
+  programs = {
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+    };
+    gamescope.enable = true;
+    gamemode.enable = true;
   };
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
 
   # Java
   programs.java = {
