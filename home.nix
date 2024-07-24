@@ -63,6 +63,7 @@
     piper
     sidequest
     qbittorrent
+    mangohud
   ];
 
   # Configurar fish
