@@ -44,7 +44,7 @@
   # Corectrl
   programs.corectrl = {
     enable = true;
-  #  gpuOverclock.enable = true;
+    gpuOverclock.enable = true;
   };
 
   boot.kernelParams = [ "amd_pstate=guided" ];

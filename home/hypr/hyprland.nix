@@ -121,6 +121,7 @@
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "[workspace 3 silent] mullvad-gui"
+        "lxqt-policykit-agent"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)

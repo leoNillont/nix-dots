@@ -261,6 +261,7 @@
     pulseaudio
     libnotify
     killall
+    lxqt.lxqt-policykit
   ];
 
   # Fixeo temporal para catppuccin
