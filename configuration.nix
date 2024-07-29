@@ -11,11 +11,11 @@
       systemd-boot.enable = true;
       systemd-boot.consoleMode = "max";
       efi.canTouchEfiVariables = true;
-      timeout = 0;
+      timeout = 1;
     };
     initrd.systemd.enable = true;
   
-    plymouth.enable = true;
+    #plymouth.enable = true;
     kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
 
   };
@@ -54,6 +54,9 @@
     openFirewall = true;
   };
 
+  # Activar Waybar
+  programs.waybar.enable = true;
+
   # Activar GPU screen recorder
   programs.gpu-screen-recorder.enable = true;
 
@@ -82,7 +85,7 @@
 
   # Activar NetworkManager
   networking.networkmanager.enable = true;
-  networking.wireless.iwd.enable = true;
+  #networking.wireless.iwd.enable = true;
 
   # Systemd-resolved
   #networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
@@ -151,23 +154,23 @@
   programs.hyprland.enable = true;
 
   # Activar cups (impresora)
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  #services.printing.enable = true;
+  #services.avahi = {
+  #  enable = true;
+  #  nssmdns4 = true;
+  #  openFirewall = true;
+  #};
 
   # Syncthing
-  services.syncthing = {
-    enable = true;
-    user = "leonillo";
-    dataDir = "/home/leonillo/Syncthings";
-    configDir = "/home/leonillo/Syncthings/.config/syncthing";
-  };
+  #services.syncthing = {
+  #  enable = true;
+  #  user = "leonillo";
+  #  dataDir = "/home/leonillo/Syncthings";
+  #  configDir = "/home/leonillo/Syncthings/.config/syncthing";
+  #};
 
   # Activar y configurar pipewire (sonido)
-  ##sound.enable = true;
+  #sound.enable = true;
   #hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -192,7 +195,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "wireshark" "games" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" ];
   };
 
   # Permitir paquetes no libres
@@ -208,6 +211,14 @@
     gamemode.enable = true;
   };
 
+  # Activar sunshine
+  services.sunshine = {
+    enable = true;
+    autoStart = false;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   # Java
   programs.java = {
     enable = true;
@@ -215,10 +226,10 @@
   };
 
   # Wireshark
-  programs.wireshark = {
-    enable = true;
-    package = pkgs.wireshark-qt;
-  };
+  #programs.wireshark = {
+  #  enable = true;
+  #  package = pkgs.wireshark-qt;
+  #};
 
   # QEMU/KVM + Virt Manager
   virtualisation.libvirtd.enable = true;

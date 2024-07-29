@@ -23,7 +23,7 @@
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    #powerOnBoot = true;
   };
 
   # Hip workaround

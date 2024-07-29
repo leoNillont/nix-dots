@@ -16,7 +16,6 @@
     firefox
     prismlauncher
     kitty
-    waybar
     rofi-wayland
     mako
     nwg-bar
