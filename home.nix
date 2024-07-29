@@ -13,7 +13,6 @@
   ];
 
   home.packages = with pkgs; [
-    firefox
     prismlauncher
     kitty
     rofi-wayland
@@ -40,7 +39,6 @@
     wl-clipboard
     cliphist
     grimblast
-    git
     gh
     oculante
     mpv
@@ -48,7 +46,6 @@
     element-desktop
     yt-dlp
     kdenlive
-    anydesk
     fastfetch
     gimp
     satty

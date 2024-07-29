@@ -225,6 +225,15 @@
     package = pkgs.temurin-bin;
   };
 
+  # Activar htop
+  programs.htop.enable = true;
+
+  # Activar firefox
+  programs.firefox.enable = true;
+
+  # Activar git
+  programs.git.enable = true;
+
   # Wireshark
   #programs.wireshark = {
   #  enable = true;
