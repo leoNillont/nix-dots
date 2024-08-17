@@ -28,7 +28,7 @@
     hunspell
     hunspellDicts.en_US
     hunspellDicts.es_ES
-    adoptopenjdk-bin
+    temurin-bin
     orca-slicer
     tidal-hifi
     vscode
@@ -60,6 +60,7 @@
     sidequest
     qbittorrent
     mangohud
+    waybar
   ];
 
   # Configurar fish
@@ -179,6 +180,11 @@
       obs-studio-plugins.obs-vaapi
       obs-studio-plugins.obs-pipewire-audio-capture
     ];
+  };
+
+  # Syncthing
+  services.syncthing = {
+    enable = true;
   };
 
   # Wayland ozone
