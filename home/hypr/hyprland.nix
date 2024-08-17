@@ -6,10 +6,10 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        "eDP-1,2560x1440@180,0x0,1,vrr,1"
-        "DP-1,highrr,0x0,1"
-        #"HDMI-A-1,1920x1080@60,0x1440,1"
-        ",1920x1080@60,auto,1,mirror,DP-1"
+        #"eDP-1,highrr,0x0,1,vrr,1"
+        "DP-1,highrr,0x0,1,vrr,1"
+        "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
+        #",1920x1080@60,auto,1,mirror,DP-1"
         #"HDMI-A-2,1920x1080@60,0x1080,1"
       ];
       # Bindeos de teclas y raton
@@ -120,7 +120,7 @@
         # Wayland cliphist
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-        "[workspace 3 silent] mullvad-gui"
+        #"[workspace 3 silent] mullvad-gui"
         "lxqt-policykit-agent"
       ];
 
