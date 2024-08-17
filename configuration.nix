@@ -16,7 +16,7 @@
     initrd.systemd.enable = true;
   
     #plymouth.enable = true;
-    kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
+    #kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
 
   };
 
@@ -54,9 +54,6 @@
     openFirewall = true;
   };
 
-  # Activar Waybar
-  programs.waybar.enable = true;
-
   # Activar GPU screen recorder
   programs.gpu-screen-recorder.enable = true;
 
@@ -85,6 +82,7 @@
 
   # Activar NetworkManager
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   #networking.wireless.iwd.enable = true;
 
   # Systemd-resolved
@@ -163,10 +161,10 @@
 
   # Syncthing
   #services.syncthing = {
-  #  enable = true;
-  #  user = "leonillo";
-  #  dataDir = "/home/leonillo/Syncthings";
-  #  configDir = "/home/leonillo/Syncthings/.config/syncthing";
+    #enable = true;
+    #user = "leonillo";
+    #dataDir = "/home/leonillo/Syncthings";
+    #configDir = "/home/leonillo/Syncthings/.config/syncthing";
   #};
 
   # Activar y configurar pipewire (sonido)
