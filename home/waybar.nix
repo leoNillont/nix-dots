@@ -14,7 +14,7 @@
 	# Modulos
 	modules-left = [ "hyprland/workspaces" "hyprland/window" ];
 	modules-center = [ "custom/media" ];
-	modules-right = [ "tray" "pulseaudio" "network" "cpu" "temperature" "battery" "clock" ];
+	modules-right = [ "tray" "pulseaudio" "network" "cpu" "temperature" "memory" "battery" "clock" ];
 
 	# Configuracion de los modulos
 	"hyprland/workspaces" = {
