@@ -13,7 +13,16 @@
   ];
 
   home.packages = with pkgs; [
-    prismlauncher
+    #prismlauncher
+    (prismlauncher.override {
+      jdks = [
+        temurin-bin
+        temurin-bin-21
+        temurin-jre-bin-17
+        temurin-jre-bin-11
+        temurin-jre-bin-8
+      ];
+    })
     kitty
     rofi-wayland
     mako
@@ -43,7 +52,7 @@
     oculante
     mpv
     heroic
-    element-desktop
+    #element-desktop
     yt-dlp
     kdenlive
     fastfetch
@@ -70,8 +79,10 @@
       set fish_greeting
     '';
     plugins = [
-      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      #{ name = "tide"; src = pkgs.fishPlugins.tide.src; }
+      { name = "pure"; src = pkgs.fishPlugins.pure.src; }
       { name = "done"; src = pkgs.fishPlugins.done.src; }
+      { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
     ];
   };
 
