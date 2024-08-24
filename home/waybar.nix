@@ -290,7 +290,9 @@
       }
 
       #memory {
-        background-color: #9b59b6;
+        background-color: @surface0;
+        color: @green;
+        margin: 2px 2px;
       }
 
       #disk {
