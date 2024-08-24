@@ -167,10 +167,8 @@
       misc = {
         vrr = 1;
         animate_manual_resizes = true;
-        no_direct_scanout = false;
         force_default_wallpaper = "2";
       };
-      
       
       # Windowrules
       windowrulev2 = [
@@ -180,6 +178,17 @@
         "workspace 4, class:vesktop"
         #"immediate, class:^(cs2)$"
       ];
+
+      # Render
+      render = {
+        direct_scanout = true;
+        explicit_sync = 1;
+        explicit_sync_kms = 0;
+
+      };
+
+      # Activar logs
+      debug.disable_logs = false;
 
       # Variables de entorno
       #env = [
