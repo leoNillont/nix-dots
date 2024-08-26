@@ -49,10 +49,10 @@
   services.ratbagd.enable = true;
 
   # Activar ALVR
-  programs.alvr = {
-    enable = true;
-    openFirewall = true;
-  };
+  #programs.alvr = {
+  #  enable = true;
+  #  openFirewall = true;
+  #};
 
   # Activar GPU screen recorder
   programs.gpu-screen-recorder.enable = true;
