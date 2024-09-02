@@ -134,7 +134,7 @@
           passes = "2";
           new_optimizations = true;
           ignore_opacity = true;
-          noise = 0.1;
+          noise = 0.01;
           brightness = 0.90;
         };
       };

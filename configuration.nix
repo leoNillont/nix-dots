@@ -152,12 +152,12 @@
   programs.hyprland.enable = true;
 
   # Activar cups (impresora)
-  #services.printing.enable = true;
-  #services.avahi = {
-  #  enable = true;
-  #  nssmdns4 = true;
-  #  openFirewall = true;
-  #};
+  services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Syncthing
   #services.syncthing = {
@@ -243,7 +243,7 @@
   programs.virt-manager.enable = true;
 
   # Waydroid
-  #virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = true;
 
   # Docker
   #virtualisation.docker = { 
@@ -280,6 +280,7 @@
     libnotify
     killall
     lxqt.lxqt-policykit
+    lzip
   ];
 
   # Fixeo temporal para catppuccin
