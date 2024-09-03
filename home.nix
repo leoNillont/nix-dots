@@ -16,11 +16,13 @@
     #prismlauncher
     (prismlauncher.override {
       jdks = [
-        temurin-bin
         temurin-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-11
         temurin-jre-bin-8
+        jdk21
+        jdk17
+        jdk8
       ];
     })
     kitty
