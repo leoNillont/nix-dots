@@ -6,7 +6,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        #"eDP-1,highrr,0x0,1,vrr,1"
+        "eDP-1,highrr,0x0,1"
         "DP-1,highrr,0x0,1,vrr,1"
         "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
         #",1920x1080@60,auto,1,mirror,DP-1"
