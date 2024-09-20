@@ -34,6 +34,11 @@
   hardware.nvidia = {
     modesetting.enable = true;
     nvidiaSettings = true;
+    powerManagement = {
+      enable = false;
+      finegrained = false;
+    };
+    open = true;
     prime = {
       sync.enable = true;
       nvidiaBusId = "PCI:1:0:0";
@@ -60,7 +65,7 @@
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 80;
+      CPU_MAX_PERF_ON_BAT = 100;
 
     };
   };
