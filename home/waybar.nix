@@ -91,17 +91,6 @@
 	 };
 	 on-click = "pavucontrol";
 	};
-	#"custom/media" = {
-	# format = "{icon} {}";
-	# return-type = "json";
-	# max-length = 40;
-	# format-icons = {
-	#   spotify = "";
-	#   default = "🎜";
-	# };
-	# escape = true;
-	# exec = "/home/leonillo/nixos-conf/home/waybar/mediaplayer.py";
-	#};
   "custom/waybar-mpris" = {
     return-type = "json";
     exec = ''waybar-mpris --position --autofocus --order "SYMBOL:ARTIST:TITLE:POSITION" --play " :( " --pause " :3 "'';

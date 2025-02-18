@@ -2,14 +2,17 @@
 
 
 {
-  # Activar flakes y nix-command
+  # Enable flakes and nix-command
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Bootloader y Plymouth
+  # Sometimes needed for home-manager to backup certain files
+  home-manager.backupFileExtension = "hmbak";
+
+  # Bootloader
   boot = {
     loader = {
       systemd-boot.enable = true;
-      systemd-boot.consoleMode = "max";
+      systemd-boot.consoleMode = "max"; # Run bootloader at max res
       efi.canTouchEfiVariables = true;
       timeout = 1;
     };
@@ -30,49 +33,42 @@
     flavor = "mocha";
   };
 
+  # Ollama, for LLMs
   services.ollama = {
     enable = true;
-    acceleration = "rocm";
-    rocmOverrideGfx = "10.3.0";
+    # Acceleration options go per host
   };
 
-  # Activar linux xanmod
-  #boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  # Thefuck, command error correction but funny
+  programs.thefuck.enable = true;
 
-  # Activar Zram
+  # Enable zram
   zramSwap.enable = true;
 
+  # Xpadneo, a driver for xbox controllers
   hardware.xpadneo.enable = true;
 
-  # Governador de CPU
-  #powerManagement.cpuFreqGovernor = "schedutil";
-
   # Powertop
-  #powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = true;
 
   # Mullvad VPN
   services.mullvad-vpn = {
     enable = true;
-    package = pkgs.mullvad-vpn;
+    package = pkgs.mullvad-vpn; # Changes the package, so we can get a GUI instead of CLI
   };
 
-  # Ratbagd (para piper)
+  # Ratbagd, service needed for piper
   services.ratbagd.enable = true;
 
-  # Activar ALVR
+  # ALVR, for quest 3
   programs.alvr = {
-    enable = true;
-    openFirewall = true;
+    #enable = true;
+    #openFirewall = true;
   };
 
-  # Activar GPU screen recorder
+  # If not using this, gsr will not work
   programs.gpu-screen-recorder.enable = true;
 
-  # Reglas udev para sidequest
-  #services.udev.extraRules = ''
-  #  SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", OWNER="leonillo"
-  #'';
-  
   # Thunar
   programs.thunar = {
     enable = true;
@@ -88,38 +84,31 @@
   services.tumbler.enable = true;
   programs.file-roller.enable = true;
 
-  # Activar la shell Fish
+  # Enable fish shell
   programs.fish.enable = true;
 
-  # Activar thunderbird
-  #programs.thunderbird.enable = true;
-
-  # Activar NetworkManager
+  # Network settings
   networking.networkmanager.enable = true;
   #systemd.services.NetworkManager-wait-online.enable = false;
-  #networking.networkmanager.wifi.backend = "iwd";
-  #hardware.wirelessRegulatoryDatabase = true;
-  #boot.extraModprobeConfig = ''
-  #  options cfg80211 ieee80211_regdom="ES"
-  #'';
+  networking.networkmanager.wifi.backend = "iwd"; # Improves wifi stability
+  hardware.wirelessRegulatoryDatabase = true; # Needed on framework laptop
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom="ES"
+  ''; # Also needed on framework
 
   # Systemd-resolved
-  #networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
     enable = true;
     dnssec = "true";
-    #domains = [ "~." ];
-    #fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
-    #dnsovertls = "true";
   };
 
-  # Zona horaria
+  # Timezone
   time.timeZone = "Europe/Madrid";
 
-  # Idioma
+  # Language settings
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Wayland
+  # Make apps run natively on wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Locales 
@@ -135,27 +124,24 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Activar keymap fuera de X
+  # Change keymap to colemak outside of X
   console.keyMap = "colemak";
 
-  # Activar y configurar X
+  # Enable and configure Xserver
   services.xserver = {
     enable = true;
 
-    # Keymaps
+    # Change keymap to colemak on X
     xkb = {
       layout = "us";
       variant = "colemak";
     };
   };
 
-  # GVFS pal pcmanfm
+  # GVFS, automounts drives
   services.gvfs.enable = true;
 
-  # Fixeo pal swaylock
-  #security.pam.services.swaylock = {};
-
-  # Activar SDDM
+  # Configure SDDM
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
@@ -163,13 +149,10 @@
     wayland.enable = true;
   };
 
-  # Activar Plasma 6
-  #services.desktopManager.plasma6.enable = true;
-
-  # Activar Hyprland
+  # Enable Hyprland
   programs.hyprland.enable = true;
 
-  # Activar cups (impresora)
+  # Printing services and settings
   #services.printing.enable = true;
   #services.avahi = {
   #  enable = true;
@@ -177,15 +160,7 @@
   #  openFirewall = true;
   #};
 
-  # Syncthing
-  #services.syncthing = {
-    #enable = true;
-    #user = "leonillo";
-    #dataDir = "/home/leonillo/Syncthings";
-    #configDir = "/home/leonillo/Syncthings/.config/syncthing";
-  #};
-
-  # Activar y configurar pipewire (sonido)
+  # Configure pipewire, the audio daemon
   #sound.enable = true;
   #hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -197,16 +172,16 @@
     #jack.enable = true;
   };
 
-  # Activar Flatpak
+  # Enable flatpak
   services.flatpak.enable = true;
 
-  # Activar xdg desktop portal
+  # Configure xdg desktop portal
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
-  # Crear mi usuario
+  # My user and groups
   users.users.leonillo = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -228,14 +203,6 @@
     gamemode.enable = true;
   };
 
-  # Activar sunshine
-  #services.sunshine = {
-  #  enable = true;
-  #  autoStart = false;
-  #  capSysAdmin = true;
-  #  openFirewall = true;
-  #};
-
   # Java
   programs.java = {
     enable = true;
@@ -251,33 +218,19 @@
   # Activar git
   programs.git.enable = true;
 
-  # Wireshark
-  #programs.wireshark = {
-  #  enable = true;
-  #  package = pkgs.wireshark-qt;
-  #};
-
   # QEMU/KVM + Virt Manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 
+  # Virtualbox
+  virtualisation.virtualbox.host = {
+    enable = true;
+  };
+
   # Waydroid
   #virtualisation.waydroid.enable = true;
 
-  # Docker
-  #virtualisation.docker = { 
-  #  enable = true;
-  #  storageDriver = "btrfs";
-  #};
-
-  # MySQL (para las practicas)
-  #services.mysql = {
-  #  enable = true;
-  #  package = pkgs.mariadb;
-  #};
-
-
-  # Paquetes globales
+  # Packages
   environment.systemPackages = with pkgs; [
     vulkan-tools
     neovim
@@ -292,7 +245,6 @@
     #brightnessctl
     lm_sensors
     ranger
-    #(callPackage ./custompkgs/catppuccin-sddm.nix {})
     clang
     pulseaudio
     libnotify
@@ -301,34 +253,18 @@
     lzip
     linux-firmware
     gpu-screen-recorder
-    #powertop
-    #iwd
+    powertop
+    iwd
   ];
 
-  # Pal brillo
-  #services.clight.enable = true;
-  #location = {
-  #  latitude = 40.46;
-  #  longitude = 3.74;
-  #};
+  # Automatic brightness control
+  services.clight.enable = true;
+  location = {
+    latitude = 40.46;
+    longitude = 3.74;
+  };
 
-  # Fixeo temporal para catppuccin
-  #nixpkgs.overlays = [
-  #  (final: prev: {
-  #    catppuccin-gtk = prev.catppuccin-gtk.overrideAttrs (old: {
-  #      src = prev.fetchFromGitHub {
-  #        owner = "catppuccin";
-  #        repo = "gtk";
-  #        rev = "v${old.version}";
-  #        fetchSubmodules = true;
-  #        hash = "sha256-q5/VcFsm3vNEw55zq/vcM11eo456SYE5TQA3g2VQjGc=";
-  #      };
-  #      postUnpack = "";
-  #    });
-  #  })
-  #];
-
-  # Fuentes
+  # System fonts
   fonts = {
     packages = with pkgs; [
       #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })

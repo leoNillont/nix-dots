@@ -6,7 +6,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        #"eDP-1,highrr,0x0,1.333333"
+        "eDP-1,highrr,0x0,1.333333"
         "DP-1,highrr,0x0,1,vrr,1"
         "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
         #",1920x1080@60,auto,1,mirror,DP-1"
@@ -54,8 +54,8 @@
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+        '', XF86MonBrightnessUp, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.05 0 0 0 ""''
+        '', XF86MonBrightnessDown, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.05 0 0 0 ""''
 
         # Swaylock
         "$mod, L, exec, swaylock --effect-blur 10x4 -S"
@@ -106,6 +106,11 @@
         accel_profile = "flat";
         mouse_refocus = false;
         #force_no_accel = true;
+      };
+      
+      # Enable using touchpad while typing
+      touchpad = {
+        disable_while_typing = false;
       };
 
       # Autostart
@@ -195,7 +200,7 @@
       cursor = {
         no_break_fs_vrr = true;
 	      min_refresh_rate = "48";
-        enable_hyprcursor = false;
+        #enable_hyprcursor = false;
         no_hardware_cursors = true;
       };
 

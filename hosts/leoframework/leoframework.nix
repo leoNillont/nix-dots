@@ -17,10 +17,28 @@
       vulkan-loader
       rocmPackages.clr
       rocmPackages.clr.icd
+      rocmPackages.rocminfo
+      rocmPackages.rocm-smi
     ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
+
+  hardware.amdgpu.opencl.enable = true;
+
+  systemd.tmpfiles.rules = 
+  let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+       rocblas
+        hipblas
+        clr
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
 
   #boot.kernelParams = [ "amd_pstate=active" ];
 

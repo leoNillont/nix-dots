@@ -72,10 +72,10 @@
     qbittorrent
     #mangohud
     #waybar
-    vlc
+    #vlc
     waybar-mpris
     swww
-    #gpt4all
+    gpt4all
     parsec-bin
     ffmpeg
   ];
