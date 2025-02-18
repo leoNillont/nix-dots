@@ -9,11 +9,11 @@
         # Posicion y altura
         layer = "top";
 	position = "top";
-	height = 32;
+	height = 24;
 
 	# Modulos
 	modules-left = [ "hyprland/workspaces" "hyprland/window" ];
-	modules-center = [ "custom/media" ];
+	modules-center = [ "custom/waybar-mpris" ];
 	modules-right = [ "tray" "pulseaudio" "network" "cpu" "temperature" "memory" "battery" "clock" ];
 
 	# Configuracion de los modulos
@@ -52,8 +52,8 @@
 	"temperature" = {
 	 hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
 	 critical-threshold = 80;
-	 format = "{temperatureC}°C {icon}";
-	 format-critical = "{temperatureC}°C {icon}";
+	 format = "{temperatureC}°{icon}";
+	 format-critical = "{temperatureC}°{icon}";
 	 format-icons = [ "" "" "" ];
 	};
 	"battery" = {
@@ -75,7 +75,7 @@
 	};
 	"pulseaudio" = {
 	 format = "{volume}% {icon} {format_source}";
-	 format-bluetooth = "{volume}% {icon} {format_source}";
+	 format-bluetooth = "{volume}% {icon}";
 	 format-bluetooth-muted = " {icon} {format_source}";
 	 format-muted = " {format_source}";
 	 format-source = "";
@@ -86,29 +86,38 @@
             headset = "";
             phone = "";
             portable = "";
-	   car = "";
+	          car = "";
             default = [ "" "" "" ];
 	 };
 	 on-click = "pavucontrol";
 	};
-	"custom/media" = {
-	 format = "{icon} {}";
-	 return-type = "json";
-	 max-length = 40;
-	 format-icons = {
-	   spotify = "";
-	   default = "🎜";
-	 };
-	 escape = true;
-	 exec = "/home/leonillo/nixos-conf/home/waybar/mediaplayer.py";
-	};
+	#"custom/media" = {
+	# format = "{icon} {}";
+	# return-type = "json";
+	# max-length = 40;
+	# format-icons = {
+	#   spotify = "";
+	#   default = "🎜";
+	# };
+	# escape = true;
+	# exec = "/home/leonillo/nixos-conf/home/waybar/mediaplayer.py";
+	#};
+  "custom/waybar-mpris" = {
+    return-type = "json";
+    exec = ''waybar-mpris --position --autofocus --order "SYMBOL:ARTIST:TITLE:POSITION" --play " :( " --pause " :3 "'';
+    on-click = "waybar-mpris --send toggle";
+    on-click-right = "waybar-mpris --send toggle";
+    on-scroll-up = "waybar-mpris --send next";
+    on-scroll-down = "waybar-mpris --send prev";
+    escape = true;
+  };
       };
     };
     # Configuracion de estilo, ubicado en home/style.css
     style = ''
       * {
         font-family: "A-OTF Shin Go Pro B", "Font Awesome 6 Free", "MesloLGS Nerd Font Regular";
-        font-size: 14px;
+        font-size: 12px;
       }
 
       @define-color base   #1e1e2e;
@@ -193,8 +202,8 @@
       }
 
       #workspaces button:first-child {
-        border-top-left-radius: 15px;
-        border-bottom-left-radius: 15px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
         margin-left: 2px;
       }
 
@@ -246,8 +255,8 @@
       #clock {
         background-color: @surface0;
         color: @flamingo;
-        border-top-right-radius: 15px;
-        border-bottom-right-radius: 15px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
         margin: 2px 2px;
       }
 
@@ -333,12 +342,13 @@
         background-color: #f53c3c;
       }
 
-      #custom-media {
+      #custom-waybar-mpris {
         background-color: @surface0;
-        color: @green;
+        color: @mauve;
         min-width: 100px;
         border-radius: 15px;
-        margin: 2px 0px;
+        margin: 2px 2px;
+        padding: 6px;
       }
 
       #custom-media.custom-spotify {

@@ -1,5 +1,5 @@
 configuration{
-    modi: "clipboard:/home/leonillo/.config/rofi/cliphist-rofi,drun,window";
+    modi: "clipboard:cliphist-rofi,drun,window";
     icon-theme: "ePapirus-dark";
     show-icons: true;
     terminal: "kitty";

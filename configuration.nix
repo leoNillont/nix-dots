@@ -21,7 +21,7 @@
   };
 
   # Activar kernel linux-zen
-  #boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Enable catppuccin
   catppuccin = {
@@ -30,14 +30,25 @@
     flavor = "mocha";
   };
 
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    rocmOverrideGfx = "10.3.0";
+  };
+
   # Activar linux xanmod
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
   # Activar Zram
   zramSwap.enable = true;
 
+  hardware.xpadneo.enable = true;
+
   # Governador de CPU
-  powerManagement.cpuFreqGovernor = "schedutil";
+  #powerManagement.cpuFreqGovernor = "schedutil";
+
+  # Powertop
+  #powerManagement.powertop.enable = true;
 
   # Mullvad VPN
   services.mullvad-vpn = {
@@ -49,19 +60,19 @@
   services.ratbagd.enable = true;
 
   # Activar ALVR
-  #programs.alvr = {
-  #  enable = true;
-  #  openFirewall = true;
-  #};
+  programs.alvr = {
+    enable = true;
+    openFirewall = true;
+  };
 
   # Activar GPU screen recorder
   programs.gpu-screen-recorder.enable = true;
 
   # Reglas udev para sidequest
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", OWNER="leonillo"
-  '';
-
+  #services.udev.extraRules = ''
+  #  SUBSYSTEM=="usb", ATTR{idVendor}=="2833", ATTR{idProduct}=="0186", MODE="0666", OWNER="leonillo"
+  #'';
+  
   # Thunar
   programs.thunar = {
     enable = true;
@@ -69,8 +80,8 @@
       xfce.thunar-volman
       xfce.thunar-archive-plugin
       xfce.thunar-media-tags-plugin
-      ffmpegthumbnailer
-      f3d
+      #ffmpegthumbnailer
+      #f3d
       webp-pixbuf-loader
     ];
   };
@@ -80,17 +91,24 @@
   # Activar la shell Fish
   programs.fish.enable = true;
 
+  # Activar thunderbird
+  #programs.thunderbird.enable = true;
+
   # Activar NetworkManager
   networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
-  #networking.wireless.iwd.enable = true;
+  #systemd.services.NetworkManager-wait-online.enable = false;
+  #networking.networkmanager.wifi.backend = "iwd";
+  #hardware.wirelessRegulatoryDatabase = true;
+  #boot.extraModprobeConfig = ''
+  #  options cfg80211 ieee80211_regdom="ES"
+  #'';
 
   # Systemd-resolved
   #networking.nameservers = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
   services.resolved = {
     enable = true;
-    #dnssec = "true";
-    domains = [ "~." ];
+    dnssec = "true";
+    #domains = [ "~." ];
     #fallbackDns = [ "1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one" ];
     #dnsovertls = "true";
   };
@@ -135,7 +153,7 @@
   services.gvfs.enable = true;
 
   # Fixeo pal swaylock
-  security.pam.services.swaylock = {};
+  #security.pam.services.swaylock = {};
 
   # Activar SDDM
   services.displayManager.sddm = {
@@ -152,12 +170,12 @@
   programs.hyprland.enable = true;
 
   # Activar cups (impresora)
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  #services.printing.enable = true;
+  #services.avahi = {
+  #  enable = true;
+  #  nssmdns4 = true;
+  #  openFirewall = true;
+  #};
 
   # Syncthing
   #services.syncthing = {
@@ -176,7 +194,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
+    #jack.enable = true;
   };
 
   # Activar Flatpak
@@ -185,7 +203,7 @@
   # Activar xdg desktop portal
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
   # Crear mi usuario
@@ -193,7 +211,8 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" ];
+    initialPassword = "Patataxd4";
   };
 
   # Permitir paquetes no libres
@@ -203,19 +222,19 @@
   programs = {
     steam = {
       enable = true;
-      remotePlay.openFirewall = true;
+      #remotePlay.openFirewall = true;
     };
-    gamescope.enable = true;
+    #gamescope.enable = true;
     gamemode.enable = true;
   };
 
   # Activar sunshine
-  services.sunshine = {
-    enable = true;
-    autoStart = false;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
+  #services.sunshine = {
+  #  enable = true;
+  #  autoStart = false;
+  #  capSysAdmin = true;
+  #  openFirewall = true;
+  #};
 
   # Java
   programs.java = {
@@ -243,7 +262,7 @@
   programs.virt-manager.enable = true;
 
   # Waydroid
-  virtualisation.waydroid.enable = true;
+  #virtualisation.waydroid.enable = true;
 
   # Docker
   #virtualisation.docker = { 
@@ -270,18 +289,28 @@
     unzip
     p7zip
     unrar-free
-    brightnessctl
+    #brightnessctl
     lm_sensors
     ranger
     #(callPackage ./custompkgs/catppuccin-sddm.nix {})
-    #(catppuccin-kvantum.override { accent = "Mauve"; variant = "Mocha"; })
     clang
     pulseaudio
     libnotify
     killall
     lxqt.lxqt-policykit
     lzip
+    linux-firmware
+    gpu-screen-recorder
+    #powertop
+    #iwd
   ];
+
+  # Pal brillo
+  #services.clight.enable = true;
+  #location = {
+  #  latitude = 40.46;
+  #  longitude = 3.74;
+  #};
 
   # Fixeo temporal para catppuccin
   #nixpkgs.overlays = [
@@ -302,7 +331,11 @@
   # Fuentes
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
+      #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Meslo" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
       font-awesome
       meslo-lgs-nf
     ];

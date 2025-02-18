@@ -10,6 +10,7 @@
       background_opacity = "0.9";
       term = "xterm-256color";
       confirm_os_window_close = "-1";
+      font_family = "A-OTF Shin Go Pro";
     };
   };
 }

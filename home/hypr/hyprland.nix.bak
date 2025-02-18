@@ -165,7 +165,7 @@
 
       # Miscelano
       misc = {
-        vrr = 1;
+        #vrr = 1;
         animate_manual_resizes = true;
         force_default_wallpaper = "2";
       };

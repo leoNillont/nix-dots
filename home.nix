@@ -18,11 +18,11 @@
       jdks = [
         temurin-bin-21
         temurin-jre-bin-17
-        temurin-jre-bin-11
+        #temurin-jre-bin-11
         temurin-jre-bin-8
-        jdk21
-        jdk17
-        jdk8
+        #jdk21
+        #jdk17
+        #jdk8
       ];
     })
     kitty
@@ -35,12 +35,12 @@
     #obs-studio
     filezilla
     qpwgraph
-    libreoffice-qt
-    hunspell
-    hunspellDicts.en_US
-    hunspellDicts.es_ES
-    temurin-bin
-    orca-slicer
+    #libreoffice-qt
+    #hunspell
+    #hunspellDicts.en_US
+    #hunspellDicts.es_ES
+    #temurin-bin
+    #orca-slicer
     tidal-hifi
     vscode
     pavucontrol
@@ -56,22 +56,28 @@
     heroic
     #element-desktop
     yt-dlp
-    kdenlive
+    #kdenlive
     fastfetch
     gimp
     satty
-    bubblewrap
+    #bubblewrap
     protonup-qt
     anydesk
     krita
     rustup
-    obsidian
+    #obsidian
     bottles
     piper
     sidequest
     qbittorrent
-    mangohud
-    waybar
+    #mangohud
+    #waybar
+    vlc
+    waybar-mpris
+    swww
+    #gpt4all
+    parsec-bin
+    ffmpeg
   ];
 
   # Configurar fish
@@ -134,11 +140,25 @@
     enable = true;
     flavor = "mocha";
     accent = "mauve";
-    pointerCursor = {
+    cursors = {
       enable = true;
-      accent = "mauve";
+      accent = "light";
       flavor = "mocha";
+      #size = "24";
     };
+    gtk = {
+      enable = true;
+      flavor = "mocha";
+      accent = "mauve";
+      icon = {
+        enable = true;
+      };
+    };
+    kvantum = {
+      enable = true;
+      apply = true;
+    };
+    btop.enable = true;
   };
 
   # Mime-types
@@ -154,17 +174,27 @@
     createDirectories = true;
   };
 
+  # Cursor theme
+  #home.pointerCursor = {
+  #  #enable = true;
+  #  name = "Catppuccin-Mocha-Dark";
+  #  package = pkgs.catppuccin-cursors.mochaDark;
+  #  gtk.enable = true;
+  #  x11.enable = true;
+  #};
+
   # Configuracion de GTK
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-      icon = {
-        enable = true;
-      };
-    };
+  #
+  #  catppuccin = {
+  #    enable = true;
+  #    flavor = "mocha";
+  #    accent = "mauve";
+  #    icon = {
+  #      enable = true;
+  #    };
+  #  };
   };
 
   # Configuracion de QT 
@@ -173,33 +203,35 @@
     platformTheme.name = "kvantum";
     style = {
       name = "kvantum";
-      catppuccin = {
-        enable = true;
-        apply = true;
-      };
+  #    catppuccin = {
+  #      enable = true;
+  #      accent = "mauve";
+  #      flavor = "mocha";
+  #      apply = true;
+  #    };
     };
   };
   
   # Configurar btop
   programs.btop = {
     enable = true;
-    catppuccin.enable = true;
+    #catppuccin.enable = true;
   };
 
   # Configurar OBS
   programs.obs-studio = {
     enable = true;
     plugins = with pkgs; [
-      obs-studio-plugins.obs-vkcapture
-      obs-studio-plugins.obs-vaapi
+      #obs-studio-plugins.obs-vkcapture
+      #obs-studio-plugins.obs-vaapi
       obs-studio-plugins.obs-pipewire-audio-capture
     ];
   };
 
   # Syncthing
-  services.syncthing = {
-    enable = true;
-  };
+  #services.syncthing = {
+  #  enable = true;
+  #};
 
   # Wayland ozone
   home.sessionVariables.NIXOS_OZONE_WL = "1";

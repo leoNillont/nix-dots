@@ -1,59 +1,73 @@
+#
+#    Configuration for Disko, for declarative partitioning
+#
+
+let
+  btrfsOptions = [ "compress=zstd:2" "noatime" "space_cache=v2" "discard=async" ];
+in
 {
   disko.devices = {
     disk = {
-      nvme = {
+      main = {
         type = "disk";
-        device = "/dev/nvme0n1";
-        content = {
-          type = "gpt";
-          partitions = {
+	device = "/dev/nvme0n1";
+	content = {
+	  type = "gpt";
+	  partitions = {
+	    # ESP/Boot partition, for systemd-boot or grub (haven't decided)
             ESP = {
-              priority = 1;
-              name = "ESP";
-              start = "1M";
-              end = "1G";
-              type = "EF00";
-              content = {
+	      # Set size to 1G, necessary for systemd-boot, and type EF00, which means efi boot partition
+	      size = "1G";
+	      type = "EF00";
+	      # Set Filesystem to FAT32, and mountpoint to /boot
+	      content = {
                 type = "filesystem";
-                format = "vfat";
-                mountpoint = "/boot";
-              };
-            };
+		format = "vfat";
+		mountpoint = "/boot";
+	      };
+	    };
+            
+	    # 16G swap partition. Unnecesarily big, but storage is not a problem YET
+	    swap = {
+              size = "16G";
+              content = {
+	        type = "swap";
+		discardPolicy = "both";
+	      };
+	    };
+	    
+	    # Root partition, formatted with btrfs
             root = {
               size = "100%";
-              content = {
+	      content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; 
-                subvolumes = {
+		extraArgs = [ "-f" ]; # Enables overriding existing btrfs partitions
+		# Create subvolumes @ for /, @home for /home, @nix for /nix, and @log for /var/log,
+		# all of them with compress=zstd:2 for good balance between performance and compression,
+		# and some additional optimizations, options defined in the let at the start of the file
+		subvolumes = {
                   "@" = {
-                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
-                    mountpoint = "/";
-                  };
-                  "@home" = {
-                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
+		    mountOptions = btrfsOptions;
+		    mountpoint = "/";
+		  };
+		  "@home" = {
+                    mountOptions = btrfsOptions;
                     mountpoint = "/home";
-                  };
-                  "@nix" = {
-                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
-                    mountpoint = "/nix";
-                  };
-                  "@swap" = {
-                    mountpoint = "/.swap";
-                    swap = {
-                      swapfile.size = "8G";
-                    };
-                  };
-                  "@log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = [ "noatime" "compress=zstd:2" "space_cache=v2" ];
-                  };
-                };
-              };
-            };
-          };
-        };
+		  };
+		  "@nix" = {
+                    mountOptions = btrfsOptions;
+		    mountpoint = "/nix";
+		  };
+		  "@log" = {
+                    mountOptions = btrfsOptions;
+		    mountpoint = "/var/log";
+		  };
+		};
+	      };
+	    };
+	  };
+	};
       };
     };
   };
 }
-

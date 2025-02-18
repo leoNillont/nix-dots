@@ -94,6 +94,32 @@
           }
         ];
       };
+
+      "leoframework" = nixpkgs.lib.nixosSystem {
+      	system = "x86_64-linux";
+
+	# importar modulos
+	modules = [
+	  ./configuration.nix
+	  ./hosts/leoframework/leoframework.nix
+	  disko.nixosModules.disko
+	  ./disko-config.nix
+	  catppuccin.nixosModules.catppuccin
+	  home-manager.nixosModules.home-manager
+	  {
+	    home-manager = {
+	      useGlobalPkgs = true;
+	      useUserPackages = true;
+	      users.leonillo = {
+		imports = [
+		  ./home.nix
+		  catppuccin.homeManagerModules.catppuccin
+		];
+	      };
+	    };
+	  }
+	];
+      };
     };
   };
 }
