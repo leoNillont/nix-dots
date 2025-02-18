@@ -106,13 +106,11 @@
         accel_profile = "flat";
         mouse_refocus = false;
         #force_no_accel = true;
+        touchpad = {
+          disable_while_typing = false;
+        };
       };
       
-      # Enable using touchpad while typing
-      touchpad = {
-        disable_while_typing = false;
-      };
-
       # Autostart
       exec-once = [
         "waybar"
