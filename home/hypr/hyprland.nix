@@ -198,7 +198,7 @@
       cursor = {
         no_break_fs_vrr = true;
 	      min_refresh_rate = "48";
-        #enable_hyprcursor = false;
+        enable_hyprcursor = false;
         no_hardware_cursors = true;
       };
 
