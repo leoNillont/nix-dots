@@ -107,7 +107,7 @@
         mouse_refocus = false;
         #force_no_accel = true;
         touchpad = {
-          disable_while_typing = false;
+          disable_while_typing = true;
         };
       };
       
