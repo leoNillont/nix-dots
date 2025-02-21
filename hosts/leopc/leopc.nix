@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -82,6 +82,12 @@
     fsType = "nfs";
     options = [ "defaults" "x-systemd.automount" "noauto" "x-systemd.device-timeout=5" "retrans=5" "_netdev" ];
   };
+
+  # Disable powertop because of issues with USB
+  powerManagement.powertop.enable = lib.mkForce false;
+
+  # Not needed on desktop
+  services.clight.enable = lib.mkForce false;
 
   # NAS, but with systemd
   #services.rpcbind.enable = true; # needed for NFS
