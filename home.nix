@@ -78,6 +78,7 @@
     gpt4all
     parsec-bin
     ffmpeg
+    vivaldi
   ];
 
   # Configurar fish
