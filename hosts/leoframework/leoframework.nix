@@ -49,10 +49,10 @@
   };
   
   # MySQL para las practicas
-  #services.mysql = {
-  #  enable = true;
-  #  package = pkgs.mariadb;
-  #};
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+  };
 
   # TLP
   #services.tlp = {
