@@ -79,6 +79,7 @@
     parsec-bin
     ffmpeg
     vivaldi
+    retroarch
   ];
 
   # Configurar fish

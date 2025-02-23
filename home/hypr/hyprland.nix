@@ -62,7 +62,7 @@
 
         # Apps
         "$mod, X, exec, thunar"
-        "$mod, B, exec, firefox"
+        "$mod, B, exec, vivaldi"
 
         # Screenshots
         ", Print, exec, grim"
@@ -116,7 +116,7 @@
         "waybar"
         "mako"
         "[workspace 1 silent] kitty"
-        "[workspace 2 silent] firefox"
+        "[workspace 2 silent] vivaldi"
         "[workspace 4 silent] vesktop"
         "[workspace 5 silent] steam -silent"
         # Wayland cliphist
@@ -177,6 +177,7 @@
       windowrulev2 = [
         "workspace 1, class:kitty"
         "workspace 2, class:firefox"
+        "workspace 2, class:vivaldi"
         "workspace 3, class:tidal-hifi"
         "workspace 4, class:vesktop"
         "suppressevent maximize, class:.*"
