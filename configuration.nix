@@ -241,7 +241,7 @@
     zip
     unzip
     p7zip
-    unrar-free
+    unrar
     #brightnessctl
     lm_sensors
     ranger
