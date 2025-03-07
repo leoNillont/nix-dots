@@ -118,6 +118,7 @@
     };
     defaultGateway = "192.168.1.1";
     nameservers = [ "192.168.1.10" ];
+    firewall.allowedTCPPorts = [ 25565 ];
   };
   networking.networkmanager.dns = "systemd-resolved";
 
