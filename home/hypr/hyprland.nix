@@ -125,6 +125,7 @@
         #"[workspace 3 silent] mullvad-gui"
         "lxqt-policykit-agent"
         #"brightnessctl set $(cat /sys/bus/iio/devices/iio\:device0/in_illuminance_raw)"
+        "swww-daemon"
       ];
 
       # Decoraciones (Blur, Opacidad, Redondeo, etc)
