@@ -9,7 +9,8 @@
         # Posicion y altura
         layer = "top";
 	position = "top";
-	height = 24;
+	height = 18;
+  margin = "5";
 
 	# Modulos
 	modules-left = [ "hyprland/workspaces" "hyprland/window" ];
@@ -145,6 +146,10 @@
         color: @text;
         transition-property: background-color;
         transition-duration: .5s;
+        border-radius: 15px;
+        border-style: solid;
+        border-color: @mauve;
+        border-width: 2px;
       }
 
       window#waybar.hidden {
@@ -163,6 +168,7 @@
       button {
         border: none;
         border-radius: 0;
+        margin: 2px;
       }
 
       button:hover {
@@ -191,8 +197,8 @@
       }
 
       #workspaces button:first-child {
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
         margin-left: 2px;
       }
 
@@ -244,8 +250,8 @@
       #clock {
         background-color: @surface0;
         color: @flamingo;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
         margin: 2px 2px;
       }
 
