@@ -79,10 +79,10 @@
   #security.pam.services.swaylock.fprintAuth = true;
   #security.pam.services.sddm.fprintAuth = true;
 
-  # Desactivar boton de apagado (Joel Disabler)
-  #services.logind.extraConfig = ''
-  #  HandlePowerKey=ignore
-  #'';
+  # Desactivar boton de apagado (Joel Disabler) (ahora eloy disabler)
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+  '';
 
   # Hostname
   networking.hostName = "leoframework";
