@@ -17,7 +17,7 @@
       timeout = 1;
     };
     initrd.systemd.enable = true;
-    initrd.compressor = "lz4";
+    #initrd.compressor = "lz4";
   
     #plymouth.enable = true;
     #kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
@@ -89,7 +89,7 @@
   programs.fish.enable = true;
 
   # Auto optimise store to save space
-  nix.autoOptimiseStore = true;
+  nix.settings.auto-optimise-store = true;
 
   # Network settings
   networking.networkmanager.enable = true;
