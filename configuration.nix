@@ -17,6 +17,7 @@
       timeout = 1;
     };
     initrd.systemd.enable = true;
+    initrd.compressor = "lz4";
   
     #plymouth.enable = true;
     #kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" ];
@@ -34,10 +35,10 @@
   };
 
   # Ollama, for LLMs
-  services.ollama = {
-    enable = true;
-    # Acceleration options go per host
-  };
+  #services.ollama = {
+  #  enable = true;
+  #  # Acceleration options go per host
+  #};
 
   # Thefuck, command error correction but funny
   programs.thefuck.enable = true;
@@ -52,10 +53,10 @@
   powerManagement.powertop.enable = true;
 
   # Mullvad VPN
-  services.mullvad-vpn = {
-    enable = true;
-    package = pkgs.mullvad-vpn; # Changes the package, so we can get a GUI instead of CLI
-  };
+  #services.mullvad-vpn = {
+  #  enable = true;
+  #  package = pkgs.mullvad-vpn; # Changes the package, so we can get a GUI instead of CLI
+  #};
 
   # Ratbagd, service needed for piper
   services.ratbagd.enable = true;
@@ -87,9 +88,12 @@
   # Enable fish shell
   programs.fish.enable = true;
 
+  # Auto optimise store to save space
+  nix.autoOptimiseStore = true;
+
   # Network settings
   networking.networkmanager.enable = true;
-  #systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking.networkmanager.wifi.backend = "iwd"; # Improves wifi stability
   hardware.wirelessRegulatoryDatabase = true; # Needed on framework laptop
   boot.extraModprobeConfig = ''
@@ -213,7 +217,7 @@
   programs.htop.enable = true;
 
   # Activar firefox
-  programs.firefox.enable = true;
+  #programs.firefox.enable = true;
 
   # Activar git
   programs.git.enable = true;
@@ -223,9 +227,9 @@
   programs.virt-manager.enable = true;
 
   # Virtualbox
-  virtualisation.virtualbox.host = {
-    enable = true;
-  };
+  #virtualisation.virtualbox.host = {
+  #  enable = true;
+  #};
 
   # Waydroid
   #virtualisation.waydroid.enable = true;
