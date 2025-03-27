@@ -15,15 +15,15 @@
       vaapiVdpau
       libvdpau-va-gl
       vulkan-loader
-      rocmPackages.clr.icd
-      rocmPackages.rocminfo
-      rocmPackages.rocm-smi
+      #rocmPackages.clr.icd
+      #rocmPackages.rocminfo
+      #rocmPackages.rocm-smi
     ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  hardware.amdgpu.opencl.enable = true;
+  #hardware.amdgpu.opencl.enable = true;
 
   #systemd.tmpfiles.rules = 
   #let
