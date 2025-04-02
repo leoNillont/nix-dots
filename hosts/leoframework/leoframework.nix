@@ -8,22 +8,20 @@
   # Drivers de la GPU AMD
   hardware.graphics = {
     enable = true;
-    #driSupport = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      #rocmPackages.clr.icd
+      rocmPackages.clr.icd
       vaapiVdpau
       libvdpau-va-gl
       vulkan-loader
-      #rocmPackages.clr.icd
-      #rocmPackages.rocminfo
-      #rocmPackages.rocm-smi
+      rocmPackages.rocminfo
+      rocmPackages.rocm-smi
     ];
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  #hardware.amdgpu.opencl.enable = true;
+  hardware.amdgpu.opencl.enable = true;
 
   #systemd.tmpfiles.rules = 
   #let
@@ -52,6 +50,30 @@
     enable = true;
     package = pkgs.mariadb;
   };
+
+  # Corectrl
+  programs.corectrl = {
+    enable = true;
+    #gpuOverclock.enable = true;
+  };
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if ((action.id == "org.corectrl.helper.init" ||
+         action.id == "org.corectrl.helperkiller.init") &&
+        subject.local == true &&
+        subject.active == true &&
+        subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+      }
+    });
+  '';
+
+  # BIOS updates
+  services.fwupd.enable = true;
+
+  environment.systemPackages = [ pkgs.framework-tool ];
+
+  boot.kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
 
   # TLP
   #services.tlp = {
