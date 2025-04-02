@@ -232,7 +232,7 @@
   #};
 
   # Waydroid
-  #virtualisation.waydroid.enable = true;
+  virtualisation.waydroid.enable = true;
 
   # Packages
   environment.systemPackages = with pkgs; [
@@ -264,8 +264,8 @@
   # Automatic brightness control
   services.clight.enable = true;
   location = {
-    latitude = 40.46;
-    longitude = 3.74;
+    latitude = 38.8911;
+    longitude = 1.3969;
   };
 
   # System fonts
