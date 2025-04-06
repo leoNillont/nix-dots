@@ -16,9 +16,10 @@
     #prismlauncher
     (prismlauncher.override {
       jdks = [
+        temurin-jre-bin-23
         temurin-bin-21
         temurin-jre-bin-17
-        #temurin-jre-bin-11
+        temurin-jre-bin-11
         temurin-jre-bin-8
         #jdk21
         #jdk17
