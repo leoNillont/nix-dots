@@ -203,7 +203,7 @@
       enable = true;
       #remotePlay.openFirewall = true;
     };
-    #gamescope.enable = true;
+    gamescope.enable = true;
     gamemode.enable = true;
   };
 
