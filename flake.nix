@@ -48,6 +48,9 @@
 
           # Catppuccin
           catppuccin.nixosModules.catppuccin
+
+          # NUR
+          nur.modules.nixos.default
           
 	        # Home Manager
 	        home-manager.nixosModules.home-manager
@@ -84,6 +87,9 @@
           # Catppuccin
           catppuccin.nixosModules.catppuccin
 
+          # NUR
+          nur.modules.nixos.default
+
           # Home manager
           home-manager.nixosModules.home-manager
           {
@@ -111,6 +117,7 @@
 	  disko.nixosModules.disko
 	  ./disko-config.nix
 	  catppuccin.nixosModules.catppuccin
+    nur.modules.nixos.default
 	  home-manager.nixosModules.home-manager
 	  {
 	    home-manager = {
