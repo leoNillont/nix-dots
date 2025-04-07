@@ -21,9 +21,15 @@
     # Catppuccin
     catppuccin.url = "github:catppuccin/nix";
 
+    # NUR
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, nur, ... }@inputs: {
     nixosConfigurations = {
       "leopc" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
