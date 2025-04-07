@@ -259,6 +259,7 @@
     gpu-screen-recorder
     powertop
     iwd
+    nur.repos.ataraxiasjel.waydroid-script
   ];
 
   # Automatic brightness control
