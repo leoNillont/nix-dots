@@ -69,10 +69,9 @@
         "$mod, B, exec, vivaldi"
 
         # Screenshots
-        ", Print, exec, grim"
-        #"$mod SHIFT, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'"
-        "$mod SHIFT, S, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
-        #"$mod CONTROL, S, exec, satty --filename $(grimblast --notify copysave area)"
+        ", Print, exec, hyprshot -m output --freeze"
+        "$mod SHIFT, S, exec, hyprshot -m region --freeze"
+        "$mod CONTROL, S, exec, satty --filename $(hyprshot -m region --freeze)"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"
@@ -188,10 +187,6 @@
         "workspace 4, class:vesktop"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "noanim, class:^(flameshot)$"
-        "float, class:^(flameshot)$"
-        "move 0 0, class:^(flameshot)$"
-        "pin, class:^(flameshot)$"
         #"immediate, class:^(cs2)$"
       ];
 

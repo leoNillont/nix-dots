@@ -50,7 +50,7 @@
     slurp
     wl-clipboard
     cliphist
-    grimblast
+    hyprshot
     gh
     oculante
     mpv
@@ -82,7 +82,7 @@
     vivaldi
     retroarch
     playerctl
-    flameshot
+    hyprpicker
   ];
 
   # Configurar fish
