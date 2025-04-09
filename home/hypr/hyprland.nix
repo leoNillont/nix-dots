@@ -71,7 +71,8 @@
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze"
         "$mod SHIFT, S, exec, hyprshot -m region --freeze"
-        "$mod CONTROL, S, exec, satty --filename $(hyprshot -m region --freeze)"
+        "$mod CONTROL, S, exec, hyprshot -m region --freeze --raw | satty --filename -"
+        "$mod ALT, S, exec, hyprshot -m window --freeze"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"
