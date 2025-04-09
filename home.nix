@@ -81,6 +81,8 @@
     ffmpeg
     vivaldi
     retroarch
+    playerctl
+    flameshot
   ];
 
   # Configurar fish

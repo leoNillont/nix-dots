@@ -56,6 +56,10 @@
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         '', XF86MonBrightnessUp, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.05 0 0 0 ""''
         '', XF86MonBrightnessDown, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.05 0 0 0 ""''
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
 
         # Swaylock
         "$mod, L, exec, swaylock --effect-blur 10x4 -S"
@@ -66,8 +70,9 @@
 
         # Screenshots
         ", Print, exec, grim"
-        "$mod SHIFT, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'"
-        "$mod CONTROL, S, exec, satty --filename $(grimblast --notify copysave area)"
+        #"$mod SHIFT, S, exec, hyprctl keyword animation 'fadeOut,0,0,default'; grimblast --notify copysave area; hyprctl keyword animation 'fadeOut,1,4,default'"
+        "$mod SHIFT, S, exec, XDG_CURRENT_DESKTOP=sway flameshot gui"
+        #"$mod CONTROL, S, exec, satty --filename $(grimblast --notify copysave area)"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"
@@ -131,7 +136,7 @@
       # Decoraciones (Blur, Opacidad, Redondeo, etc)
       decoration = {
         rounding = "15";
-        inactive_opacity = "0.85";
+        inactive_opacity = "0.9";
         blur = {
           enabled = true;
           size = "7";
@@ -175,7 +180,7 @@
       };
       
       # Windowrules
-      windowrulev2 = [
+      windowrule = [
         "workspace 1, class:kitty"
         "workspace 2, class:firefox"
         "workspace 2, class:vivaldi"
@@ -183,6 +188,10 @@
         "workspace 4, class:vesktop"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "noanim, class:^(flameshot)$"
+        "float, class:^(flameshot)$"
+        "move 0 0, class:^(flameshot)$"
+        "pin, class:^(flameshot)$"
         #"immediate, class:^(cs2)$"
       ];
 
