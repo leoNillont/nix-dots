@@ -66,6 +66,8 @@
     #enable = true;
     #openFirewall = true;
   };
+  
+  programs.thunderbird.enable = true;
 
   # If not using this, gsr will not work
   programs.gpu-screen-recorder.enable = true;
