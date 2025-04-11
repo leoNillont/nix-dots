@@ -22,14 +22,14 @@
     catppuccin.url = "github:catppuccin/nix";
 
     # NUR
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #nur = {
+    #  url = "github:nix-community/NUR";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, nur, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: {
     nixosConfigurations = {
       "leopc" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -50,7 +50,7 @@
           catppuccin.nixosModules.catppuccin
 
           # NUR
-          nur.modules.nixos.default
+          #nur.modules.nixos.default
           
 	        # Home Manager
 	        home-manager.nixosModules.home-manager
@@ -88,7 +88,7 @@
           catppuccin.nixosModules.catppuccin
 
           # NUR
-          nur.modules.nixos.default
+          #nur.modules.nixos.default
 
           # Home manager
           home-manager.nixosModules.home-manager
@@ -117,7 +117,7 @@
 	  disko.nixosModules.disko
 	  ./disko-config.nix
 	  catppuccin.nixosModules.catppuccin
-    nur.modules.nixos.default
+    #nur.modules.nixos.default
 	  home-manager.nixosModules.home-manager
 	  {
 	    home-manager = {
