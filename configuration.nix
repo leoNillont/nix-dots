@@ -271,6 +271,8 @@
     longitude = 1.3969;
   };
 
+  hardware.enableAllFirmware = true;
+
   # System fonts
   fonts = {
     packages = with pkgs; [
