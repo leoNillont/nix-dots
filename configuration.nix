@@ -19,7 +19,7 @@
     initrd.systemd.enable = true;
     #initrd.compressor = "lz4";
   
-    plymouth.enable = true;
+    #plymouth.enable = true;
     kernelParams = [ "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto" "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0" "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000" ];
 
   };
