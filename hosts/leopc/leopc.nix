@@ -61,6 +61,7 @@
   #'';
 
   #boot.kernelParams = [ "amd_pstate=active" ];
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfff7ffff" ];
 
   # Hostname
   networking.hostName = "leopc";
