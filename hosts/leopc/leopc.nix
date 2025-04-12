@@ -10,12 +10,12 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      rocmPackages.clr.icd
+      #rocmPackages.clr.icd
       vaapiVdpau
       libvdpau-va-gl
       vulkan-loader
-      rocmPackages.rocminfo
-      rocmPackages.rocm-smi
+      #rocmPackages.rocminfo
+      #rocmPackages.rocm-smi
     ];
   };
   hardware.amdgpu.opencl.enable = true;
@@ -67,6 +67,8 @@
 
   # Power profiles daemon
   services.power-profiles-daemon.enable = true;
+  
+  services.fwupd.enable = true;
 
   # Disco Extra
   #fileSystems."/media/DiscoExtra" =
