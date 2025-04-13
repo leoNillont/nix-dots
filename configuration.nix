@@ -25,7 +25,10 @@
   };
 
   # Activar kernel linux-zen
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  #boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # tengo que reorganizar esto ya
+  boot.kernelPackages = pkgs.linuxPackages_lqx;
 
   # Enable catppuccin
   catppuccin = {

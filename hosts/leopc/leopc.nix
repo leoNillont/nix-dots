@@ -61,13 +61,14 @@
   #'';
 
   #boot.kernelParams = [ "amd_pstate=active" ];
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfff7ffff" ];
+  #powerManagement.cpuFreqGovernor = "schedutil";
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "amd_pstate=guided"];
 
   # Hostname
   networking.hostName = "leopc";
 
   # Power profiles daemon
-  services.power-profiles-daemon.enable = true;
+  #services.power-profiles-daemon.enable = true;
   
   services.fwupd.enable = true;
 
