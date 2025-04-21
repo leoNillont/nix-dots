@@ -215,7 +215,7 @@
   # Java
   programs.java = {
     enable = true;
-    package = pkgs.temurin-bin;
+    package = pkgs.temurin-jre-bin-17;
   };
 
   # Activar htop
