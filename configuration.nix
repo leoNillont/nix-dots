@@ -46,6 +46,8 @@
   # Thefuck, command error correction but funny
   programs.thefuck.enable = true;
 
+  # docker
+  virtualisation.docker.enable = true;
   # Enable zram
   zramSwap.enable = true;
 
