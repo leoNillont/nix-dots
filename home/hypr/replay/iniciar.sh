@@ -4,4 +4,4 @@ killall -SIGINT gpu-screen-recorder
 
 notify-send "Grabacion (re)iniciada"
 
-gpu-screen-recorder -w screen -f 60 -a "$(pactl get-default-sink).monitor" -a "$(pactl get-default-source)" -o ~/Videos/replay/ -r 30 -c mp4
+gpu-screen-recorder -w screen -f 60 -a "$(pactl get-default-sink).monitor" -a "$(pactl get-default-source)" -o ~/Videos/replay/ -r 60 -c mp4
