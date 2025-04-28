@@ -85,7 +85,6 @@
     hyprpicker
     mcpelauncher-ui-qt
     warp-terminal
-    davinci-resolve
   ];
 
   # Configurar fish
