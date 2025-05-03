@@ -95,7 +95,7 @@
     enable = true;
     priority = 5;
     memoryPercent = 50;
-    compressionAlgorithm = "zstd";
+    algorithm = "zstd";
   };
 
   # Networking
