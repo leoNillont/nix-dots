@@ -164,6 +164,29 @@
         border-width: 2px;
       }
 
+      window#waybar.hidden {
+        opacity: 0.2;
+      }
+
+      /*
+      window#waybar.empty {
+        background-color: transparent;
+      }
+      window#waybar.solo {
+        background-color: #FFFFFF;
+      }
+      */
+
+      button {
+        border: none;
+        border-radius: 0;
+        margin: 2px;
+      }
+
+      button:hover {
+        background: inherit;
+      }
+
       #workspaces button {
         padding: 0 12px;
         border-radius: 0px;
@@ -172,9 +195,68 @@
         margin: 2px 2px;
       }
 
+      #workspaces button:hover {
+        background: @surface0;
+      }
+
       #workspaces button.active {
         background-color: @surface1;
         color: @mauve;
+      }
+
+      #workspaces button.urgent {
+        background-color: #eb4d4b;
+      }
+
+      #workspaces button:first-child {
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        margin-left: 2px;
+      }
+
+      /* Remove margin on last button */
+        #workspaces button:last-child {
+        margin-right: 0px;
+      }
+
+      #mode {
+        background-color: #64727D;
+        border-bottom: 3px solid #ffffff;
+      }
+
+      #clock,
+      #battery,
+      #cpu,
+      #memory,
+      #disk,
+      #temperature,
+      #backlight,
+      #network,
+      #pulseaudio,
+      #wireplumber,
+      #custom-media,
+      #tray,
+      #mode,
+      #idle_inhibitor,
+      #scratchpad,
+      #mpd {
+        padding: 0 10px;
+        color: #ffffff;
+      }
+
+      #window,
+      #workspaces {
+        margin: 0 4px;
+      }
+
+      /* If workspaces is the leftmost module, omit left margin */
+      .modules-left > widget:first-child > #workspaces {
+        margin-left: 0;
+      }
+
+      /* If workspaces is the rightmost module, omit right margin */
+      .modules-right > widget:last-child > #workspaces {
+        margin-right: 0;
       }
 
       #clock {
@@ -188,7 +270,19 @@
       #battery {
         background-color: @surface0;
         color: @pink;
-        margin: 2px 2px;
+	      margin: 2px 2px;
+      }
+
+      #battery.charging, #battery.plugged {
+        color: @green;
+        background-color: @surface0;
+      }
+
+      @keyframes blink {
+        to {
+          background-color: #ffffff;
+          color: #000000;
+        }
       }
 
       #battery.critical:not(.charging) {
@@ -201,12 +295,172 @@
         animation-direction: alternate;
       }
 
-      @keyframes blink {
-        to {
-          background-color: #ffffff;
-          color: #000000;
-        }
+      label:focus {
+        background-color: #000000;
       }
+
+      #cpu {
+        background-color: @surface0;
+        color: @red;
+        margin: 2px 2px;
+      }
+
+      #memory {
+        background-color: @surface0;
+        color: @green;
+        margin: 2px 2px;
+      }
+
+      #disk {
+        background-color: #964B00;
+      }
+
+      #backlight {
+        background-color: #90b1b1;
+      }
+
+      #network {
+        background-color: @surface0;
+        color: @maroon;
+        margin: 2px 2px;
+      }
+
+      #network.disconnected {
+        background-color: #f53c3c;
+      }
+
+      #pulseaudio {
+        background-color: @surface0;
+        color: @peach;
+        margin: 2px 2px;
+      }
+
+      #pulseaudio.muted {
+        background-color: #6c7086;
+        color: #f38ba8;
+      }
+
+      #wireplumber {
+        background-color: #fff0f5;
+        color: #000000;
+      }
+
+      #wireplumber.muted {
+        background-color: #f53c3c;
+      }
+
+      #custom-waybar-mpris {
+        background-color: @surface0;
+        color: @mauve;
+        min-width: 100px;
+        border-radius: 15px;
+        margin: 2px 2px;
+        padding: 6px;
+      }
+
+      #custom-media.custom-spotify {
+        background-color: @surface0;
+      }
+
+      #custom-media.custom-vlc {
+        background-color: #ffa000;
+      }
+
+      #temperature {
+        background-color: @surface0;
+        color: @mauve;
+        margin: 2px 2px;
+      }
+
+      #temperature.critical {
+        background-color: #eb4d4b;
+      }
+
+      #tray {
+        background-color: @surface0;
+        color: @text;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        margin-right: 2px;
+        margin: 2px 2px;
+      }
+
+      #tray > .passive {
+        -gtk-icon-effect: dim;
+      }
+
+      #tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+        background-color: #eb4d4b;
+      }     
+
+      #idle_inhibitor {
+        background-color: #2d3436;
+      }
+
+      #idle_inhibitor.activated {
+        background-color: #ecf0f1;
+        color: #2d3436;
+      }
+
+      #mpd {
+        background-color: #66cc99;
+        color: #2a5c45;
+      }
+
+      #mpd.disconnected {
+         background-color: #f53c3c;
+      }
+
+      #mpd.stopped {
+        background-color: #90b1b1;
+      }
+
+      #mpd.paused {
+        background-color: #51a37a;
+      }   
+
+      #language {
+        background: #00b093;
+        color: #740864;
+        padding: 0 2px;
+        margin: 0 5px;
+        min-width: 16px;
+      }
+
+      #keyboard-state {
+        background: #97e1ad;
+        color: #000000;
+        padding: 0 0px;
+        margin: 0 2px;
+        min-width: 16px;
+      }
+
+      #keyboard-state > label {
+        padding: 0 2px;
+      }
+
+      #keyboard-state > label.locked {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      #scratchpad {
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      #scratchpad.empty {
+	      background-color: transparent;
+      }
+
+      /* Focused window */
+      #window {
+        background-color: @surface0;
+        color: @text;
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 0 12px;
+        margin: 2px 0px;
+     }
     '';
   };
 }
