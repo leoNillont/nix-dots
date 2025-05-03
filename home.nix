@@ -130,9 +130,9 @@
     source = ./home/mako;
     recursive = true;
   };
-  home.file."./.config/swaylock" = {
-    source = ./home/swaylock;
-    recursive = true;
+  home.file."./.config/hypr/hyprlock.conf" = {
+    source = ./home/hypr/hyprlock.conf;
+    recursive = false;
   };
   home.file."./.config/rofi" = {
     source = ./home/rofi;

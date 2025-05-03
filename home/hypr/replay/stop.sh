@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 
-notify-send "Grabacion parada"
+notify-send "Recording stopped"
 
 killall -SIGINT gpu-screen-recorder
