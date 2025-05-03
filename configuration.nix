@@ -6,26 +6,41 @@
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
+  nixpkgs.config.allowUnfree = true; # Allow unfree packages
 
   # Home Manager settings
   home-manager.backupFileExtension = "hmbak"; # Backup file extension
 
   # Bootloader configuration
   boot = {
+    bootspec.enable = true;
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.consoleMode = "max"; # Use max resolution allowed
+      systemd-boot = 
+        enable = true;
+        consoleMode = "max"; # Use max resolution allowed
+        editor = false;
+      };
       efi.canTouchEfiVariables = true;
       timeout = 1;
     };
-    initrd.systemd.enable = true;
+    initrd = {
+      systemd.enable = true;
+      verbose = false;
+    };
     kernelParams = [
-      "quiet" "loglevel=3" "rd.udev.log_level=3" "systemd.show_status=auto"
+      "quiet" "rd.udev.log_level=3" "systemd.show_status=auto"
       "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0"
       "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000"
     ];
+    consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_lqx;
+    tmp = {
+      onTmpfs = true;
+      cleanOnBoot = true;
+      tmpfsSize = "50%"; 
+    };
   };
+  systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
 
   # Enable and configure catppuccin globally
   catppuccin = {
@@ -37,11 +52,11 @@
   # Programs configuration
   programs = {
     thefuck.enable = true; # Command error correction
-    thunderbird.enable = true;
     gpu-screen-recorder.enable = true; # Required for screen recording
     fish.enable = true; # Enable fish shell
     htop.enable = true; # Enable htop
     git.enable = true; # Enable git
+    file-roller.enable = true; # File archiver
     java = {
       enable = true;
       package = pkgs.temurin-jre-bin-21;
@@ -61,14 +76,27 @@
       ];
     };
     virt-manager.enable = true; # QEMU/KVM
+    hyprland.enable = true;
   };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  };
+  virtualisation.libvirtd.enable = true; # Enable libvirt daemon
 
   # Hardware and power management
   hardware = {
     xpadneo.enable = true; # Xbox controller driver
     enableAllFirmware = true;
+    wirelessRegulatoryDatabase = true; # Required for framework laptop
   };
   powerManagement.powertop.enable = true; # Enable powertop
+  zramSwap  = {
+    enable = true;
+    priority = 5;
+    memoryPercent = 50;
+    compressionAlgorithm = "zstd";
+  };
 
   # Networking
   networking = {
@@ -76,8 +104,8 @@
       enable = true;
       wifi.backend = "iwd"; # Improves WiFi stability
     };
-    wirelessRegulatoryDatabase = true; # Required for framework laptop
   };
+  systemd.services.NetworkManager-wait-online.enable = false; # Reduces boot time
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="ES"
   '';
@@ -100,13 +128,7 @@
     };
     flatpak.enable = true; # Enable flatpak
     gvfs.enable = true; # Automount drives
-    clight = {
-      enable = true; # Automatic brightness control
-      location = {
-        latitude = 38.8911;
-        longitude = 1.3969;
-      };
-    };
+    clight.enable = true; # Automatic brightness control
     displayManager.sddm = {
       enable = true;
       package = pkgs.kdePackages.sddm;
@@ -119,15 +141,15 @@
         variant = "colemak";
       };
     };
+    fstrim.enable = true;
   };
+  security.rtkit.enable = true; # Required for pipewire
 
   # Fonts
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.fira-mono
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.meslo-lg
       font-awesome
       meslo-lgs-nf
     ];
@@ -158,6 +180,10 @@
     };
   };
   console.keyMap = "colemak"; # Keymap outside X
+  location = {
+    latitude = 38.8911;
+    longitude = 1.3969;
+  };
 
   # User configuration
   users.users.leonillo = {
@@ -193,6 +219,9 @@
     powertop
     iwd
   ];
+
+  # Make apps run natively on Wayland
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # State version
   system.stateVersion = "23.11"; # Do not change
