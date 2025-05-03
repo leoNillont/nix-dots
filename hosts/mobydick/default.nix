@@ -79,5 +79,5 @@
   '';
 
   # Hostname
-  networking.hostName = "leolaptop";
+  networking.hostName = "mobydick";
 }

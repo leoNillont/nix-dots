@@ -107,5 +107,5 @@
   '';
 
   # Hostname
-  networking.hostName = "leoframework";
+  networking.hostName = "goingmerry";
 }

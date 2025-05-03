@@ -1,138 +1,64 @@
 {
-  description = "leoFlake";
+  description = "leoNillo's flake";
+
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: let
+    # Shared modules used across all configurations
+    sharedModules = [
+      ./configuration.nix
+      disko.nixosModules.disko
+      ./disko-config.nix
+      catppuccin.nixosModules.catppuccin
+
+      home-manager.nixosModules.home-manager {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          users.leonillo = {
+            imports = [
+              ./home.nix
+              catppuccin.homeManagerModules.catppuccin
+            ];
+          };
+        };
+      }
+    ];
+  in {
+    # NixOS System Configurations
+    nixosConfigurations = {
+      "thousandsunny" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = sharedModules ++ [ ./hosts/leopc/leopc.nix ];
+      };
+
+      "mobydick" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = sharedModules ++ [ ./hosts/leolaptop/leolaptop.nix ];
+      };
+
+      "goingmerry" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = sharedModules ++ [ ./hosts/leoframework/leoframework.nix ];
+      };
+    };
+  };
 
   inputs = {
-
-    # Paquetes oficiales de Nixos (nixpkgs)
+    # Official NixOS packages (nixpkgs)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # home-manager
+    # Home Manager for user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Disko
+    # Disko for declarative disk partitioning
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Catppuccin
+    # Catppuccin theme for NixOS
     catppuccin.url = "github:catppuccin/nix";
-
-    # NUR
-    #nur = {
-    #  url = "github:nix-community/NUR";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-
-  };
-
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: {
-    nixosConfigurations = {
-      "leopc" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        # importar modulos
-	      modules = [
-	        # configuracion general
-	        ./configuration.nix
-          
-          # configuracion de host
-	        ./hosts/leopc/leopc.nix
-	        
-	        # modulo de disko
-          disko.nixosModules.disko
-          ./disko-config.nix
-
-          # Catppuccin
-          catppuccin.nixosModules.catppuccin
-
-          # NUR
-          #nur.modules.nixos.default
-          
-	        # Home Manager
-	        home-manager.nixosModules.home-manager
-	        {
-	          home-manager = {
-              useGlobalPkgs = true;
-	            useUserPackages = true;
-	            users.leonillo = {
-                imports = [
-                  ./home.nix
-                  catppuccin.homeManagerModules.catppuccin
-                ];
-              };
-            };
-	        }
-        ];
-      };
-
-      "leolaptop" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        
-	      # importar modulos
-        modules = [
-	        # configuracion general
-          ./configuration.nix
-
-          # configuracion de host
-          ./hosts/leolaptop/leolaptop.nix
-
-	        # modulo de disko
-          disko.nixosModules.disko
-          ./disko-config.nix
-
-          # Catppuccin
-          catppuccin.nixosModules.catppuccin
-
-          # NUR
-          #nur.modules.nixos.default
-
-          # Home manager
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.leonillo = { 
-                imports = [
-                  ./home.nix
-                  catppuccin.homeManagerModules.catppuccin
-                ];
-              };
-            };
-          }
-        ];
-      };
-
-      "leoframework" = nixpkgs.lib.nixosSystem {
-      	system = "x86_64-linux";
-
-	# importar modulos
-	modules = [
-	  ./configuration.nix
-	  ./hosts/leoframework/leoframework.nix
-	  disko.nixosModules.disko
-	  ./disko-config.nix
-	  catppuccin.nixosModules.catppuccin
-    #nur.modules.nixos.default
-	  home-manager.nixosModules.home-manager
-	  {
-	    home-manager = {
-	      useGlobalPkgs = true;
-	      useUserPackages = true;
-	      users.leonillo = {
-		imports = [
-		  ./home.nix
-		  catppuccin.homeManagerModules.catppuccin
-		];
-	      };
-	    };
-	  }
-	];
-      };
-    };
   };
 }

@@ -65,7 +65,7 @@
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" "amd_pstate=guided"];
 
   # Hostname
-  networking.hostName = "leopc";
+  networking.hostName = "thousandsunny";
 
   # Power profiles daemon
   #services.power-profiles-daemon.enable = true;

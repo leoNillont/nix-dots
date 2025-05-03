@@ -79,7 +79,10 @@
     gpt4all
     parsec-bin
     ffmpeg
-    vivaldi
+    (vivaldi.override {
+      proprietaryCodecs = true;
+      enableWidevine = true;
+    })
     retroarch
     playerctl
     hyprpicker
