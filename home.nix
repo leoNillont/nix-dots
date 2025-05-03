@@ -70,12 +70,13 @@
     nwg-bar
     playerctl
     mako
-    swaylock-effects
     swww
     waybar-mpris
     rofi-wayland
     hyprshot
     satty
+    hyprlock
+    hyprpicker
   ];
 
   # XDG User Directories
