@@ -27,17 +27,17 @@
     nixosConfigurations = {
       "thousandsunny" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = sharedModules ++ [ ./hosts/leopc/leopc.nix ];
+        modules = sharedModules ++ [ ./hosts/thousandsunny/default.nix ];
       };
 
       "mobydick" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = sharedModules ++ [ ./hosts/leolaptop/leolaptop.nix ];
+        modules = sharedModules ++ [ ./hosts/mobydick/default.nix ];
       };
 
       "goingmerry" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        modules = sharedModules ++ [ ./hosts/leoframework/leoframework.nix ];
+        modules = sharedModules ++ [ ./hosts/goingmerry/default.nix ];
       };
     };
   };
