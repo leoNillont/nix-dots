@@ -15,7 +15,7 @@
   boot = {
     bootspec.enable = true;
     loader = {
-      systemd-boot = 
+      systemd-boot = {
         enable = true;
         consoleMode = "max"; # Use max resolution allowed
         editor = false;
@@ -35,7 +35,7 @@
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_lqx;
     tmp = {
-      onTmpfs = true;
+      useTmpfs = true;
       cleanOnBoot = true;
       tmpfsSize = "50%"; 
     };
