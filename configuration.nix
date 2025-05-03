@@ -80,7 +80,7 @@
   };
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ]; # For file picker
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
 
@@ -98,7 +98,6 @@
     algorithm = "zstd";
   };
 
-  # Networking
   networking = {
     networkmanager = {
       enable = true;
@@ -110,7 +109,6 @@
     options cfg80211 ieee80211_regdom="ES"
   '';
 
-  # System services
   services = {
     ratbagd.enable = true; # Required for piper
     resolved = {
@@ -145,7 +143,6 @@
   };
   security.rtkit.enable = true; # Required for pipewire
 
-  # Fonts
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
@@ -163,7 +160,7 @@
     };
   };
 
-  # Localization
+  # Locale related settings
   time.timeZone = "Europe/Madrid";
   i18n = {
     defaultLocale = "en_US.UTF-8";
@@ -218,6 +215,7 @@
     gpu-screen-recorder
     powertop
     iwd
+    nixfmt-rfc-style
   ];
 
   # Make apps run natively on Wayland

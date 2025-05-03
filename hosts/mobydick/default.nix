@@ -1,83 +1,63 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  # Import hardware configuration
   imports = [
     ./hardware.nix
   ];
 
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-  };
-
-  # Drivers de la GPU Intel
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vulkan-loader
-      libvdpau-va-gl
-    ];
-  };
-
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
-  
-  # Drivers de la GPU Nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;
-    powerManagement = {
-      enable = false;
-      finegrained = false;
+  # Hardware Configuration
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
     };
-    open = true;
-    prime = {
-      sync.enable = true;
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vulkan-loader
+        libvdpau-va-gl
+      ];
+    };
+
+    nvidia = {
+      modesetting.enable = true;
+      nvidiaSettings = true;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
+      open = true;
+      prime = {
+        sync.enable = true;
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
+      };
     };
   };
 
-  # MySQL para las practicas
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
-  # TLP
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 100;
-
+  services = {
+    mysql = {
+      enable = true;
+      package = pkgs.mariadb;
     };
+
+    thermald.enable = true;
+
+    power-profiles-daemon.enable = true;
+
+    logind.extraConfig = ''
+      HandlePowerKey=ignore
+    '';
   };
 
-  # Thermald
-  services.thermald.enable = true;
-
-  # Desactivar boton de apagado (Joel Disabler)
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
-  # Hostname
+  # Hostname Configuration, used so I don't have to use --flake on rebuild
   networking.hostName = "mobydick";
 }

@@ -1,111 +1,50 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
     ./hardware.nix
   ];
 
-  # Drivers de la GPU AMD
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      vaapiVdpau
-      libvdpau-va-gl
-      vulkan-loader
-      rocmPackages.rocminfo
-      rocmPackages.rocm-smi
-    ];
+  # Hardware Configuration
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        vulkan-loader
+        libva
+        libva-utils
+        rocmPackages.clr.icd
+        rocmPackages.rocminfo
+        rocmPackages.rocm-smi
+      ];
+    };
+    amdgpu.opencl.enable = true;
+    bluetooth.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # Kernel Parameters
+  boot.kernelParams = [
+    "amdgpu.dcdebugmask=0x10"
+  ];
 
-  hardware.amdgpu.opencl.enable = true;
 
-  #systemd.tmpfiles.rules = 
-  #let
-  #  rocmEnv = pkgs.symlinkJoin {
-  #    name = "rocm-combined";
-  #    paths = with pkgs.rocmPackages; [
-  #     rocblas
-  #      hipblas
-  #      clr
-  #    ];
-  #  };
-  #in [
-  #  "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  #];
-
-  #boot.kernelParams = [ "amd_pstate=active" ];
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-    #powerOnBoot = false;
+  services = {
+    xserver.videoDrivers = [ "amdgpu" ];
+    #mysql = {
+    #  enable = true;
+    #  package = pkgs.mariadb;
+    #};
+    power-profiles-daemon.enable = true;
+    fprintd.enable = true;
+    fwupd.enable = true;
+    logind.extraConfig = ''HandlePowerKey=ignore'';
   };
-  
-  # MySQL para las practicas
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
-  };
-
-  # Corectrl
-  programs.corectrl = {
-    enable = true;
-    #gpuOverclock.enable = true;
-  };
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if ((action.id == "org.corectrl.helper.init" ||
-         action.id == "org.corectrl.helperkiller.init") &&
-        subject.local == true &&
-        subject.active == true &&
-        subject.isInGroup("wheel")) {
-            return polkit.Result.YES;
-      }
-    });
-  '';
-
-  # BIOS updates
-  services.fwupd.enable = true;
 
   environment.systemPackages = [ pkgs.framework-tool ];
 
-  boot.kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
-
-  # TLP
-  #services.tlp = {
-  #  enable = true;
-  #  settings = {
-  #    CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
-  #    CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
-  #
-  #    #CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
-  #    #CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-  #
-  #    #CPU_MIN_PERF_ON_AC = 0;
-  #    #CPU_MAX_PERF_ON_AC = 100;
-  #    #CPU_MIN_PERF_ON_BAT = 0;
-  #    #CPU_MAX_PERF_ON_BAT = 100;
-  #
-  #  };
-  #};
-
-  # Power Profiles Daemon
-  services.power-profiles-daemon.enable = true;
-  
-  # Lector de huellas
-  services.fprintd.enable = true;
-  #security.pam.services.swaylock.fprintAuth = true;
-  #security.pam.services.sddm.fprintAuth = true;
-
-  # Desactivar boton de apagado (Joel Disabler) (ahora eloy disabler)
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
-  # Hostname
+  # Hostname Configuration, used so I don't have to use --flake on rebuild
   networking.hostName = "goingmerry";
 }
