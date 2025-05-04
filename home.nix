@@ -171,6 +171,7 @@
       apply = true;
     };
     btop.enable = true;
+    mako.enable = false; # This fixes a temporary issue due to changes in home-manager https://github.com/nix-community/home-manager/issues/6971
   };
 
   # GTK Configuration
