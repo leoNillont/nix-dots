@@ -258,7 +258,7 @@
         background-color: @surface0;
         color: @flamingo;
         border-top-right-radius: 2px;
-        border-bottom-right-radius: 2px
+        border-bottom-right-radius: 2px;
         margin: 2px 2px;
       }
 
