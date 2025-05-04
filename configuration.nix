@@ -204,7 +204,6 @@
     p7zip
     unrar
     lm_sensors
-    ranger
     clang
     pulseaudio
     libnotify

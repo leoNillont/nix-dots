@@ -11,12 +11,7 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        mesa
-        mesa.opencl
-        vaapiVdpau
-        libvdpau-va-gl
         vulkan-loader
-        vulkan-validation-layers
         libva
         libva-utils
         rocmPackages.clr.icd

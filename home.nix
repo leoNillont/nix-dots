@@ -44,7 +44,6 @@
       proprietaryCodecs = true;
       enableWidevine = true;
     })
-    shotcut
     kdePackages.kdenlive
     davinci-resolve
     

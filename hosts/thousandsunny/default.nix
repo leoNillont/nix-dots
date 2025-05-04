@@ -11,12 +11,7 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        mesa
-        mesa.opencl
-        vaapiVdpau
-        libvdpau-va-gl
         vulkan-loader
-        vulkan-validation-layers
         libva
         libva-utils
         rocmPackages.clr.icd
@@ -24,7 +19,6 @@
         rocmPackages.rocm-smi
       ];
     };
-    amdgpu.opencl.enable = true;
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
@@ -42,7 +36,7 @@
   services = {
     #fwupd.enable = true; # Firmware updates, not in use right now
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
-    power-profiles-daemon.enable = lib.mkForce false;
+    power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
   };
 
   fileSystems = {
@@ -58,12 +52,19 @@
       fsType = "nfs";
       options = [
         "defaults"
+        "noatime"
         "x-systemd.automount"
         "noauto"
         "x-systemd.device-timeout=5"
-        "retrans=5"
+        "x-systemd.idle-timeout=60"
+        "bg"
+        "soft"
+        "timeo=5"
+        "retrans=2"
         "_netdev"
         "async"
+        "rsize=32768"
+        "wsize=32768"
       ];
     };
   };
