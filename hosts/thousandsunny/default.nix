@@ -38,6 +38,7 @@
   services = {
     #fwupd.enable = true; # Firmware updates, not in use right now
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
+    power-profiles-daemon.enable = lib.mkForce false;
   };
 
   fileSystems = {
