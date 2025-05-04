@@ -113,7 +113,7 @@
     ratbagd.enable = true; # Required for piper
     resolved = {
       enable = true;
-      dnssec = "true";
+      #dnssec = "true";
     };
     tumbler.enable = true; # Thumbnail generation
     pipewire = {
