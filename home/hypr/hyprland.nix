@@ -206,7 +206,7 @@
       ];
 
       layerrule = [
-        "layerrule = blur,waybar"
+        "blur,waybar"
       ];
 
       render = {
