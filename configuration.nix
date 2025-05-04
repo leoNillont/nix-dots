@@ -35,7 +35,7 @@
     consoleLogLevel = 0;
     kernelPackages = pkgs.linuxPackages_lqx;
     tmp = {
-      #useTmpfs = true;
+      useTmpfs = true;
       cleanOnBoot = true;
       tmpfsSize = "50%"; 
     };
