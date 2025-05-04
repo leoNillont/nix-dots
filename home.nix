@@ -44,6 +44,9 @@
       proprietaryCodecs = true;
       enableWidevine = true;
     })
+    shotcut
+    kdePackages.kdenlive
+    davinci-resolve
     
     # Gaming
     parsec-bin
