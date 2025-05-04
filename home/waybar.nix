@@ -9,7 +9,6 @@
         layer = "top";
         position = "top";
         height = 18;
-        margin = "5";
 
         # Modules
         modules-left = [ "hyprland/workspaces" "hyprland/window" ];
@@ -154,14 +153,10 @@
       @define-color rosewater #f5e0dc;
 
       window#waybar {
-        background-color: @base;
+        background-color: rgba(30, 30, 46, 0.2);
         color: @text;
         transition-property: background-color;
         transition-duration: .5s;
-        border-radius: 15px;
-        border-style: solid;
-        border-color: @mauve;
-        border-width: 2px;
       }
 
       window#waybar.hidden {
