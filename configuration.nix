@@ -205,7 +205,6 @@
     unrar
     lm_sensors
     clang
-    pulseaudio
     libnotify
     killall
     lxqt.lxqt-policykit
