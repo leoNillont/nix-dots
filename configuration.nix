@@ -21,19 +21,21 @@
         editor = false;
       };
       efi.canTouchEfiVariables = true;
-      timeout = 1;
+      timeout = 0;
     };
+    plymouth.enable = true;
     initrd = {
       systemd.enable = true;
       verbose = false;
     };
     kernelParams = [
-      "quiet" "rd.udev.log_level=3" "systemd.show_status=auto"
+      "quiet" "splash" "rd.udev.log_level=3" "systemd.show_status=auto" "udev.log.priority=3"
       "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0"
       "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000"
+      "amdgpu.seamless=1" "amdgpu.gpu_recovery=1" "amdgpu.noretry=0"
     ];
-    consoleLogLevel = 0;
-    kernelPackages = pkgs.linuxPackages_lqx;
+    consoleLogLevel = 3;
+    kernelPackages = pkgs.pkgs.linuxPackages_lqx;
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
@@ -187,7 +189,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" ];
     initialPassword = "Patataxd4"; # Default password on install, should be changed later
   };
 

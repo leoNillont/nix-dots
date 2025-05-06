@@ -26,7 +26,7 @@
 
   boot.kernelParams = [
     "amdgpu.ppfeaturemask=0xffffffff"
-    "amd_pstate=guided"
+    "amd_pstate=active"
   ];
 
   # Hostname, this is used so I don't have to use --flake on rebuild
