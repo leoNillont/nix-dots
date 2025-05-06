@@ -6,7 +6,6 @@
     sharedModules = [
       ./configuration.nix
       disko.nixosModules.disko
-      ./disko-config.nix
       catppuccin.nixosModules.catppuccin
 
       home-manager.nixosModules.home-manager {

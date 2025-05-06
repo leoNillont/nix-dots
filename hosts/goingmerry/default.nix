@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware.nix
+    ./disko-config.nix
   ];
 
   # Hardware Configuration

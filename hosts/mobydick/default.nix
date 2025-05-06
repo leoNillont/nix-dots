@@ -4,6 +4,7 @@
   # Import hardware configuration
   imports = [
     ./hardware.nix
+    ./disko-config.nix
   ];
 
   # Hardware Configuration

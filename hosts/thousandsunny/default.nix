@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware.nix
+    ./disko-config.nix
   ];
 
   # Hardware configuration, this desktop has an AMD GPU
