@@ -35,7 +35,7 @@
   powerManagement.powertop.enable = lib.mkForce false; # Disable powertop due to USB issues
 
   services = {
-    #fwupd.enable = true; # Firmware updates, not in use right now
+    fwupd.enable = true; 
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
   };
