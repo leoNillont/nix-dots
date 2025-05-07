@@ -53,6 +53,7 @@
       fsType = "nfs";
       options = [
         "defaults"
+        "user"
         "noatime"
         "x-systemd.automount"
         "noauto"
