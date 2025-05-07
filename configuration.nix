@@ -212,6 +212,7 @@
     powertop
     iwd
     nixfmt-rfc-style
+    kdiskmark
   ];
 
   # Make apps run natively on Wayland
