@@ -4,7 +4,7 @@
 
 let
   btrfsOptions = [
-    "compress=zstd:2"
+    "compress=zstd:1"
     "noatime"
     "space_cache=v2"
     "discard=async"
@@ -15,7 +15,7 @@ in
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7HENJ0Y229274J";
         content = {
           type = "gpt";
           partitions = {
