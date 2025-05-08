@@ -30,7 +30,7 @@
       "amdgpu.gpu_recovery=1" "amdgpu.noretry=0" # Maybe fix crashes?
     ];
     #consoleLogLevel = 3;
-    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
