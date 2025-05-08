@@ -1,12 +1,13 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
       disko.nixosModules.disko
       catppuccin.nixosModules.catppuccin
+      chaotic.nixosModules.default
 
       home-manager.nixosModules.home-manager {
         home-manager = {
@@ -59,5 +60,8 @@
 
     # Catppuccin theme for NixOS
     catppuccin.url = "github:catppuccin/nix";
+
+    # Chaotic-nyx, has a bunch of bleeding edge packages, used for cachy kernel
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 }

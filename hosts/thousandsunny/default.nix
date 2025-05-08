@@ -23,6 +23,7 @@
     bluetooth.enable = true;
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
+  chaotic.mesa-git.enable = true;
 
   boot.kernelParams = [
     "amdgpu.ppfeaturemask=0xffffffff"
