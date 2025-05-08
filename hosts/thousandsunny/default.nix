@@ -57,7 +57,7 @@
       fsType = "nfs";
       options = [
         "defaults"
-        "user"
+        "users"
         "noatime"
         "x-systemd.automount"
         "noauto"
@@ -74,6 +74,8 @@
       ];
     };
   };
+  #security.wrappers."mount.nfs".source = "${pkgs.nfs-utils.out}/bin/mount.nfs"; # Fixes nfs problem
+  services.rpcbind.enable = true; # needed for NFS
 
   networking = {
     interfaces.enp38s0.ipv4.addresses = [
