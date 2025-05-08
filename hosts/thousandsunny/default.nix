@@ -21,8 +21,9 @@
       ];
     };
     bluetooth.enable = true;
+    amdgpu.initrd.enable = true;
   };
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
   chaotic.mesa-git.enable = true;
 
   boot.kernelParams = [
@@ -33,7 +34,10 @@
   # Hostname, this is used so I don't have to use --flake on rebuild
   networking.hostName = "thousandsunny";
 
-  powerManagement.powertop.enable = lib.mkForce false; # Disable powertop due to USB issues
+  powerManagement = {
+    powertop.enable = lib.mkForce false; # Disable powertop due to USB issues
+    cpuFreqGovernor = "performance";
+  };
 
   services = {
     fwupd.enable = true; 
