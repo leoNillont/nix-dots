@@ -135,7 +135,7 @@
       };
     };
     fstrim.enable = true;
-    scx.enable = true;
+    #scx.enable = true;
   };
   security.rtkit.enable = true; # Required for pipewire
 
@@ -211,6 +211,7 @@
     iwd
     nixfmt-rfc-style
     kdiskmark
+    pulseaudio
   ];
 
   # Make apps run natively on Wayland
