@@ -26,9 +26,8 @@
     initrd.systemd.enable = true;
     kernelParams = [
       #"quiet" "splash" "rd.udev.log_level=3" "systemd.show_status=auto" "udev.log.priority=3"
-      "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0"
-      "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000"
-      "amdgpu.seamless=1" "amdgpu.gpu_recovery=1" "amdgpu.noretry=0"
+      "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0" "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000" # Gaming optimizations Valve added on SteamOS
+      "amdgpu.gpu_recovery=1" "amdgpu.noretry=0" # Maybe fix crashes?
     ];
     #consoleLogLevel = 3;
     kernelPackages = pkgs.pkgs.linuxPackages_lqx;
@@ -51,17 +50,15 @@
   programs = {
     thefuck.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
-    fish.enable = true; # Enable fish shell
-    htop.enable = true; # Enable htop
-    git.enable = true; # Enable git
+    fish.enable = true;
+    htop.enable = true;
+    git.enable = true;
     file-roller.enable = true; # File archiver
     java = {
       enable = true;
       package = pkgs.temurin-jre-bin-21;
     };
-    steam = {
-      enable = true;
-    };
+    steam.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
     thunar = {
@@ -91,9 +88,9 @@
   powerManagement.powertop.enable = true; # Enable powertop
   zramSwap  = {
     enable = true;
-    priority = 5;
+    priority = 5; # Prefer Zram over swap
     memoryPercent = 50;
-    algorithm = "zstd";
+    algorithm = "zstd"; # Better performance/compression ratio
   };
 
   networking = {
@@ -122,7 +119,7 @@
       };
       pulse.enable = true;
     };
-    flatpak.enable = true; # Enable flatpak
+    flatpak.enable = true;
     gvfs.enable = true; # Automount drives
     clight.enable = true; # Automatic brightness control
     displayManager.sddm = {
@@ -186,7 +183,7 @@
     shell = pkgs.fish;
     description = "leoNillo";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" ];
-    initialPassword = "Patataxd4"; # Default password on install, should be changed later
+    initialPassword = "Patataxd4"; # Default password on install, must be changed later
   };
 
   # System packages, installed globally
