@@ -24,7 +24,6 @@
     amdgpu.initrd.enable = true;
   };
   services.xserver.videoDrivers = [ "modesetting" ];
-  chaotic.mesa-git.enable = true;
 
   boot.kernelParams = [
     "amdgpu.ppfeaturemask=0xffffffff"
