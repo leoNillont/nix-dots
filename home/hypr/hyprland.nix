@@ -61,7 +61,7 @@
         "$mod SHIFT, F, exec, nwg-bar"
 
         # GSR
-        "$mod, G, exec, ~/.config/hypr/replay/save.sh"
+        "$mod, G, exec, bash ~/.config/hypr/replay/save.sh"
         "$mod SHIFT, G, exec, nwg-bar -t ~/.config/hypr/replay/nwg-bar/bar.json"
       ] ++ (
         # Worspace switching
