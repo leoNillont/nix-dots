@@ -32,7 +32,7 @@
     #consoleLogLevel = 3;
     kernelPackages = pkgs.linuxPackages_cachyos;
     tmp = {
-      useTmpfs = true;
+      #useTmpfs = true;
       cleanOnBoot = true;
       tmpfsSize = "50%"; 
     };
