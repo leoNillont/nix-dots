@@ -45,7 +45,7 @@
       enableWidevine = true;
     })
     kdePackages.kdenlive
-    #davinci-resolve
+    davinci-resolve
     
     # Gaming
     parsec-bin
