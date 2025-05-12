@@ -22,6 +22,7 @@
     wl-clipboard
     cliphist 
     ffmpeg
+    spicetify-cli
 
     # GUI
     vesktop
