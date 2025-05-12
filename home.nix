@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Import Modules
@@ -118,8 +118,15 @@
 
     home-manager.enable = true; # probably don't want to remove this :3
     
-    spicetify = {
+    spicetify = let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in {
       enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        adblockify
+        shuffle
+        loopyLoop
+      ];
       theme = spicePkgs.themes.catppuccin;
     };
   };

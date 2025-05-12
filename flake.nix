@@ -9,6 +9,7 @@
       catppuccin.nixosModules.catppuccin
       chaotic.nixosModules.default
 
+      { home-manager.extraSpecialArgs = { inherit inputs; }; }
       home-manager.nixosModules.home-manager {
         home-manager = {
           useGlobalPkgs = true;
@@ -28,16 +29,19 @@
     nixosConfigurations = {
       "thousandsunny" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = sharedModules ++ [ ./hosts/thousandsunny/default.nix ];
       };
 
       "mobydick" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = sharedModules ++ [ ./hosts/mobydick/default.nix ];
       };
 
       "goingmerry" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = sharedModules ++ [ ./hosts/goingmerry/default.nix ];
       };
     };
