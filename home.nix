@@ -22,12 +22,14 @@
     wl-clipboard
     cliphist 
     ffmpeg
+    spicetify-cli
 
     # GUI
     vesktop
     filezilla
     qpwgraph
     tidal-hifi
+    spotify
     pavucontrol
     oculante
     mpv
