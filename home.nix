@@ -22,7 +22,6 @@
     wl-clipboard
     cliphist 
     ffmpeg
-    spicetify-cli
 
     # GUI
     vesktop
@@ -118,6 +117,24 @@
     };
 
     home-manager.enable = true; # probably don't want to remove this :3
+    
+    spicetify = let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        adblockify
+        shuffle
+        loopyLoop
+      ];
+      enabledCustomApps = with spicePkgs.apps; [
+        marketplace
+        lyricsPlus
+        newReleases
+        ncsVisualizer
+      ];
+      theme = spicePkgs.themes.catppuccin;
+    };
   };
 
   # File Configurations

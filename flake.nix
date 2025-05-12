@@ -1,7 +1,7 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
@@ -18,6 +18,7 @@
             imports = [
               ./home.nix
               catppuccin.homeModules.catppuccin
+              spicetify-nix.homeManagerModules.spicetify
             ];
           };
         };
@@ -67,5 +68,8 @@
 
     # Chaotic-nyx, has a bunch of bleeding edge packages, used for cachy kernel
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    # Spicetify-nix, it allows for spotify customization
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 }
