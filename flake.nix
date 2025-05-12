@@ -1,14 +1,14 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
       disko.nixosModules.disko
       catppuccin.nixosModules.catppuccin
       chaotic.nixosModules.default
-      inputs.spicetify-nix.nixos
+      spicetify-nix.homeManagerModules.spicetify
 
       home-manager.nixosModules.home-manager {
         home-manager = {

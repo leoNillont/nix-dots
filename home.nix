@@ -28,7 +28,6 @@
     filezilla
     qpwgraph
     tidal-hifi
-    spotify
     pavucontrol
     oculante
     mpv
