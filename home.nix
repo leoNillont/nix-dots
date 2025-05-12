@@ -22,7 +22,6 @@
     wl-clipboard
     cliphist 
     ffmpeg
-    spicetify-cli
 
     # GUI
     vesktop
@@ -96,7 +95,6 @@
 
   # Programs
   programs = {
-    # Fish Shell Configuration
     fish = {
       enable = true;
       interactiveShellInit = ''
@@ -110,10 +108,8 @@
       ];
     };
 
-    # Btop Configuration
     btop.enable = true;
 
-    # OBS Studio Configuration
     obs-studio = {
       enable = true;
       plugins = with pkgs; [
@@ -121,8 +117,14 @@
       ];
     };
 
-    # Enable Home Manager
-    home-manager.enable = true;
+    home-manager.enable = true; # probably don't want to remove this :3
+    
+    spicetify = let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in {
+      enable = true;
+      theme = spicePkgs.themes.catppuccin;
+    }
   };
 
   # File Configurations
