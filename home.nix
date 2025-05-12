@@ -118,9 +118,7 @@
 
     home-manager.enable = true; # probably don't want to remove this :3
     
-    spicetify = let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in {
+    spicetify = {
       enable = true;
       theme = spicePkgs.themes.catppuccin;
     };
