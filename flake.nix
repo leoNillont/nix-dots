@@ -68,8 +68,5 @@
 
     # Chaotic-nyx, has a bunch of bleeding edge packages, used for cachy kernel
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-
-    # Spicetify-nix, it allows for spotify customization
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 }
