@@ -8,7 +8,6 @@
       disko.nixosModules.disko
       catppuccin.nixosModules.catppuccin
       chaotic.nixosModules.default
-      spicetify-nix.homeManagerModules.spicetify
 
       home-manager.nixosModules.home-manager {
         home-manager = {
@@ -18,6 +17,7 @@
             imports = [
               ./home.nix
               catppuccin.homeModules.catppuccin
+              spicetify-nix.homeManagerModules.spicetify
             ];
           };
         };
