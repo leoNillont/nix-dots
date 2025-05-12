@@ -123,7 +123,7 @@
     in {
       enable = true;
       theme = spicePkgs.themes.catppuccin;
-    }
+    };
   };
 
   # File Configurations
