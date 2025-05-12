@@ -1,7 +1,7 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
@@ -18,7 +18,6 @@
             imports = [
               ./home.nix
               catppuccin.homeModules.catppuccin
-              spicetify-nix.homeManagerModules.spicetify
             ];
           };
         };
