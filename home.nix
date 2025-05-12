@@ -134,6 +134,7 @@
         ncsVisualizer
       ];
       theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
     };
   };
 
