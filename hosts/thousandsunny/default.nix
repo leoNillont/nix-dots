@@ -25,10 +25,13 @@
   };
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  boot.kernelParams = [
-    "amdgpu.ppfeaturemask=0xffffffff"
-    "amd_pstate=active"
-  ];
+  boot = {
+    kernelParams = [
+      "amdgpu.ppfeaturemask=0xffffffff"
+      "amd_pstate=active"
+    ];
+    supportedFilesystems = [ "nfs" ];
+  };
 
   # Hostname, this is used so I don't have to use --flake on rebuild
   networking.hostName = "thousandsunny";
@@ -44,7 +47,7 @@
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
   };
 
-  fileSystems = {
+  #fileSystems = {
     # Disk was used for other purpose, commented for now
     # "/media/DiscoExtra" = {
     #   device = "/dev/disk/by-uuid/36cab7e8-94ae-4fa3-9147-19192df6c874";
@@ -52,31 +55,49 @@
     #   options = [ "noatime" "space_cache=v2" "compress=zstd" "ssd" ];
     # };
 
-    "/media/NAS" = {
-      device = "192.168.1.96:/Datos";
-      fsType = "nfs";
-      options = [
-        "defaults"
-        "user"
-        "users"
-        "noatime"
-        "x-systemd.automount"
-        "noauto"
-        "x-systemd.device-timeout=5"
-        "x-systemd.idle-timeout=60"
-        "bg"
-        "soft"
-        "timeo=5"
-        "retrans=2"
-        "_netdev"
-        "async"
-        "rsize=32768"
-        "wsize=32768"
-      ];
-    };
+    #"/media/NAS" = {
+    #  device = "192.168.1.96:/Datos";
+    #  fsType = "nfs";
+    #  options = [
+    #    "defaults"
+    #    "user"
+    #    #"users"
+    #    #"noatime"
+    #    "x-systemd.automount"
+    #    #"noauto"
+    #    "x-systemd.device-timeout=5"
+    #    "x-systemd.idle-timeout=60"
+    #    "bg"
+    #    "soft"
+    #    "timeo=5"
+    #    "retrans=2"
+    #    "_netdev"
+    #    "async"
+    #    "rsize=32768"
+    #    "wsize=32768"
+    #  ];
+    #};
+    
+    
+  #};
+  services.rpcbind.enable = true; # needed for nfs
+  systemd = {
+    mounts = [{
+      type = "nfs";
+      mountConfig = {
+        Options = "noatime";
+      };
+      what = "192.168.1.96:/Datos";
+      where = "/media/NAS";
+    }];
+    automounts = [{
+      wantedBy = [ "multi-user.target" ];
+      automountConfig = {
+        TimeoutIdleSec = "600";
+      };
+      where = "/media/NAS";
+    }];
   };
-  #security.wrappers."mount.nfs".source = "${pkgs.nfs-utils.out}/bin/mount.nfs"; # Fixes nfs problem
-  services.rpcbind.enable = true; # needed for NFS
 
   networking = {
     interfaces.enp38s0.ipv4.addresses = [
