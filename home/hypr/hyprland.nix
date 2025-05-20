@@ -49,7 +49,7 @@
 
         # Apps
         "$mod, X, exec, thunar"
-        "$mod, B, exec, vivaldi"
+        "$mod, B, exec, vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze"
@@ -122,7 +122,7 @@
         "waybar"
         "mako"
         "[workspace 1 silent] kitty"
-        "[workspace 2 silent] vivaldi"
+        "[workspace 2 silent] vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
         "[workspace 4 silent] vesktop"
         "[workspace 5 silent] steam -silent"
         "wl-paste --type text --watch cliphist store"
