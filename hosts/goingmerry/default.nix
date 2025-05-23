@@ -20,9 +20,9 @@
         rocmPackages.rocm-smi
       ];
     };
-    amdgpu.opencl.enable = true;
     bluetooth.enable = true;
   };
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   # Kernel Parameters
   boot.kernelParams = [
@@ -31,15 +31,9 @@
 
 
   services = {
-    xserver.videoDrivers = [ "amdgpu" ];
-    #mysql = {
-    #  enable = true;
-    #  package = pkgs.mariadb;
-    #};
     power-profiles-daemon.enable = true;
     fprintd.enable = true;
     fwupd.enable = true;
-    logind.extraConfig = ''HandlePowerKey=ignore'';
   };
 
   environment.systemPackages = [ pkgs.framework-tool ];
