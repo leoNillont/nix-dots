@@ -1,0 +1,18 @@
+configuration{
+    modi: "clipboard:cliphist-rofi,drun,window";
+    icon-theme: "ePapirus-dark";
+    show-icons: true;
+    terminal: "kitty";
+    drun-display-format: "{icon} | {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: " 󰀻  Apps ";
+    display-clipboard: " 󰅇  Clipbord ";
+    display-window: "   Window";
+    display-Network: " 󰤨  Network";
+    sidebar-mode: true;
+}
+
+@theme "catppuccin-mocha"
+
