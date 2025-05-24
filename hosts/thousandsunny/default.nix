@@ -15,9 +15,12 @@
         vulkan-loader
         libva
         libva-utils
+        rocmPackages.clr
         rocmPackages.clr.icd
         rocmPackages.rocminfo
         rocmPackages.rocm-smi
+        rocmPackages.rocblas
+        rocmPackages.hipblas
       ];
     };
     bluetooth.enable = true;
@@ -47,37 +50,12 @@
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
   };
 
-  #fileSystems = {
-    # Disk was used for other purpose, commented for now
-    # "/media/DiscoExtra" = {
-    #   device = "/dev/disk/by-uuid/36cab7e8-94ae-4fa3-9147-19192df6c874";
-    #   fsType = "btrfs";
-    #   options = [ "noatime" "space_cache=v2" "compress=zstd" "ssd" ];
-    # };
-
-    #"/media/NAS" = {
-    #  device = "192.168.1.96:/Datos";
-    #  fsType = "nfs";
-    #  options = [
-    #    "defaults"
-    #    "user"
-    #    #"users"
-    #    #"noatime"
-    #    "x-systemd.automount"
-    #    #"noauto"
-    #    "x-systemd.device-timeout=5"
-    #    "x-systemd.idle-timeout=60"
-    #    "bg"
-    #    "soft"
-    #    "timeo=5"
-    #    "retrans=2"
-    #    "_netdev"
-    #    "async"
-    #    "rsize=32768"
-    #    "wsize=32768"
-    #  ];
-    #};
-    
+  fileSystems = {
+    "/media/DiscoExtra" = {
+      device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7381CEE10E-part2";
+      fsType = "ntfs";
+    };
+  };
     
   #};
   services.rpcbind.enable = true; # needed for nfs
@@ -118,4 +96,18 @@
     services.lactd.wantedBy = [ "multi-user.target" ];
   };
   environment.systemPackages = with pkgs; [ lact davinci-resolve ]; # also added resolve here because I only need it on this computer
+
+  # HIP/ROCM workaround
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+        rocblas
+        hipblas
+        clr
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
 }
