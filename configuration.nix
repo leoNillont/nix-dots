@@ -1,17 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  # Nix settings
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
   };
   nixpkgs.config.allowUnfree = true; # Allow unfree packages
 
-  # Home Manager settings
   home-manager.backupFileExtension = "hmbak"; # Backup file extension
 
-  # Bootloader configuration
+  # Bootloader related configuration
   boot = {
     bootspec.enable = true;
     loader = {
@@ -25,11 +23,8 @@
     };
     initrd.systemd.enable = true;
     kernelParams = [
-      #"quiet" "splash" "rd.udev.log_level=3" "systemd.show_status=auto" "udev.log.priority=3"
       "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0" "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000" # Gaming optimizations Valve added on SteamOS
-      "amdgpu.gpu_recovery=1" "amdgpu.noretry=0" # Maybe fix crashes?
     ];
-    #consoleLogLevel = 3;
     kernelPackages = pkgs.linuxPackages_cachyos;
     tmp = {
       useTmpfs = true;
@@ -46,7 +41,6 @@
     flavor = "mocha";
   };
 
-  # Programs configuration
   programs = {
     thefuck.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
@@ -71,7 +65,11 @@
       ];
     };
     virt-manager.enable = true; # QEMU/KVM
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    uwsm.enable = true;
   };
   xdg.portal = {
     enable = true;
@@ -96,7 +94,10 @@
   networking = {
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd"; # Improves WiFi stability
+      wifi = {
+        backend = "iwd"; # Improves WiFi stability
+        powersave = true;
+      };
     };
   };
   systemd.services.NetworkManager-wait-online.enable = false; # Reduces boot time
@@ -108,7 +109,7 @@
     ratbagd.enable = true; # Required for piper
     resolved = {
       enable = true;
-      #dnssec = "true";
+      dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than flase I guess
     };
     tumbler.enable = true; # Thumbnail generation
     pipewire = {
@@ -121,7 +122,6 @@
     };
     flatpak.enable = true;
     gvfs.enable = true; # Automount drives
-    clight.enable = true; # Automatic brightness control
     displayManager.sddm = {
       enable = true;
       package = pkgs.kdePackages.sddm;
@@ -134,8 +134,6 @@
         variant = "colemak";
       };
     };
-    fstrim.enable = true;
-    #scx.enable = true;
   };
   security.rtkit.enable = true; # Required for pipewire
 
@@ -173,12 +171,7 @@
     };
   };
   console.keyMap = "colemak"; # Keymap outside X
-  location = {
-    latitude = 38.8911;
-    longitude = 1.3969;
-  };
 
-  # User configuration
   users.users.leonillo = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -200,18 +193,18 @@
     p7zip
     unrar
     lm_sensors
-    clang
+    gcc
     libnotify
     killall
     lxqt.lxqt-policykit
     lzip
     linux-firmware
-    gpu-screen-recorder
     powertop
     iwd
     nixfmt-rfc-style
     kdiskmark
     pulseaudio
+    brightnessctl
   ];
 
   # Make apps run natively on Wayland

@@ -1,7 +1,7 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, nixos-hardware, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
@@ -42,7 +42,10 @@
       "goingmerry" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        modules = sharedModules ++ [ ./hosts/goingmerry/default.nix ];
+        modules = sharedModules ++ [ 
+          ./hosts/goingmerry/default.nix  
+          nixos-hardware.nixosModules.framework-13-7040-amd
+        ];
       };
     };
   };
@@ -71,5 +74,8 @@
 
     # Spicetify-nix, it allows for spotify customization
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
+    # NixOS-Hardware, has useful things for hardware support
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 }

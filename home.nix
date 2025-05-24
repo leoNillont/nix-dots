@@ -46,6 +46,7 @@
     })
     kdePackages.kdenlive
     blender-hip
+    waypaper
     
     # Gaming
     parsec-bin
@@ -73,6 +74,9 @@
     playerctl
     mako
     swww
+    swaybg
+    mpvpaper
+    hyprpaper
     waybar-mpris
     rofi-wayland
     hyprshot
@@ -100,7 +104,7 @@
         set fish_greeting
       '';
       plugins = [
-        { name = "pure"; src = pkgs.fishPlugins.pure.src; }
+        { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         { name = "done"; src = pkgs.fishPlugins.done.src; }
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
@@ -111,8 +115,11 @@
 
     obs-studio = {
       enable = true;
-      plugins = with pkgs; [
-        obs-studio-plugins.obs-pipewire-audio-capture
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-pipewire-audio-capture
+        obs-vkcapture
+        obs-vertical-canvas
+        obs-vaapi
       ];
     };
 

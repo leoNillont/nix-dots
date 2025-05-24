@@ -3,6 +3,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = false;
     xwayland.enable = true;
     settings = {
       monitor = [
@@ -19,12 +20,12 @@
 
         # Exit things
         "$mod, q, killactive,"
-        "$mod, m, exit,"
+        "$mod, m, exec, uwsm stop"
 
         # Rofi
-        "$mod, r, exec, rofi -show drun"
-        "$mod, w, exec, rofi -show window"
-        "$mod, v, exec, rofi -show clipboard"
+        ''$mod, r, exec, rofi -show drun -run-command "uwsm app -- {cmd}"''
+        ''$mod, w, exec, rofi -show window''
+        ''$mod, v, exec, rofi -show clipboard''
 
         # Manage windows
         "$mod, n, movefocus, l"
@@ -45,11 +46,11 @@
         "$mod SHIFT, t, movetoworkspace, special"
 
         # Lock
-        "$mod, L, exec, hyprlock"
+        "$mod, L, exec, uwsm app -- hyprlock"
 
         # Apps
-        "$mod, X, exec, thunar"
-        "$mod, B, exec, vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "$mod, X, exec, uwsm app -- thunar"
+        "$mod, B, exec, uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze"
@@ -62,7 +63,7 @@
 
         # GSR
         "$mod, G, exec, bash ~/.config/hypr/replay/save.sh"
-        "$mod SHIFT, G, exec, nwg-bar -t ~/.config/hypr/replay/nwg-bar/bar.json"
+        "$mod SHIFT, G, exec, uwsm app -- nwg-bar -t ~/.config/hypr/replay/nwg-bar/bar.json"
       ] ++ (
         # Worspace switching
         builtins.concatLists (builtins.genList (
@@ -86,8 +87,8 @@
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        '', XF86MonBrightnessUp, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.05 0 0 0 ""''
-        '', XF86MonBrightnessDown, exec, busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.05 0 0 0 ""''
+        ",XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ",XF86MonBrightnessUp, exec, brightnessctl s +5%"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
@@ -119,16 +120,15 @@
       };
 
       exec-once = [
-        "waybar"
-        "mako"
-        "[workspace 1 silent] kitty"
-        "[workspace 2 silent] vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        "[workspace 4 silent] vesktop"
-        "[workspace 5 silent] steam -silent"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
-        "lxqt-policykit-agent"
-        "swww-daemon"
+        "uwsm app -s b waybar" # TODO properly start these programs as systemd-services
+        "uwsm app -s b mako"
+        "[workspace 1 silent] uwsm app -- kitty"
+        "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "[workspace 4 silent] uwsm app -- vesktop"
+        "[workspace 5 silent] uwsm app -- steam -silent"
+        "uwsm app -s b lxqt-policykit-agent"
+        "uwsm app -s b -- waypaper --restore"
+        "uwsm app -s b wluma"
         #"~/.config/hypr/replay/start.sh" # Uncomment to enable GSR on start
       ];
 
@@ -137,8 +137,8 @@
         inactive_opacity = "0.9";
         blur = {
           enabled = true;
-          size = "7";
-          passes = "2";
+          size = "11";
+          passes = "1";
           new_optimizations = true;
           noise = 0.01;
           brightness = 0.90;
