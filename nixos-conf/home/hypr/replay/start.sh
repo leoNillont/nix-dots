@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-killall -SIGINT gpu-screen-recorder
-
-notify-send "Recording re/started"
-
-gpu-screen-recorder -w screen -f 60 -a "$(pactl get-default-sink).monitor" -a "$(pactl get-default-source)" -o ~/Videos/replay/ -r 90 -c mp4
