@@ -205,6 +205,7 @@
     kdiskmark
     pulseaudio
     brightnessctl
+    gpu-screen-recorder
   ];
 
   # Make apps run natively on Wayland
