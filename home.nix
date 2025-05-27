@@ -47,6 +47,7 @@
     kdePackages.kdenlive
     blender-hip
     waypaper
+    kdePackages.dolphin
     
     # Gaming
     parsec-bin
@@ -83,6 +84,7 @@
     satty
     hyprlock
     hyprpicker
+    kdePackages.dolphin-plugins
   ];
 
   # XDG User Directories
@@ -93,7 +95,7 @@
 
   # MIME Types
   xdg.mimeApps.associations.added = {
-    "inode/directory" = [ "thunar.desktop" ];
+    "inode/directory" = [ "dolphin.desktop" ];
   };
 
   # Programs
@@ -176,7 +178,7 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
-    accent = "mauve";
+    accent = "pink";
     cursors = {
       enable = true;
       accent = "light";

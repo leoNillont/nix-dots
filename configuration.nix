@@ -56,7 +56,7 @@
     gamescope.enable = true;
     gamemode.enable = true;
     thunar = {
-      enable = true;
+      enable = false;
       plugins = with pkgs; [
         xfce.thunar-volman
         xfce.thunar-archive-plugin
@@ -111,7 +111,7 @@
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than flase I guess
     };
-    tumbler.enable = true; # Thumbnail generation
+    tumbler.enable = false; # Thumbnail generation
     pipewire = {
       enable = true;
       alsa = {
@@ -121,7 +121,7 @@
       pulse.enable = true;
     };
     flatpak.enable = true;
-    gvfs.enable = true; # Automount drives
+    gvfs.enable = false; # Automount drives
     displayManager.sddm = {
       enable = true;
       package = pkgs.kdePackages.sddm;
@@ -206,6 +206,10 @@
     pulseaudio
     brightnessctl
     gpu-screen-recorder
+    kdePackages.qtsvg
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    kdePackages.kio-admin
   ];
 
   # Make apps run natively on Wayland

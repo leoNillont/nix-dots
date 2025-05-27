@@ -49,7 +49,7 @@
         "$mod, L, exec, uwsm app -- hyprlock"
 
         # Apps
-        "$mod, X, exec, uwsm app -- thunar"
+        "$mod, X, exec, uwsm app -- dolphin"
         "$mod, B, exec, uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
         # Screenshots
