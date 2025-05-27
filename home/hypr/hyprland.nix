@@ -137,8 +137,8 @@
         inactive_opacity = "0.9";
         blur = {
           enabled = true;
-          size = "11";
-          passes = "1";
+          size = "4";
+          passes = "2";
           new_optimizations = true;
           noise = 0.01;
           brightness = 0.90;
