@@ -117,6 +117,7 @@
         touchpad = {
           disable_while_typing = true;
         };
+        repeat_rate = 50;
       };
 
       exec-once = [
@@ -126,28 +127,30 @@
         "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
         "[workspace 4 silent] uwsm app -- vesktop"
         "[workspace 5 silent] uwsm app -- steam -silent"
-        "uwsm app -s b lxqt-policykit-agent"
+        "uwsm app -s b hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
-        "uwsm app -s b wluma"
+        "uwsm app -s b -- wluma"
+        "uwsm app -s b -- wl-paste --type text --watch cliphist store"
+        "uwsm app -s b -- wl-paste --type image --watch cliphist store"
         #"~/.config/hypr/replay/start.sh" # Uncomment to enable GSR on start
       ];
 
       decoration = {
-        rounding = "15";
-        inactive_opacity = "0.9";
+        rounding = 15;
+        inactive_opacity = 0.95;
         blur = {
           enabled = true;
-          size = "4";
-          passes = "2";
+          size = 4;
+          passes = 2;
           new_optimizations = true;
-          noise = 0.01;
+          noise = 0.02;
           brightness = 0.90;
+          xray = true;
         };
       };
 
       animations = {
         enabled = true;
-        
         "bezier" = [
           "myBezier, 0.05, 0.9, 0.1, 1.05"
           "linear, 0, 0, 1, 1"
@@ -180,11 +183,13 @@
       };
 
       general = {
-        gaps_in = 3;
-        gaps_out = 5;
+        gaps_in = 2;
+        gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgb(cba6f7)";
+        "col.active_border" = "rgb(f5c2e7)";
         "col.inactive_border" = "rgb(45475a)";
+        allow_tearing = true;
+        gaps_workspaces = 10;
       };
 
       misc = {
@@ -193,6 +198,7 @@
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
         disable_hyprland_logo = true;
+        disable_autoreload = true;
       };
 
       windowrule = [
@@ -203,6 +209,15 @@
         "workspace 4, class:vesktop"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "bordersize 0, floating:0, onworkspace:w[tv1]"
+        "rounding 0, floating:0, onworkspace:w[tv1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
+      ];
+
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
       ];
 
       layerrule = [
@@ -210,7 +225,7 @@
       ];
 
       render = {
-        direct_scanout = true;
+        direct_scanout = 1;
       };
 
       xwayland = {

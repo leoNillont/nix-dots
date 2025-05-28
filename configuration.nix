@@ -55,15 +55,6 @@
     steam.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
-    thunar = {
-      enable = false;
-      plugins = with pkgs; [
-        xfce.thunar-volman
-        xfce.thunar-archive-plugin
-        xfce.thunar-media-tags-plugin
-        webp-pixbuf-loader
-      ];
-    };
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
       enable = true;
@@ -72,7 +63,7 @@
     uwsm.enable = true;
   };
   xdg = {
-      portal = {
+    portal = {
       enable = true;
       extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ]; # For file picker
     };
@@ -113,9 +104,8 @@
     ratbagd.enable = true; # Required for piper
     resolved = {
       enable = true;
-      dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than flase I guess
+      dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
     };
-    tumbler.enable = false; # Thumbnail generation
     pipewire = {
       enable = true;
       alsa = {
@@ -125,10 +115,10 @@
       pulse.enable = true;
     };
     flatpak.enable = true;
-    gvfs.enable = false; # Automount drives
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
+      package = pkgs.kdePackages.sddm;
       settings.General.DisplayServer = "wayland";
     };
     xserver = {
@@ -137,7 +127,6 @@
         layout = "us";
         variant = "colemak";
       };
-      desktopManager.plasma6.enable = true;
     };
   };
   security.rtkit.enable = true; # Required for pipewire
@@ -201,7 +190,7 @@
     gcc
     libnotify
     killall
-    lxqt.lxqt-policykit
+    hyprpolkitagent
     lzip
     linux-firmware
     powertop
@@ -211,24 +200,10 @@
     pulseaudio
     brightnessctl
     gpu-screen-recorder
-    kdePackages.dolphin-plugins
-    kdePackages.qtsvg
-    kdePackages.kio-fuse
-    kdePackages.kio-extras
-    kdePackages.kio-admin
-    kdePackages.kdesdk-thumbnailers
-    kdePackages.ffmpegthumbs
-    kdePackages.kimageformats
-    kdePackages.qtimageformats
-    kdePackages.kdf
-    kdePackages.kio
-    kdePackages.qtwayland
-    kdePackages.plasma-integration
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.qtsvg
-    kdePackages.kservice
-    shared-mime-info
   ];
+
+  # dolphin mime type fix
+  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
   # Make apps run natively on Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

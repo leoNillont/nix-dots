@@ -47,6 +47,8 @@
     kdePackages.kdenlive
     blender-hip
     waypaper
+    kdePackages.konsole
+    kdePackages.dolphin
     
     # Gaming
     parsec-bin
@@ -83,6 +85,19 @@
     satty
     hyprlock
     hyprpicker
+    kdePackages.dolphin-plugins
+    kdePackages.qtsvg
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    kdePackages.kio-admin
+    kdePackages.kdesdk-thumbnailers
+    kdePackages.ffmpegthumbs
+    kdePackages.kimageformats
+    kdePackages.qtimageformats
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.qtsvg
+    kdePackages.kservice
+    shared-mime-info
   ];
 
   # XDG User Directories
@@ -147,29 +162,30 @@
   };
 
   # File Configurations
-  home.file."./.config/nwg-bar" = {
-    source = ./home/nwg-bar;
-    recursive = true;
-  };
-  home.file."./.config/mako" = {
-    source = ./home/mako;
-    recursive = true;
-  };
-  home.file."./.config/hypr/hyprlock.conf" = {
-    source = ./home/hypr/hyprlock.conf;
-    recursive = false;
-  };
-  home.file."./.config/rofi" = {
-    source = ./home/rofi;
-    recursive = true;
-  };
-  home.file."./.local/share/rofi/themes" = {
-    source = ./home/rofi-theme;
-    recursive = true;
-  };
-  home.file."./.config/hypr/replay" = {
-    source = ./home/hypr/replay;
-    recursive = true;
+  home.file = {
+    "./.config/nwg-bar" = {
+      source = ./home/nwg-bar;
+      recursive = true;
+    };
+    "./.config/mako" = {
+      source = ./home/mako;
+      recursive = true;
+    };
+    "./.config/rofi" = {
+      source = ./home/rofi;
+      recursive = true;
+    };
+    "./.local/share/rofi/themes" = {
+      source = ./home/rofi-theme;
+      recursive = true;
+    };
+    "./.config/hypr/replay" = {
+      source = ./home/hypr/replay;
+      recursive = true;
+    };
+    "./.config/hypr/hyprlock.conf".source = ./home/hypr/hyprlock.conf;
+    "./.config/xdg-desktop-portal/hyprland-portals.conf".source = ./home/hypr/hyprland-portals.conf;
+    "./.config/hypr/xdph.conf".source = ./home/hypr/xdph.conf;
   };
 
   # Catppuccin Theme Configuration
