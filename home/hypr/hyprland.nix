@@ -224,6 +224,7 @@
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
+        "XDG_MENU_PREFIX,plasma-"
       ];
 
       dwindle = {

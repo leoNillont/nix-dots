@@ -47,7 +47,6 @@
     kdePackages.kdenlive
     blender-hip
     waypaper
-    kdePackages.dolphin
     
     # Gaming
     parsec-bin
@@ -84,7 +83,6 @@
     satty
     hyprlock
     hyprpicker
-    kdePackages.dolphin-plugins
   ];
 
   # XDG User Directories

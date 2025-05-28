@@ -47,7 +47,7 @@
     fish.enable = true;
     htop.enable = true;
     git.enable = true;
-    file-roller.enable = true; # File archiver
+    #file-roller.enable = true; # File archiver
     java = {
       enable = true;
       package = pkgs.temurin-jre-bin-21;
@@ -71,9 +71,13 @@
     };
     uwsm.enable = true;
   };
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ]; # For file picker
+  xdg = {
+      portal = {
+      enable = true;
+      extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ]; # For file picker
+    };
+    mime.enable = true;
+    menus.enable = true;
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
 
@@ -124,8 +128,8 @@
     gvfs.enable = false; # Automount drives
     displayManager.sddm = {
       enable = true;
-      package = pkgs.kdePackages.sddm;
       wayland.enable = true;
+      settings.General.DisplayServer = "wayland";
     };
     xserver = {
       enable = true;
@@ -133,6 +137,7 @@
         layout = "us";
         variant = "colemak";
       };
+      desktopManager.plasma6.enable = true;
     };
   };
   security.rtkit.enable = true; # Required for pipewire
@@ -206,10 +211,23 @@
     pulseaudio
     brightnessctl
     gpu-screen-recorder
+    kdePackages.dolphin-plugins
     kdePackages.qtsvg
     kdePackages.kio-fuse
     kdePackages.kio-extras
     kdePackages.kio-admin
+    kdePackages.kdesdk-thumbnailers
+    kdePackages.ffmpegthumbs
+    kdePackages.kimageformats
+    kdePackages.qtimageformats
+    kdePackages.kdf
+    kdePackages.kio
+    kdePackages.qtwayland
+    kdePackages.plasma-integration
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.qtsvg
+    kdePackages.kservice
+    shared-mime-info
   ];
 
   # Make apps run natively on Wayland
