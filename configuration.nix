@@ -138,9 +138,13 @@
     packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.fira-mono
+      nerd-fonts.space-mono
+      iosevka
+      nerd-fonts.iosevka
       font-awesome
       meslo-lgs-nf
     ];
+    enableDefaultPackages = true;
     fontconfig = {
       antialias = true;
       cache32Bit = true;
