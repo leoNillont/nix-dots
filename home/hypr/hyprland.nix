@@ -140,11 +140,10 @@
         inactive_opacity = 0.95;
         blur = {
           enabled = true;
-          size = 4;
+          size = 8;
           passes = 2;
           new_optimizations = true;
           noise = 0.02;
-          brightness = 0.90;
           xray = true;
         };
       };
