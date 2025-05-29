@@ -153,7 +153,7 @@
       @define-color rosewater #f5e0dc;
 
       window#waybar {
-        background-color: alpha(#1e1e2e, 0.5);
+        background-color: alpha(#1e1e2e, 0.8);
         color: @text;
         transition-property: background-color;
         transition-duration: .5s;
