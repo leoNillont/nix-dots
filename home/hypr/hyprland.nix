@@ -187,7 +187,6 @@
         border_size = 2;
         "col.active_border" = "rgb(f5c2e7)";
         "col.inactive_border" = "rgb(45475a)";
-        gaps_workspaces = 10;
       };
 
       misc = {

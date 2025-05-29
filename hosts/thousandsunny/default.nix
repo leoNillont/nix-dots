@@ -26,7 +26,6 @@
     bluetooth.enable = true;
     amdgpu.initrd.enable = true;
   };
-  services.xserver.videoDrivers = [ "modesetting" ];
 
   boot = {
     kernelParams = [
@@ -35,9 +34,6 @@
     ];
     supportedFilesystems = [ "nfs" ];
   };
-
-  # Hostname, this is used so I don't have to use --flake on rebuild
-  networking.hostName = "thousandsunny";
 
   powerManagement = {
     powertop.enable = lib.mkForce false; # Disable powertop due to USB issues
@@ -48,6 +44,8 @@
     fwupd.enable = true; 
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
+    rpcbind.enable = true; # needed for nfs
+    xserver.videoDrivers = [ "modesetting" ];
   };
 
   fileSystems = {
@@ -57,8 +55,6 @@
     };
   };
     
-  #};
-  services.rpcbind.enable = true; # needed for nfs
   systemd = {
     mounts = [{
       type = "nfs";
@@ -75,6 +71,9 @@
       };
       where = "/media/NAS";
     }];
+    # Setup lact and lactd
+    packages = with pkgs; [ lact ];
+    services.lactd.wantedBy = [ "multi-user.target" ];
   };
 
   networking = {
@@ -88,13 +87,9 @@
     nameservers = [ "192.168.1.10" ];
     firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
     networkmanager.dns = "systemd-resolved";
+    hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 
-  # Install LACT and start on boot
-  systemd = {
-    packages = with pkgs; [ lact ];
-    services.lactd.wantedBy = [ "multi-user.target" ];
-  };
   environment.systemPackages = with pkgs; [ lact davinci-resolve ]; # also added resolve here because I only need it on this computer
 
   # HIP/ROCM workaround

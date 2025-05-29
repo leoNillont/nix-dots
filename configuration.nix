@@ -22,14 +22,16 @@
       timeout = 0;
     };
     initrd.systemd.enable = true;
-    kernelParams = [
-      "vm.max_map_count=2147483642" "kernel.split_lock_mitigate=0" "net.ipv4.tcp_fin_timeout=5" "kernel.sched_cfs_bandwidth_slice_us=3000" # Gaming optimizations Valve added on SteamOS
-    ];
+    kernel.sysctl = {
+      "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+      "net.ipv4.tcp_fin_timeout" = 5;
+      "kernel.split_lock_mitigate" = 0;
+      "vm.max_map_count" = 2147483642;
+    };
     kernelPackages = pkgs.linuxPackages_cachyos;
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
-      tmpfsSize = "50%"; 
     };
   };
   systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
@@ -37,7 +39,7 @@
   # Enable and configure catppuccin globally
   catppuccin = {
     enable = true;
-    accent = "mauve";
+    accent = "pink";
     flavor = "mocha";
   };
 
@@ -89,6 +91,7 @@
   networking = {
     networkmanager = {
       enable = true;
+      dns = "systemd-resolved";
       wifi = {
         backend = "iwd"; # Improves WiFi stability
         powersave = true;
@@ -144,6 +147,10 @@
       hinting = {
         enable = true;
         autohint = true;
+      };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
       };
     };
   };
