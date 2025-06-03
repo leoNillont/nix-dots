@@ -44,7 +44,7 @@
   };
 
   programs = {
-    thefuck.enable = true; # Command error correction
+    pay-respects.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
     fish.enable = true;
     htop.enable = true;
