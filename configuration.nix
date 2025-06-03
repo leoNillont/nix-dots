@@ -52,7 +52,7 @@
     #file-roller.enable = true; # File archiver
     java = {
       enable = true;
-      package = pkgs.temurin-jre-bin-21;
+      package = pkgs.temurin-bin;
     };
     steam.enable = true;
     gamescope.enable = true;

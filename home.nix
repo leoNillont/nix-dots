@@ -57,6 +57,8 @@
     heroic
     (prismlauncher.override {
       jdks = [
+        graalvmPackages.graalvm-oracle
+        graalvmPackages.graalvm-ce
         temurin-jre-bin-23
         temurin-bin-21
         temurin-jre-bin-17
@@ -97,6 +99,7 @@
     kdePackages.kdegraphics-thumbnailers
     kdePackages.qtsvg
     kdePackages.kservice
+    kdePackages.ark
     shared-mime-info
   ];
 
