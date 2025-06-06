@@ -46,6 +46,7 @@
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
     rpcbind.enable = true; # needed for nfs
     xserver.videoDrivers = [ "modesetting" ];
+    resolved.dnssec = lib.mkForce "true";
   };
 
   fileSystems = {
@@ -86,7 +87,7 @@
     defaultGateway = "192.168.1.1";
     nameservers = [ "192.168.1.10" ];
     firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
-    networkmanager.dns = "systemd-resolved";
+    networkmanager.enable = lib.mkForce false;
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 
