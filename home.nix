@@ -24,7 +24,7 @@
     ffmpeg
 
     # GUI
-    vesktop
+    #vesktop
     filezilla
     qpwgraph
     tidal-hifi
