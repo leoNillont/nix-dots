@@ -127,9 +127,9 @@
         "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
         "[workspace 4 silent] uwsm app -- vesktop"
         "[workspace 5 silent] uwsm app -- steam -silent"
-        "uwsm app -s b hyprpolkitagent"
+        "uwsm app -s b systemctl --user start hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
-        "uwsm app -s b -- wluma"
+        "uwsm app -- wluma"
         "uwsm app -s b -- wl-paste --type text --watch cliphist store"
         "uwsm app -s b -- wl-paste --type image --watch cliphist store"
         #"~/.config/hypr/replay/start.sh" # Uncomment to enable GSR on start
