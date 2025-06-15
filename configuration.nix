@@ -30,7 +30,7 @@
     };
     kernelPackages = pkgs.linuxPackages_cachyos;
     tmp = {
-      #useTmpfs = true;
+      useTmpfs = true;
       cleanOnBoot = true;
     };
   };
