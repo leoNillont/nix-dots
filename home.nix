@@ -24,7 +24,7 @@
     ffmpeg
 
     # GUI
-    #vesktop
+    vesktop
     filezilla
     qpwgraph
     tidal-hifi
@@ -81,6 +81,7 @@
     swaybg
     mpvpaper
     hyprpaper
+    hyprpolkitagent
     waybar-mpris
     rofi-wayland
     hyprshot

@@ -125,7 +125,7 @@
         "uwsm app -s b mako"
         "[workspace 1 silent] uwsm app -- kitty"
         "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        "[workspace 4 silent] uwsm app -- vesktop"
+        #"[workspace 4 silent] uwsm app -- vesktop"
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
