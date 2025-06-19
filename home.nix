@@ -66,6 +66,7 @@
         temurin-jre-bin-8
       ];
     })
+    ryubing
 
     # Dev
     rustup
