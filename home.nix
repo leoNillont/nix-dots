@@ -67,6 +67,7 @@
       ];
     })
     ryubing
+    r2modman
 
     # Dev
     rustup
@@ -138,7 +139,6 @@
       plugins = with pkgs.obs-studio-plugins; [
         obs-pipewire-audio-capture
         obs-vkcapture
-        obs-vertical-canvas
         obs-vaapi
       ];
     };

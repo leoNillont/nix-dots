@@ -33,6 +33,7 @@
       "amd_pstate=active"
     ];
     supportedFilesystems = [ "nfs" ];
+    tmp.useTmpfs = lib.mkForce false;
   };
 
   powerManagement = {
@@ -91,7 +92,7 @@
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 
-  environment.systemPackages = with pkgs; [ lact davinci-resolve ]; # also added resolve here because I only need it on this computer
+  environment.systemPackages = with pkgs; [ lact ]; # also added resolve here because I only need it on this computer
 
   # HIP/ROCM workaround
   systemd.tmpfiles.rules = let
