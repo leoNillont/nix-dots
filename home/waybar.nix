@@ -54,7 +54,7 @@
         };
 
         "temperature" = {
-          hwmon-path = "/sys/class/hwmon/hwmon1/temp1_input";
+          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 80;
           format = "{temperatureC}°{icon}";
           format-critical = "{temperatureC}°{icon}";
@@ -110,6 +110,7 @@
           on-scroll-up = "waybar-mpris --send next";
           on-scroll-down = "waybar-mpris --send prev";
           escape = true;
+          max-length = 32;
         };
       };
     };
