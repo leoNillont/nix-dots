@@ -34,7 +34,7 @@
       cleanOnBoot = true;
     };
   };
-  systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
+  #systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
 
   # Enable and configure catppuccin globally
   catppuccin = {
@@ -211,6 +211,7 @@
     pulseaudio
     brightnessctl
     gpu-screen-recorder
+    vlc
   ];
 
   # dolphin mime type fix

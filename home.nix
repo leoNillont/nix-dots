@@ -65,6 +65,7 @@
         temurin-jre-bin-11
         temurin-jre-bin-8
       ];
+      additionalPrograms = [ vlc ];
     })
     ryubing
     r2modman

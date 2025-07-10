@@ -110,7 +110,7 @@
           on-scroll-up = "waybar-mpris --send next";
           on-scroll-down = "waybar-mpris --send prev";
           escape = true;
-          max-length = 32;
+          max-length = 48;
         };
       };
     };
