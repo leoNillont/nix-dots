@@ -105,6 +105,10 @@
 
   services = {
     ratbagd.enable = true; # Required for piper
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
     resolved = {
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
