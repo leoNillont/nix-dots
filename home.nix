@@ -21,7 +21,7 @@
     pamixer
     wl-clipboard
     cliphist 
-    ffmpeg
+    ffmpeg-full
 
     # GUI
     vesktop
@@ -41,7 +41,7 @@
     piper
     sidequest
     (vivaldi.override {
-      proprietaryCodecs = true;
+      #proprietaryCodecs = true;
       enableWidevine = true;
     })
     kdePackages.kdenlive

@@ -58,21 +58,21 @@
   };
     
   systemd = {
-    mounts = [{
-      type = "nfs";
-      mountConfig = {
-        Options = "noatime";
-      };
-      what = "192.168.1.96:/Datos";
-      where = "/media/NAS";
-    }];
-    automounts = [{
-      wantedBy = [ "multi-user.target" ];
-      automountConfig = {
-        TimeoutIdleSec = "600";
-      };
-      where = "/media/NAS";
-    }];
+    #mounts = [{
+    #  type = "nfs";
+    #  mountConfig = {
+    #    Options = "noatime";
+    #  };
+    #  what = "192.168.1.96:/Datos";
+    #  where = "/media/NAS";
+    #}];
+    #automounts = [{
+    #  wantedBy = [ "multi-user.target" ];
+    #  automountConfig = {
+    #    TimeoutIdleSec = "600";
+    #  };
+    #  where = "/media/NAS";
+    #}];
     # Setup lact and lactd
     packages = with pkgs; [ lact ];
     services.lactd.wantedBy = [ "multi-user.target" ];
