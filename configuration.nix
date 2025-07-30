@@ -101,6 +101,7 @@
         powersave = true;
       };
     };
+    firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
   };
   systemd.services.NetworkManager-wait-online.enable = false; # Reduces boot time
   boot.extraModprobeConfig = ''

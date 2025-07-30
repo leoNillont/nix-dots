@@ -49,6 +49,7 @@
     waypaper
     kdePackages.konsole
     kdePackages.dolphin
+    openutau
     
     # Gaming
     parsec-bin
