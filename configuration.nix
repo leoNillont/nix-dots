@@ -63,6 +63,10 @@
       withUWSM = true;
     };
     uwsm.enable = true;
+    alvr = {
+      enable = true;
+      openFirewall = true;
+    };
   };
   xdg = {
     portal = {

@@ -60,11 +60,11 @@
         graalvmPackages.graalvm-oracle
         graalvmPackages.graalvm-ce
         graalvmPackages.graalvm-oracle_17
-        temurin-bin-23
-        temurin-bin-21
-        temurin-bin-17
-        temurin-bin-8
-        temurin-bin-24
+        temurin-jre-bin-23
+        temurin-jre-bin-21
+        temurin-jre-bin-17
+        temurin-jre-bin-8
+        temurin-jre-bin-24
       ];
       additionalPrograms = [ vlc ];
     })
