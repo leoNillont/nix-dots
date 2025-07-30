@@ -71,7 +71,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ]; # For file picker
+      extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde xdg-desktop-portal-gtk ]; # For file picker
     };
     mime.enable = true;
     menus.enable = true;
@@ -183,6 +183,7 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
+    extraLocales = [ "all" ]; #ts pmo why isnt it detecting ja_JP.UTF-8 as valid 
   };
   console.keyMap = "colemak"; # Keymap outside X
 

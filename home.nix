@@ -49,6 +49,7 @@
     waypaper
     kdePackages.konsole
     kdePackages.dolphin
+    kdePackages.filelight
     openutau
     
     # Gaming
@@ -192,7 +193,7 @@
       recursive = true;
     };
     "./.config/hypr/hyprlock.conf".source = ./home/hypr/hyprlock.conf;
-    "./.config/xdg-desktop-portal/hyprland-portals.conf".source = ./home/hypr/hyprland-portals.conf;
+    #"./.config/xdg-desktop-portal/hyprland-portals.conf".source = ./home/hypr/hyprland-portals.conf;
     "./.config/hypr/xdph.conf".source = ./home/hypr/xdph.conf;
   };
 
