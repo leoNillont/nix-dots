@@ -110,6 +110,10 @@
 
   services = {
     ratbagd.enable = true; # Required for piper
+    lsfg-vk = {
+      enable = true;
+      ui.enable = true;
+    };
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;

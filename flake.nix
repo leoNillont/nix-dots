@@ -8,6 +8,7 @@
       disko.nixosModules.disko
       catppuccin.nixosModules.catppuccin
       chaotic.nixosModules.default
+      inputs.lsfg-vk-flake.nixosModules.default
 
       { home-manager.extraSpecialArgs = { inherit inputs; }; }
       home-manager.nixosModules.home-manager {
@@ -77,5 +78,10 @@
 
     # NixOS-Hardware, has useful things for hardware support
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    lsfg-vk-flake = {
+      url = "github:pabloaul/lsfg-vk-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
