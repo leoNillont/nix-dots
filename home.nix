@@ -51,6 +51,7 @@
     kdePackages.dolphin
     kdePackages.filelight
     openutau
+    nautilus
     
     # Gaming
     parsec-bin
@@ -206,12 +207,6 @@
       enable = true;
       accent = "light";
       flavor = "mocha";
-    };
-    gtk = {
-      enable = true;
-      flavor = "mocha";
-      accent = "mauve";
-      icon.enable = true;
     };
     kvantum = {
       enable = true;

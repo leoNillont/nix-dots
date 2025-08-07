@@ -1,14 +1,14 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, disko, catppuccin, chaotic, spicetify-nix, nixos-hardware, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix
-      disko.nixosModules.disko
-      catppuccin.nixosModules.catppuccin
-      chaotic.nixosModules.default
-      inputs.lsfg-vk-flake.nixosModules.default
+      inputs.disko.nixosModules.disko
+      inputs.catppuccin.nixosModules.catppuccin
+      inputs.chaotic.nixosModules.default
+      inputs.stylix.nixosModules.stylix
 
       { home-manager.extraSpecialArgs = { inherit inputs; }; }
       home-manager.nixosModules.home-manager {
@@ -18,8 +18,8 @@
           users.leonillo = {
             imports = [
               ./home.nix
-              catppuccin.homeModules.catppuccin
-              spicetify-nix.homeManagerModules.spicetify
+              inputs.catppuccin.homeModules.catppuccin
+              inputs.spicetify-nix.homeManagerModules.spicetify
             ];
           };
         };
@@ -45,7 +45,7 @@
         specialArgs = { inherit inputs; };
         modules = sharedModules ++ [ 
           ./hosts/goingmerry/default.nix  
-          nixos-hardware.nixosModules.framework-13-7040-amd
+          inputs.nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };
     };
@@ -79,8 +79,9 @@
     # NixOS-Hardware, has useful things for hardware support
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    lsfg-vk-flake = {
-      url = "github:pabloaul/lsfg-vk-flake/main";
+    # Stylix, for themeing
+    stylix = {
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
