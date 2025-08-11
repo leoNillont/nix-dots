@@ -53,10 +53,10 @@
         "$mod, B, exec, uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
 
         # Screenshots
-        ", Print, exec, hyprshot -m output --freeze"
-        "$mod SHIFT, S, exec, hyprshot -m region --freeze"
-        "$mod CONTROL, S, exec, hyprshot -m region --freeze --raw | satty --filename -"
-        "$mod ALT, S, exec, hyprshot -m window --freeze"
+        ", Print, exec, hyprshot -m output --freeze --output-folder ~/Pictures/screenshots"
+        "$mod SHIFT, S, exec, hyprshot -m region --freeze --output-folder ~/Pictures/screenshots"
+        "$mod CONTROL, S, exec, hyprshot -m region --freeze --raw | satty --filename - --output-folder ~/Pictures/screenshots"
+        "$mod ALT, S, exec, hyprshot -m window --freeze --output-folder ~/Pictures/screenshots"
 
         # Power menu
         "$mod SHIFT, F, exec, nwg-bar"

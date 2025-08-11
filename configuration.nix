@@ -49,7 +49,15 @@
     fish.enable = true;
     htop.enable = true;
     git.enable = true;
-    #file-roller.enable = true; # File archiver
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        obs-vaapi
+        obs-pipewire-audio-capture
+        obs-backgroundremoval
+      ];
+    };
     java = {
       enable = true;
       package = pkgs.temurin-bin;
@@ -142,6 +150,7 @@
     };
   };
   security.rtkit.enable = true; # Required for pipewire
+  security.polkit.enable = true;
 
   fonts = {
     packages = with pkgs; [
@@ -222,6 +231,8 @@
     brightnessctl
     gpu-screen-recorder
     vlc
+    lsfg-vk
+    lsfg-vk-ui
   ];
 
   # dolphin mime type fix
