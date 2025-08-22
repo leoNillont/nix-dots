@@ -27,7 +27,6 @@
     vesktop
     filezilla
     qpwgraph
-    tidal-hifi
     pavucontrol
     oculante
     mpv
@@ -42,7 +41,7 @@
     sidequest
     (vivaldi.override {
       #proprietaryCodecs = true;
-      enableWidevine = true;
+      #enableWidevine = true;
     })
     blender-hip
     waypaper

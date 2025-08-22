@@ -28,7 +28,7 @@
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_zen;
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
