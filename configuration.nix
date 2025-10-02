@@ -11,7 +11,7 @@
 
   # Bootloader related configuration
   boot = {
-    bootspec.enable = true;
+    #bootspec.enable = true;
     loader = {
       systemd-boot = {
         enable = true;
@@ -28,13 +28,14 @@
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos-gcc;
+    kernelParams = [ "zswap.enabled=0" ];
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
     };
   };
-  #systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
+  systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
 
   # Enable and configure catppuccin globally
   catppuccin = {
@@ -51,11 +52,11 @@
     git.enable = true;
     obs-studio = {
       enable = true;
-      enableVirtualCamera = true;
+      enableVirtualCamera = false;
       plugins = with pkgs.obs-studio-plugins; [
         obs-vaapi
         obs-pipewire-audio-capture
-        obs-backgroundremoval
+        #obs-backgroundremoval
       ];
     };
     java = {
@@ -63,7 +64,7 @@
       package = pkgs.temurin-bin;
     };
     steam.enable = true;
-    gamescope.enable = true;
+    #gamescope.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
@@ -71,10 +72,10 @@
       withUWSM = true;
     };
     uwsm.enable = true;
-    alvr = {
-      enable = true;
-      openFirewall = true;
-    };
+    #alvr = {
+    #  enable = true;
+    #  openFirewall = true;
+    #};
   };
   xdg = {
     portal = {
@@ -88,15 +89,13 @@
 
   # Hardware and power management
   hardware = {
-    xpadneo.enable = true; # Xbox controller driver
+    #xpadneo.enable = true; # Xbox controller driver
     enableAllFirmware = true;
     wirelessRegulatoryDatabase = true; # Required for framework laptop
   };
   powerManagement.powertop.enable = true; # Enable powertop
   zramSwap  = {
     enable = true;
-    priority = 5; # Prefer Zram over swap
-    memoryPercent = 50;
     algorithm = "zstd"; # Better performance/compression ratio
   };
 
@@ -117,11 +116,11 @@
   '';
 
   services = {
-    ratbagd.enable = true; # Required for piper
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
-    };
+    #ratbagd.enable = true; # Required for piper
+    #mullvad-vpn = {
+    #  enable = true;
+    #  package = pkgs.mullvad-vpn;
+    #};
     resolved = {
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
@@ -142,7 +141,7 @@
       settings.General.DisplayServer = "wayland";
     };
     xserver = {
-      enable = true;
+      #enable = true;
       xkb = {
         layout = "us";
         variant = "colemak";
@@ -155,9 +154,9 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
-      nerd-fonts.fira-mono
+      #nerd-fonts.fira-mono
       nerd-fonts.space-mono
-      iosevka
+      #iosevka
       nerd-fonts.iosevka
       font-awesome
       meslo-lgs-nf
@@ -192,7 +191,7 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
-    extraLocales = [ "all" ]; #ts pmo why isnt it detecting ja_JP.UTF-8 as valid 
+    #extraLocales = [ "all" ]; #ts pmo why isnt it detecting ja_JP.UTF-8 as valid 
   };
   console.keyMap = "colemak"; # Keymap outside X
 
@@ -200,7 +199,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" "seat" ];
     initialPassword = "Patataxd4"; # Default password on install, must be changed later
   };
 
@@ -226,11 +225,10 @@
     powertop
     iwd
     nixfmt-rfc-style
-    kdiskmark
+    #kdiskmark
     pulseaudio
     brightnessctl
     gpu-screen-recorder
-    vlc
     lsfg-vk
     lsfg-vk-ui
   ];
@@ -242,5 +240,5 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # State version
-  system.stateVersion = "23.11"; # Do not change
+  system.stateVersion = "25.11"; # Do not change
 }

@@ -26,24 +26,22 @@
     # GUI
     vesktop
     filezilla
-    qpwgraph
+    #qpwgraph
     pavucontrol
     oculante
     mpv
-    gimp
-    krita
+    #gimp
+    #krita
     qbittorrent
     kitty
-    protonup-qt
-    anydesk
+    #protonup-qt
+    #anydesk
     bottles
-    piper
-    sidequest
-    (vivaldi.override {
-      #proprietaryCodecs = true;
-      #enableWidevine = true;
-    })
-    blender-hip
+    #piper
+    #sidequest
+    vivaldi
+    floorp-bin
+    #blender-hip
     waypaper
     kdePackages.konsole
     kdePackages.dolphin
@@ -51,23 +49,25 @@
     
     # Gaming
     parsec-bin
-    mcpelauncher-ui-qt
-    retroarch
+    #mcpelauncher-ui-qt
+    #retroarch
     heroic
     (prismlauncher.override {
       jdks = [
         graalvmPackages.graalvm-oracle
-        graalvmPackages.graalvm-ce
-        graalvmPackages.graalvm-oracle_17
-        temurin-jre-bin-23
+        #graalvmPackages.graalvm-ce
+        #graalvmPackages.graalvm-oracle_17
+        #temurin-jre-bin-23
         temurin-jre-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-8
         temurin-jre-bin-24
+        temurin-jre-bin
       ];
       additionalPrograms = [ vlc ];
+      additionalLibs = [ vlc ];
     })
-    ryubing
+    #ryubing
     r2modman
 
     # Dev
@@ -80,19 +80,18 @@
     nwg-bar
     playerctl
     mako
-    swww
+    #swww
     swaybg
-    mpvpaper
+    #mpvpaper
     hyprpaper
     hyprpolkitagent
     waybar-mpris
-    rofi-wayland
+    rofi
     hyprshot
     satty
     hyprlock
     hyprpicker
     kdePackages.dolphin-plugins
-    kdePackages.qtsvg
     kdePackages.kio-fuse
     kdePackages.kio-extras
     kdePackages.kio-admin
@@ -102,10 +101,11 @@
     kdePackages.qtimageformats
     kdePackages.kdegraphics-thumbnailers
     kdePackages.qtsvg
-    kdePackages.kservice
+    #kdePackages.kservice
     kdePackages.ark
     shared-mime-info
     vulkan-tools
+    vlc
   ];
 
   # XDG User Directories
@@ -149,7 +149,7 @@
       ];
       theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";
-      windowManagerPatch = true;
+      #windowManagerPatch = true;
     };
   };
 

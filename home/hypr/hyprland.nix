@@ -7,7 +7,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        "eDP-1,highrr,0x0,1.333333"
+        #"eDP-1,highrr,0x0,1.333333"
         "DP-1,highrr,0x0,1,vrr,1"
         "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
       ];
@@ -55,7 +55,7 @@
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze --output-folder ~/Pictures/screenshots"
         "$mod SHIFT, S, exec, hyprshot -m region --freeze --output-folder ~/Pictures/screenshots"
-        "$mod CONTROL, S, exec, hyprshot -m region --freeze --raw | satty --filename - --output-folder ~/Pictures/screenshots"
+        "$mod CONTROL, S, exec, hyprshot -m region --freeze --raw | satty --filename -"
         "$mod ALT, S, exec, hyprshot -m window --freeze --output-folder ~/Pictures/screenshots"
 
         # Power menu
@@ -125,11 +125,11 @@
         "uwsm app -s b mako"
         "[workspace 1 silent] uwsm app -- kitty"
         "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        #"[workspace 4 silent] uwsm app -- vesktop"
+        "[workspace 4 silent] uwsm app -- vesktop"
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
-        "uwsm app -- wluma"
+        #"uwsm app -- wluma"
         "uwsm app -s b -- wl-paste --type text --watch cliphist store"
         "uwsm app -s b -- wl-paste --type image --watch cliphist store"
         #"~/.config/hypr/replay/start.sh" # Uncomment to enable GSR on start
@@ -230,7 +230,7 @@
       };
 
       cursor = {
-        enable_hyprcursor = false;
+        #enable_hyprcursor = false;
       };
 
       env = [

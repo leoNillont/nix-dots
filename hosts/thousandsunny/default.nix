@@ -4,6 +4,7 @@
   imports = [
     ./hardware.nix
     ./disko-config.nix
+    ./resolve.nix
   ];
 
   # Hardware configuration, this desktop has an AMD GPU
@@ -14,26 +15,30 @@
       extraPackages = with pkgs; [
         vulkan-loader
         libva
-        libva-utils
-        rocmPackages.clr
-        rocmPackages.clr.icd
-        rocmPackages.rocminfo
-        rocmPackages.rocm-smi
-        rocmPackages.rocblas
-        rocmPackages.hipblas
+        mesa.opencl
       ];
     };
     bluetooth.enable = true;
-    amdgpu.initrd.enable = true;
+    amdgpu = {
+      initrd.enable = true;
+      overdrive = {
+        enable = true;
+        ppfeaturemask = "0xffffffff";
+      };
+    };
+  };
+
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
   };
 
   boot = {
     kernelParams = [
-      "amdgpu.ppfeaturemask=0xffffffff"
       "amd_pstate=active"
     ];
     supportedFilesystems = [ "nfs" ];
     tmp.useTmpfs = lib.mkForce false;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
   };
 
   powerManagement = {
@@ -42,7 +47,7 @@
   };
 
   services = {
-    fwupd.enable = true; 
+    #fwupd.enable = true; 
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
     rpcbind.enable = true; # needed for nfs
@@ -92,19 +97,9 @@
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 
-  environment.systemPackages = with pkgs; [ lact davinci-resolve ]; # also added resolve here because I only need it on this computer
-
-  # HIP/ROCM workaround
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  environment.systemPackages = with pkgs; [ 
+    lact 
+    nvtopPackages.amd 
+    #davinci-resolve
   ];
 }
