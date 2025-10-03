@@ -11,7 +11,6 @@
 
   # Bootloader related configuration
   boot = {
-    #bootspec.enable = true;
     loader = {
       systemd-boot = {
         enable = true;
@@ -100,27 +99,15 @@
   };
 
   networking = {
-    networkmanager = {
-      enable = true;
-      dns = "systemd-resolved";
-      wifi = {
-        backend = "iwd"; # Improves WiFi stability
-        powersave = true;
-      };
-    };
+    wireless.iwd.enable = true;
+    dhcpcd.enable = true;
     firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
   };
-  systemd.services.NetworkManager-wait-online.enable = false; # Reduces boot time
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="ES"
   '';
 
   services = {
-    #ratbagd.enable = true; # Required for piper
-    #mullvad-vpn = {
-    #  enable = true;
-    #  package = pkgs.mullvad-vpn;
-    #};
     resolved = {
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
@@ -141,7 +128,6 @@
       settings.General.DisplayServer = "wayland";
     };
     xserver = {
-      #enable = true;
       xkb = {
         layout = "us";
         variant = "colemak";
@@ -154,9 +140,9 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
-      #nerd-fonts.fira-mono
+      nerd-fonts.fira-mono
       nerd-fonts.space-mono
-      #iosevka
+      iosevka
       nerd-fonts.iosevka
       font-awesome
       meslo-lgs-nf
@@ -191,7 +177,6 @@
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
     };
-    #extraLocales = [ "all" ]; #ts pmo why isnt it detecting ja_JP.UTF-8 as valid 
   };
   console.keyMap = "colemak"; # Keymap outside X
 
@@ -225,12 +210,12 @@
     powertop
     iwd
     nixfmt-rfc-style
-    #kdiskmark
     pulseaudio
     brightnessctl
     gpu-screen-recorder
     lsfg-vk
     lsfg-vk-ui
+    impala
   ];
 
   # dolphin mime type fix
