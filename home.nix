@@ -26,22 +26,17 @@
     # GUI
     vesktop
     filezilla
-    #qpwgraph
+    qpwgraph
     pavucontrol
     oculante
     mpv
-    #gimp
-    #krita
+    gimp
     qbittorrent
     kitty
-    #protonup-qt
-    #anydesk
+    anydesk
     bottles
-    #piper
-    #sidequest
     vivaldi
     floorp-bin
-    #blender-hip
     waypaper
     kdePackages.konsole
     kdePackages.dolphin
@@ -49,15 +44,10 @@
     
     # Gaming
     parsec-bin
-    #mcpelauncher-ui-qt
-    #retroarch
     heroic
     (prismlauncher.override {
       jdks = [
         graalvmPackages.graalvm-oracle
-        #graalvmPackages.graalvm-ce
-        #graalvmPackages.graalvm-oracle_17
-        #temurin-jre-bin-23
         temurin-jre-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-8
@@ -67,7 +57,6 @@
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc ];
     })
-    #ryubing
     r2modman
 
     # Dev

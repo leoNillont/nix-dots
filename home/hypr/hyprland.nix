@@ -115,9 +115,14 @@
         accel_profile = "flat";
         mouse_refocus = false;
         touchpad = {
-          disable_while_typing = true;
+          disable_while_typing = false;
         };
         repeat_rate = 50;
+      };
+      
+      device = {
+        name = "pixa3854:00-093a:0274-touchpad";
+        accel_profile = "adaptive";
       };
 
       exec-once = [

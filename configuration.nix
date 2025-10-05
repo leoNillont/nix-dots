@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   nix.settings = {
@@ -46,6 +46,33 @@
   programs = {
     pay-respects.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        (lib.getLib stdenv.cc.cc)
+        ## native versions
+        glfw3-minecraft
+        openal
+
+        ## openal
+        alsa-lib
+        libjack2
+        libpulseaudio
+        pipewire
+
+        ## glfw
+        libGL
+        libx11
+        libxcursor
+        libxext
+        libxrandr
+        libxxf86vm
+
+        udev # oshi
+
+        vulkan-loader # VulkanMod's lwjgl
+      ];
+    };
     fish.enable = true;
     htop.enable = true;
     git.enable = true;
@@ -216,6 +243,15 @@
     lsfg-vk
     lsfg-vk-ui
     impala
+    (jetbrains.idea-community-bin.override {
+      forceWayland = true;
+    })
+    nix-alien
+    nix-index
+  ];
+
+  nixpkgs.overlays = [
+    inputs.nix-alien.overlays.default
   ];
 
   # dolphin mime type fix
