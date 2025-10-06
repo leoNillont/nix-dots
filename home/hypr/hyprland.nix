@@ -7,7 +7,7 @@
     xwayland.enable = true;
     settings = {
       monitor = [
-        "eDP-1,highrr,0x0,1.333333"
+        "eDP-1,preferred,0x0,1.333333"
         "DP-1,highrr,0x0,1,vrr,1"
         "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
       ];
@@ -143,13 +143,16 @@
       decoration = {
         rounding = 15;
         inactive_opacity = 0.95;
+        shadow.enabled = false;
         blur = {
           enabled = true;
-          size = 8;
+          size = 7;
           passes = 2;
           new_optimizations = true;
           noise = 0.02;
+          brightness = 0.90;
           xray = true;
+          ignore_opacity = true;
         };
       };
 
@@ -190,8 +193,9 @@
         gaps_in = 2;
         gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgb(f5c2e7)";
+        "col.active_border" = "rgb(cba6f7)";
         "col.inactive_border" = "rgb(45475a)";
+        allow_tearing = true;
       };
 
       misc = {
@@ -200,7 +204,7 @@
         animate_manual_resizes = true;
         animate_mouse_windowdragging = true;
         disable_hyprland_logo = true;
-        disable_autoreload = true;
+        #disable_autoreload = true;
       };
 
       windowrule = [

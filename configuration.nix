@@ -27,7 +27,7 @@
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxPackages_cachyos-gcc;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelParams = [ "zswap.enabled=0" ];
     tmp = {
       useTmpfs = true;
@@ -50,27 +50,20 @@
       enable = true;
       libraries = with pkgs; [
         (lib.getLib stdenv.cc.cc)
-        ## native versions
         glfw3-minecraft
         openal
-
-        ## openal
         alsa-lib
         libjack2
         libpulseaudio
         pipewire
-
-        ## glfw
         libGL
         libx11
         libxcursor
         libxext
         libxrandr
         libxxf86vm
-
-        udev # oshi
-
-        vulkan-loader # VulkanMod's lwjgl
+        udev
+        vulkan-loader
       ];
     };
     fish.enable = true;
@@ -90,7 +83,8 @@
       package = pkgs.temurin-bin;
     };
     steam.enable = true;
-    #gamescope.enable = true;
+    steam.gamescopeSession.enable = true;
+    gamescope.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
@@ -146,6 +140,7 @@
         support32Bit = true;
       };
       pulse.enable = true;
+      jack.enable = true;
     };
     flatpak.enable = true;
     displayManager.sddm = {
@@ -166,11 +161,11 @@
 
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.fira-mono
-      nerd-fonts.space-mono
-      iosevka
-      nerd-fonts.iosevka
+      #nerd-fonts.fira-code
+      #nerd-fonts.fira-mono
+      #nerd-fonts.space-mono
+      #iosevka
+      #nerd-fonts.iosevka
       font-awesome
       meslo-lgs-nf
     ];
@@ -211,7 +206,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" "seat" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" ];
     initialPassword = "Patataxd4"; # Default password on install, must be changed later
   };
 

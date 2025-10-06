@@ -118,7 +118,7 @@
     # Style Configuration (CSS)
     style = ''
       * {
-        font-family: "A-OTF Shin Go Pro B", "Font Awesome 6 Free", "MesloLGS Nerd Font Regular";
+        font-family: "A-OTF Shin Go Pro B", "Font Awesome 6 Free", "MesloLGS NF Regular", "MesloLGS NF:style=Regular", "MesloLGS NF";
         font-size: 12px;
       }
 
@@ -201,7 +201,7 @@
       }
 
       #workspaces button.urgent {
-        background-color: #eb4d4b;
+        background-color: @red;
       }
 
       #workspaces button:first-child {
@@ -217,7 +217,7 @@
 
       #mode {
         background-color: #64727D;
-        border-bottom: 3px solid #ffffff;
+        border-bottom: 3px solid @subtext1;
       }
 
       #clock,
@@ -237,7 +237,7 @@
       #scratchpad,
       #mpd {
         padding: 0 10px;
-        color: #ffffff;
+        color: @text;
       }
 
       #window,
@@ -276,14 +276,14 @@
 
       @keyframes blink {
         to {
-          background-color: #ffffff;
+          background-color: @subtext1;
           color: #000000;
         }
       }
 
       #battery.critical:not(.charging) {
-        background-color: #f53c3c;
-        color: #ffffff;
+        background-color: @red;
+        color: @crust;
         animation-name: blink;
         animation-duration: 0.5s;
         animation-timing-function: linear;
@@ -292,7 +292,7 @@
       }
 
       label:focus {
-        background-color: #000000;
+        background-color: @crust;
       }
 
       #cpu {
@@ -322,7 +322,7 @@
       }
 
       #network.disconnected {
-        background-color: #f53c3c;
+        background-color: @red;
       }
 
       #pulseaudio {
@@ -332,7 +332,7 @@
       }
 
       #pulseaudio.muted {
-        background-color: #6c7086;
+        background-color: @surface1;
         color: #f38ba8;
       }
 
@@ -342,7 +342,7 @@
       }
 
       #wireplumber.muted {
-        background-color: #f53c3c;
+        background-color: @red;
       }
 
       #custom-waybar-mpris {
@@ -359,7 +359,7 @@
       }
 
       #custom-media.custom-vlc {
-        background-color: #ffa000;
+        background-color: @peach;
       }
 
       #temperature {
