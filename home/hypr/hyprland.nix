@@ -50,7 +50,7 @@
 
         # Apps
         "$mod, X, exec, uwsm app -- dolphin"
-        "$mod, B, exec, uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "$mod, B, exec, uwsm app -- floorp"
 
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze --output-folder ~/Pictures/screenshots"
@@ -129,7 +129,7 @@
         "uwsm app -s b waybar" # TODO properly start these programs as systemd-services
         "uwsm app -s b mako"
         "[workspace 1 silent] uwsm app -- kitty"
-        "[workspace 2 silent] uwsm app -- vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "[workspace 2 silent] uwsm app -- floorp"
         "[workspace 4 silent] uwsm app -- vesktop"
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
