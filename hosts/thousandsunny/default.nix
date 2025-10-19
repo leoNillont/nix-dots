@@ -32,6 +32,13 @@
     RUSTICL_ENABLE = "radeonsi";
   };
 
+  programs = {
+    alvr = {
+      enable = true;
+      openFirewall = true;
+    };
+  };
+
   boot = {
     kernelParams = [
       "amd_pstate=active"
@@ -91,9 +98,10 @@
       }
     ];
     defaultGateway = "192.168.1.1";
-    nameservers = [ "9.9.9.9" ];
     firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
     networkmanager.enable = lib.mkForce false;
+    dhcpcd.enable = lib.mkForce false;
+    wireless.iwd.enable = lib.mkForce false;
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 

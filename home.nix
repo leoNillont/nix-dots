@@ -51,7 +51,7 @@
         temurin-jre-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-8
-        temurin-jre-bin-24
+        temurin-jre-bin-25
         temurin-jre-bin
       ];
       additionalPrograms = [ vlc ];

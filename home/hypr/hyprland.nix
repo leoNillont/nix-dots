@@ -195,7 +195,7 @@
         border_size = 2;
         "col.active_border" = "rgb(cba6f7)";
         "col.inactive_border" = "rgb(45475a)";
-        allow_tearing = true;
+        #allow_tearing = true;
       };
 
       misc = {

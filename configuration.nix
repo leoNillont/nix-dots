@@ -123,6 +123,7 @@
     wireless.iwd.enable = true;
     dhcpcd.enable = true;
     firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
+    nameservers = [ "94.140.14.14" "94.140.14.14" ];
   };
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="ES"
@@ -161,8 +162,8 @@
 
   fonts = {
     packages = with pkgs; [
-      #nerd-fonts.fira-code
-      #nerd-fonts.fira-mono
+      nerd-fonts.fira-code
+      nerd-fonts.fira-mono
       #nerd-fonts.space-mono
       #iosevka
       #nerd-fonts.iosevka
@@ -241,12 +242,7 @@
     (jetbrains.idea-community-bin.override {
       forceWayland = true;
     })
-    nix-alien
     nix-index
-  ];
-
-  nixpkgs.overlays = [
-    inputs.nix-alien.overlays.default
   ];
 
   # dolphin mime type fix
