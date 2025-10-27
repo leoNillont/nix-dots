@@ -45,7 +45,6 @@
     ];
     supportedFilesystems = [ "nfs" ];
     tmp.useTmpfs = lib.mkForce false;
-    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
   };
 
   powerManagement = {
@@ -54,7 +53,7 @@
   };
 
   services = {
-    #fwupd.enable = true; 
+    fwupd.enable = true; 
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
     rpcbind.enable = true; # needed for nfs
@@ -98,7 +97,7 @@
       }
     ];
     defaultGateway = "192.168.1.1";
-    firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
+    #firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
     networkmanager.enable = lib.mkForce false;
     dhcpcd.enable = lib.mkForce false;
     wireless.iwd.enable = lib.mkForce false;
@@ -108,6 +107,5 @@
   environment.systemPackages = with pkgs; [ 
     lact 
     nvtopPackages.amd 
-    #davinci-resolve
   ];
 }

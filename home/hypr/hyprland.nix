@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -130,7 +130,7 @@
         "uwsm app -s b mako"
         "[workspace 1 silent] uwsm app -- kitty"
         "[workspace 2 silent] uwsm app -- floorp"
-        "[workspace 4 silent] uwsm app -- vesktop"
+        "[workspace 4 silent] uwsm app -- discordptb"
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
@@ -193,7 +193,7 @@
         gaps_in = 2;
         gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgb(cba6f7)";
+        "col.active_border" = lib.mkForce "rgb(cba6f7)";
         "col.inactive_border" = "rgb(45475a)";
         #allow_tearing = true;
       };
@@ -213,6 +213,7 @@
         "workspace 2, class:vivaldi"
         "workspace 3, class:tidal-hifi"
         "workspace 4, class:vesktop"
+        "workspace 4, class:discord"
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         "bordersize 0, floating:0, onworkspace:w[tv1]"

@@ -83,6 +83,7 @@
       package = pkgs.temurin-bin;
     };
     steam.enable = true;
+    steam.remotePlay.openFirewall = true;
     steam.gamescopeSession.enable = true;
     gamescope.enable = true;
     gamemode.enable = true;
@@ -96,6 +97,14 @@
     #  enable = true;
     #  openFirewall = true;
     #};
+    yazi = {
+      enable = true;
+    };
+    zoxide.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
   xdg = {
     portal = {
@@ -106,6 +115,7 @@
     menus.enable = true;
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
+  virtualisation.waydroid.enable = true;
 
   # Hardware and power management
   hardware = {
@@ -134,6 +144,7 @@
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
     };
+    udisks2.enable = true;
     pipewire = {
       enable = true;
       alsa = {
@@ -213,8 +224,6 @@
 
   # System packages, installed globally
   environment.systemPackages = with pkgs; [
-    vulkan-tools
-    neovim
     wget
     curl
     btop
@@ -231,7 +240,6 @@
     lzip
     linux-firmware
     powertop
-    iwd
     nixfmt-rfc-style
     pulseaudio
     brightnessctl
@@ -243,8 +251,17 @@
       forceWayland = true;
     })
     nix-index
+    fzf
+    sidequest
   ];
 
+  stylix = {
+    enable = true;
+    base16Scheme = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/tinted-theming/schemes/refs/heads/spec-0.11/base16/catppuccin-mocha.yaml";
+      sha256 = "fbf69d921c2e5bfde3089dff116c72cfdf6ed77cae4e4f45aaacb4619e0a3cf6";
+    };
+  };
   # dolphin mime type fix
   environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 

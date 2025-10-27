@@ -21,10 +21,10 @@
     pamixer
     wl-clipboard
     cliphist 
-    ffmpeg-full
+    ffmpeg
+    hyfetch
 
     # GUI
-    vesktop
     filezilla
     qpwgraph
     pavucontrol
@@ -39,15 +39,22 @@
     floorp-bin
     waypaper
     kdePackages.konsole
-    kdePackages.dolphin
     kdePackages.filelight
+    #(discord.override {
+    #  withOpenASAR = true;
+    #  withVencord = true;
+    #})
+    (discord-ptb.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
     
     # Gaming
     parsec-bin
     heroic
     (prismlauncher.override {
       jdks = [
-        graalvmPackages.graalvm-oracle
+        #graalvmPackages.graalvm-oracle
         temurin-jre-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-8
@@ -80,18 +87,6 @@
     satty
     hyprlock
     hyprpicker
-    kdePackages.dolphin-plugins
-    kdePackages.kio-fuse
-    kdePackages.kio-extras
-    kdePackages.kio-admin
-    kdePackages.kdesdk-thumbnailers
-    kdePackages.ffmpegthumbs
-    kdePackages.kimageformats
-    kdePackages.qtimageformats
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.qtsvg
-    #kdePackages.kservice
-    kdePackages.ark
     shared-mime-info
     vulkan-tools
     vlc
@@ -119,7 +114,7 @@
         { name = "tide"; src = pkgs.fishPlugins.tide.src; }
         { name = "done"; src = pkgs.fishPlugins.done.src; }
         { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-        { name = "z"; src = pkgs.fishPlugins.z.src; }
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
     };
 
@@ -133,14 +128,36 @@
       enable = true;
       enabledExtensions = with spicePkgs.extensions; [
         adblockify
-        shuffle
-        loopyLoop
       ];
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
-      #windowManagerPatch = true;
+      windowManagerPatch = true;
+    };
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+      keymap = {
+        mgr.prepend_keymap = [
+          { run = "plugin mount"; on = [ "M" ]; }
+        ];
+      };
+      settings = {
+        mgr = {
+          show_hidden = true;
+          show_symlink = true;
+        };
+        plugins.prepend_fetchers = [
+          { id = "git"; name = "*"; run = "git"; }
+          { id = "git"; name = "*/"; run = "git"; }
+        ];
+      };
+      plugins = {
+        git = pkgs.yaziPlugins.git;
+        mount = pkgs.yaziPlugins.mount;
+      };
+      initLua = ''require("git"):setup()'';
     };
   };
+
+  home.shell.enableFishIntegration = true;
 
   # File Configurations
   home.file = {
@@ -183,19 +200,18 @@
       enable = true;
       apply = true;
     };
-    btop.enable = true;
-    mako.enable = false; # This fixes a temporary issue due to changes in home-manager https://github.com/nix-community/home-manager/issues/6971
+  };
+  
+  stylix = {
+    targets = {
+      waybar.enable = false;
+      btop.enable = false;
+      kitty.enable = false;
+      yazi.enable = false;
+    };
   };
 
-  # GTK Configuration
   gtk.enable = true;
-
-  # QT Configuration
-  qt = {
-    enable = true;
-    platformTheme.name = "kvantum";
-    style.name = "kvantum";
-  };
 
   # Session Variables
   home.sessionVariables.NIXOS_OZONE_WL = "1";
