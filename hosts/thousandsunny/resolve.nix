@@ -159,23 +159,4 @@ let
 in
 {
   environment.systemPackages = [ davinci-resolve-studio-cracked ];
-
-  # following configuration was taken from
-  # https://wiki.nixos.org/wiki/DaVinci_Resolve#AMD
-  #
-  # Tested and working with AMD cards.
-  # I don't know any configurations for Nvidia cards!
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  };
-  hardware = {
-    # this option sets hardware.graphics.enable to true
-    # and installs rocmPackages.clr/.icd
-    amdgpu.opencl.enable = true;
-    graphics.extraPackages = with pkgs; [
-      # Enables Rusticl (OpenCL) support
-      # Without this, videos won't load in davinci
-      mesa.opencl
-    ];
-  };
 }

@@ -143,6 +143,9 @@
         mgr = {
           show_hidden = true;
           show_symlink = true;
+          prepend_keymap = [
+            { on = [ "<C-n>" ]; run = ''shell -- dragon-drop -x -i -T "$0"''; } #ts don't work pmo
+          ];
         };
         plugins.prepend_fetchers = [
           { id = "git"; name = "*"; run = "git"; }

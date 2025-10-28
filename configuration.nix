@@ -253,6 +253,7 @@
     nix-index
     fzf
     sidequest
+    dragon-drop
   ];
 
   stylix = {
