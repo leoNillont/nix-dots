@@ -73,9 +73,8 @@
       enable = true;
       enableVirtualCamera = false;
       plugins = with pkgs.obs-studio-plugins; [
-        obs-vaapi
         obs-pipewire-audio-capture
-        #obs-backgroundremoval
+        obs-vkcapture
       ];
     };
     java = {
@@ -83,9 +82,6 @@
       package = pkgs.temurin-bin;
     };
     steam.enable = true;
-    steam.remotePlay.openFirewall = true;
-    steam.gamescopeSession.enable = true;
-    gamescope.enable = true;
     gamemode.enable = true;
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
@@ -93,10 +89,6 @@
       withUWSM = true;
     };
     uwsm.enable = true;
-    #alvr = {
-    #  enable = true;
-    #  openFirewall = true;
-    #};
     yazi = {
       enable = true;
     };
@@ -116,6 +108,7 @@
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
   virtualisation.waydroid.enable = true;
+  virtualisation.docker.enable = true;
 
   # Hardware and power management
   hardware = {
@@ -145,6 +138,7 @@
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
     };
     udisks2.enable = true;
+    gvfs.enable = true;
     pipewire = {
       enable = true;
       alsa = {
@@ -155,12 +149,13 @@
       jack.enable = true;
     };
     flatpak.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
-      settings.General.DisplayServer = "wayland";
-    };
+    #displayManager.sddm = {
+    #  enable = true;
+    #  wayland.enable = true;
+    #  package = pkgs.kdePackages.sddm;
+    #  settings.General.DisplayServer = "wayland";
+    #};
+    displayManager.ly = true;
     xserver = {
       xkb = {
         layout = "us";
@@ -174,10 +169,6 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
-      nerd-fonts.fira-mono
-      #nerd-fonts.space-mono
-      #iosevka
-      #nerd-fonts.iosevka
       font-awesome
       meslo-lgs-nf
     ];
@@ -218,7 +209,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" "docker" ];
     initialPassword = "Patataxd4"; # Default password on install, must be changed later
   };
 
@@ -240,7 +231,6 @@
     lzip
     linux-firmware
     powertop
-    nixfmt-rfc-style
     pulseaudio
     brightnessctl
     gpu-screen-recorder
@@ -253,7 +243,7 @@
     nix-index
     fzf
     sidequest
-    dragon-drop
+    shared-mime-info
   ];
 
   stylix = {

@@ -31,23 +31,21 @@
     oculante
     mpv
     gimp
-    qbittorrent
     kitty
     anydesk
     bottles
     vivaldi
     floorp-bin
     waypaper
-    kdePackages.konsole
     kdePackages.filelight
-    #(discord.override {
-    #  withOpenASAR = true;
-    #  withVencord = true;
-    #})
     (discord-ptb.override {
       withOpenASAR = true;
       withVencord = true;
     })
+    orca-slicer
+    winboat
+    pcmanfm
+    easyeffects
     
     # Gaming
     parsec-bin
@@ -76,9 +74,7 @@
     nwg-bar
     playerctl
     mako
-    #swww
     swaybg
-    #mpvpaper
     hyprpaper
     hyprpolkitagent
     waybar-mpris
@@ -88,8 +84,6 @@
     hyprlock
     hyprpicker
     shared-mime-info
-    vulkan-tools
-    vlc
   ];
 
   # XDG User Directories
@@ -100,7 +94,7 @@
 
   # MIME Types
   xdg.mimeApps.associations.added = {
-    "inode/directory" = [ "dolphin.desktop" ];
+    "inode/directory" = [ "pcmanfm.desktop" ];
   };
 
   # Programs

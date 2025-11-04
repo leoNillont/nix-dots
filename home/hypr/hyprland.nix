@@ -49,7 +49,8 @@
         "$mod, L, exec, uwsm app -- hyprlock"
 
         # Apps
-        "$mod, X, exec, uwsm app -- dolphin"
+        "$mod, X, exec, uwsm app -- kitty fish -C yy"
+        "$mod SHIFT, X, exec, uwsm app -- pcmanfm"
         "$mod, B, exec, uwsm app -- floorp"
 
         # Screenshots
@@ -134,7 +135,6 @@
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
         "uwsm app -s b -- waypaper --restore"
-        #"uwsm app -- wluma"
         "uwsm app -s b -- wl-paste --type text --watch cliphist store"
         "uwsm app -s b -- wl-paste --type image --watch cliphist store"
         #"~/.config/hypr/replay/start.sh" # Uncomment to enable GSR on start
