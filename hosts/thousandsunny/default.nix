@@ -32,13 +32,6 @@
     RUSTICL_ENABLE = "radeonsi";
   };
 
-  programs = {
-    alvr = {
-      enable = true;
-      openFirewall = true;
-    };
-  };
-
   boot = {
     kernelParams = [
       "amd_pstate=active"
@@ -107,5 +100,6 @@
   environment.systemPackages = with pkgs; [ 
     lact 
     nvtopPackages.amd 
+    blender-hip
   ];
 }

@@ -155,7 +155,7 @@
     #  package = pkgs.kdePackages.sddm;
     #  settings.General.DisplayServer = "wayland";
     #};
-    displayManager.ly = true;
+    displayManager.ly.enable = true;
     xserver = {
       xkb = {
         layout = "us";
