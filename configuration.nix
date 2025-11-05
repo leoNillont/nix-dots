@@ -39,7 +39,7 @@
   # Enable and configure catppuccin globally
   catppuccin = {
     enable = true;
-    accent = "pink";
+    accent = "mauve";
     flavor = "mocha";
   };
 
@@ -248,10 +248,7 @@
 
   stylix = {
     enable = true;
-    base16Scheme = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/tinted-theming/schemes/refs/heads/spec-0.11/base16/catppuccin-mocha.yaml";
-      sha256 = "fbf69d921c2e5bfde3089dff116c72cfdf6ed77cae4e4f45aaacb4619e0a3cf6";
-    };
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   };
   # dolphin mime type fix
   environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";

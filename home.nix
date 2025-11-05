@@ -187,10 +187,10 @@
   catppuccin = {
     enable = true;
     flavor = "mocha";
-    accent = "pink";
+    accent = "mauve";
     cursors = {
       enable = true;
-      accent = "light";
+      accent = "dark";
       flavor = "mocha";
     };
     kvantum = {
