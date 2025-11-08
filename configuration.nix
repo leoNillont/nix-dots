@@ -149,13 +149,12 @@
       jack.enable = true;
     };
     flatpak.enable = true;
-    #displayManager.sddm = {
-    #  enable = true;
-    #  wayland.enable = true;
-    #  package = pkgs.kdePackages.sddm;
-    #  settings.General.DisplayServer = "wayland";
-    #};
-    displayManager.ly.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      package = pkgs.kdePackages.sddm;
+      settings.General.DisplayServer = "wayland";
+    };
     xserver = {
       xkb = {
         layout = "us";
