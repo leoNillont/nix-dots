@@ -46,7 +46,7 @@
   programs = {
     pay-respects.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
-    programs.thunar = {
+    thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
         thunar-archive-plugin
