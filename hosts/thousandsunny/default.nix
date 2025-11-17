@@ -21,6 +21,7 @@
     bluetooth.enable = true;
     amdgpu = {
       initrd.enable = true;
+      #opencl.enable = true;
       overdrive = {
         enable = true;
         ppfeaturemask = "0xffffffff";
