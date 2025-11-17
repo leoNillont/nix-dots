@@ -46,6 +46,15 @@
   programs = {
     pay-respects.enable = true; # Command error correction
     gpu-screen-recorder.enable = true; # Required for screen recording
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+        thunar-vcs-plugin
+        thunar-media-tags-plugin
+      ];
+    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
@@ -108,7 +117,7 @@
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
   virtualisation.waydroid.enable = true;
-  virtualisation.docker.enable = true;
+  #virtualisation.docker.enable = true;
 
   # Hardware and power management
   hardware = {

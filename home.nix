@@ -43,8 +43,7 @@
       withVencord = true;
     })
     orca-slicer
-    winboat
-    pcmanfm
+    #winboat
     easyeffects
     
     # Gaming
