@@ -1,7 +1,7 @@
 {
   description = "leoNillo's flake";
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: let
+  outputs = { nixpkgs, home-manager, ... }@inputs: let
     # Shared modules used across all configurations
     sharedModules = [
       ./configuration.nix

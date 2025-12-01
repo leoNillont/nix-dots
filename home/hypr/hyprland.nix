@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   wayland.windowManager.hyprland = {
@@ -50,7 +50,7 @@
 
         # Apps
         "$mod, X, exec, uwsm app -- kitty fish -C yy"
-        "$mod SHIFT, X, exec, uwsm app -- pcmanfm"
+        "$mod SHIFT, X, exec, uwsm app -- thunar"
         "$mod, B, exec, uwsm app -- floorp"
 
         # Screenshots

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   nix.settings = {
@@ -27,7 +27,7 @@
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
     };
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_cachyos-gcc;
     kernelParams = [ "zswap.enabled=0" ];
     tmp = {
       useTmpfs = true;
@@ -135,7 +135,7 @@
     wireless.iwd.enable = true;
     dhcpcd.enable = true;
     firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
-    nameservers = [ "94.140.14.14" "94.140.14.14" ];
+    nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="ES"
@@ -174,6 +174,7 @@
         variant = "colemak";
       };
     };
+    system76-scheduler.enable = true;
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
@@ -262,8 +263,6 @@
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
   };
-  # dolphin mime type fix
-  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
   # Make apps run natively on Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

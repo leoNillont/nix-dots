@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # Waybar configuration
@@ -54,11 +54,12 @@
         };
 
         "temperature" = {
-          hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+          thermal-zone = 2;
+          hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
           critical-threshold = 80;
           format = "{temperatureC}°{icon}";
           format-critical = "{temperatureC}°{icon}";
-          format-icons = [ "" "" "" ];
+          format-icons = [ "" ];
         };
 
         "battery" = {

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   # Import Modules
@@ -45,6 +45,7 @@
     orca-slicer
     #winboat
     easyeffects
+    qbittorrent
     
     # Gaming
     parsec-bin
