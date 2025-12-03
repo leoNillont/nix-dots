@@ -16,6 +16,7 @@
         enable = true;
         consoleMode = "max"; # Use max resolution allowed
         editor = false;
+        configurationLimit = 10;
       };
       efi.canTouchEfiVariables = true;
       timeout = 0;
@@ -26,6 +27,10 @@
       "net.ipv4.tcp_fin_timeout" = 5;
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
+      "vm.swappiness" = 180;
+      "vm.watermark_boost_factor" = 0;
+      "vm.watermark_scale_factor" = 125;
+      "vm.page-cluster" = 0;
     };
     kernelPackages = pkgs.linuxPackages_cachyos-gcc;
     kernelParams = [ "zswap.enabled=0" ];
@@ -90,7 +95,11 @@
       enable = true;
       package = pkgs.temurin-bin;
     };
-    steam.enable = true;
+    steam = {
+      enable = true;
+      extest.enable = true;
+      remotePlay.openFirewall = true;
+    };
     gamemode.enable = true;
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
@@ -110,10 +119,16 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde xdg-desktop-portal-gtk ]; # For file picker
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ]; # For file picker
     };
     mime.enable = true;
     menus.enable = true;
+    terminal-exec = {
+      enable = true;
+      settings.default = [
+        "kitty.desktop"
+      ];
+    };
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
   virtualisation.waydroid.enable = true;
@@ -128,6 +143,7 @@
   powerManagement.powertop.enable = true; # Enable powertop
   zramSwap  = {
     enable = true;
+    priority = 100;
     algorithm = "zstd"; # Better performance/compression ratio
   };
 
@@ -161,6 +177,7 @@
       pulse.enable = true;
       jack.enable = true;
     };
+    pulseaudio.enable = lib.mkForce false;
     flatpak.enable = true;
     displayManager.sddm = {
       enable = true;
@@ -181,9 +198,11 @@
 
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.fira-code
+      nerd-fonts.symbols-only
       font-awesome
       meslo-lgs-nf
+      noto-fonts
+      noto-fonts-color-emoji
     ];
     enableDefaultPackages = true;
     fontconfig = {

@@ -123,7 +123,7 @@
       enabledExtensions = with spicePkgs.extensions; [
         adblockify
       ];
-      windowManagerPatch = true;
+      #windowManagerPatch = true;
     };
     yazi = {
       enable = true;
