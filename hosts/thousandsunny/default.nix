@@ -9,19 +9,20 @@
 
   # Hardware configuration, this desktop has an AMD GPU
   hardware = {
+    firmware = [ pkgs.linux-firmware ];
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
         vulkan-loader
         libva
-        mesa.opencl
+        #mesa.opencl
       ];
     };
     bluetooth.enable = true;
     amdgpu = {
       initrd.enable = true;
-      #opencl.enable = true;
+      opencl.enable = true;
       overdrive = {
         enable = true;
         ppfeaturemask = "0xffffffff";
@@ -29,9 +30,9 @@
     };
   };
 
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  };
+  #environment.variables = {
+  #  RUSTICL_ENABLE = "radeonsi";
+  #};
 
   boot = {
     kernelParams = [
@@ -93,7 +94,7 @@
     defaultGateway = "192.168.1.1";
     #firewall.allowedTCPPorts = [ 25565 ]; # Allow Minecraft server port in case I want to host
     networkmanager.enable = lib.mkForce false;
-    dhcpcd.enable = lib.mkForce false;
+    #dhcpcd.enable = lib.mkForce false;
     wireless.iwd.enable = lib.mkForce false;
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };

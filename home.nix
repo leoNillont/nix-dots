@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   # Import Modules
@@ -46,6 +46,7 @@
     #winboat
     easyeffects
     qbittorrent
+    tidal-hifi
     
     # Gaming
     parsec-bin
@@ -60,7 +61,7 @@
         temurin-jre-bin
       ];
       additionalPrograms = [ vlc ];
-      additionalLibs = [ vlc ];
+      additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
     r2modman
 
@@ -116,15 +117,6 @@
 
     home-manager.enable = true; # probably don't want to remove this :3
     
-    spicetify = let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in {
-      enable = true;
-      enabledExtensions = with spicePkgs.extensions; [
-        adblockify
-      ];
-      #windowManagerPatch = true;
-    };
     yazi = {
       enable = true;
       enableFishIntegration = true;

@@ -100,7 +100,10 @@
       extest.enable = true;
       remotePlay.openFirewall = true;
     };
-    gamemode.enable = true;
+    gamemode = {
+      enable = true;
+      settings.general.renice = 10;
+    };
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
       enable = true;
@@ -115,6 +118,7 @@
       enable = true;
       defaultEditor = true;
     };
+    xfconf.enable = true;
   };
   xdg = {
     portal = {
@@ -162,6 +166,7 @@
       enable = true;
       package = pkgs.mullvad-vpn;
     };
+    tumbler.enable = true;
     resolved = {
       enable = true;
       dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
@@ -276,6 +281,10 @@
     fzf
     sidequest
     shared-mime-info
+    ffmpegthumbnailer
+    webp-pixbuf-loader
+    ffmpeg-headless
+    gdk-pixbuf
   ];
 
   stylix = {
