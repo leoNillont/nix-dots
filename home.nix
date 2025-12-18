@@ -47,6 +47,7 @@
     easyeffects
     qbittorrent
     tidal-hifi
+    lmstudio
     
     # Gaming
     parsec-bin
@@ -64,10 +65,11 @@
       additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
     r2modman
+    faugus-launcher
 
     # Dev
     rustup
-    vscode
+    #vscode
 
     # Misc
     grim
@@ -85,6 +87,7 @@
     hyprlock
     hyprpicker
     shared-mime-info
+    file-roller
   ];
 
   # XDG User Directories

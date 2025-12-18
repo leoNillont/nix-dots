@@ -7,7 +7,6 @@
       ./configuration.nix
       inputs.disko.nixosModules.disko
       inputs.catppuccin.nixosModules.catppuccin
-      inputs.chaotic.nixosModules.default
       inputs.stylix.nixosModules.stylix
 
       { home-manager.extraSpecialArgs = { inherit inputs; }; }
@@ -68,9 +67,6 @@
 
     # Catppuccin theme for NixOS
     catppuccin.url = "github:catppuccin/nix";
-
-    # Chaotic-nyx, has a bunch of bleeding edge packages, used for cachy kernel
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # NixOS-Hardware, has useful things for hardware support
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";

@@ -16,7 +16,9 @@
       extraPackages = with pkgs; [
         vulkan-loader
         libva
-        #mesa.opencl
+        mesa.opencl
+        rocmPackages.rocblas
+        rocmPackages.rpp
       ];
     };
     bluetooth.enable = true;
@@ -29,10 +31,25 @@
       };
     };
   };
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [
+        clr
+        clr.icd
+        rocblas
+        hipblas
+        rpp
+      ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  ];
 
-  #environment.variables = {
-  #  RUSTICL_ENABLE = "radeonsi";
-  #};
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+    HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+  };
 
   boot = {
     kernelParams = [
