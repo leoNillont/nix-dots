@@ -166,6 +166,7 @@
       enable = true;
       package = pkgs.mullvad-vpn;
     };
+    tailscale.enable = true;
     tumbler.enable = true;
     resolved = {
       enable = true;
