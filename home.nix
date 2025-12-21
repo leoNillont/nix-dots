@@ -69,7 +69,7 @@
 
     # Dev
     rustup
-    #vscode
+    vscode
 
     # Misc
     grim

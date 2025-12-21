@@ -198,6 +198,15 @@
       };
     };
     system76-scheduler.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+        PermitRootLOgin = "no";
+        AllowUsers = [ "leonillo" ];
+      };
+    };
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
