@@ -203,7 +203,7 @@
       settings = {
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
-        PermitRootLOgin = "no";
+        PermitRootLogin = "no";
         AllowUsers = [ "leonillo" ];
       };
     };
