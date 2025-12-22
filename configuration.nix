@@ -166,7 +166,10 @@
       enable = true;
       package = pkgs.mullvad-vpn;
     };
-    tailscale.enable = true;
+    tailscale = {
+      enable = true;
+      extraSetFlags = [ "--ssh" ];
+    };
     tumbler.enable = true;
     resolved = {
       enable = true;
