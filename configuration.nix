@@ -298,6 +298,7 @@
     webp-pixbuf-loader
     ffmpeg-headless
     gdk-pixbuf
+    blender-hip
   ];
 
   stylix = {
