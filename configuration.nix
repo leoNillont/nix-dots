@@ -299,6 +299,7 @@
     ffmpeg-headless
     gdk-pixbuf
     blender-hip
+    waypipe
   ];
 
   stylix = {
