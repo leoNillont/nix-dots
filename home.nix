@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Import Modules
@@ -48,6 +48,7 @@
     qbittorrent
     tidal-hifi
     lmstudio
+    krita
     
     # Gaming
     parsec-bin
@@ -204,6 +205,7 @@
   };
 
   gtk.enable = true;
+  qt.style.catppuccin.enable = lib.mkForce false;
 
   # Session Variables
   home.sessionVariables.NIXOS_OZONE_WL = "1";

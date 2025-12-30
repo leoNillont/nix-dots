@@ -191,7 +191,7 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      package = pkgs.kdePackages.sddm;
+      #package = pkgs.kdePackages.sddm;
       settings.General.DisplayServer = "wayland";
     };
     xserver = {
@@ -210,6 +210,7 @@
         AllowUsers = [ "leonillo" ];
       };
     };
+    desktopManager.plasma6.enable = true;
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
