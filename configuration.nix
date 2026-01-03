@@ -211,6 +211,10 @@
       };
     };
     desktopManager.plasma6.enable = true;
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+    };
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
