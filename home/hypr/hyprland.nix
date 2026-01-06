@@ -151,7 +151,7 @@
           new_optimizations = true;
           noise = 0.02;
           brightness = 0.90;
-          xray = true;
+          xray = false;
           ignore_opacity = true;
         };
       };
@@ -208,19 +208,16 @@
       };
 
       windowrule = [
-        "workspace 1, class:kitty"
-        "workspace 2, class:firefox"
-        "workspace 2, class:vivaldi"
-        "workspace 3, class:tidal-hifi"
-        "workspace 4, class:vesktop"
-        "workspace 4, class:discord"
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "bordersize 0, floating:0, onworkspace:w[tv1]"
-        "rounding 0, floating:0, onworkspace:w[tv1]"
-        "bordersize 0, floating:0, onworkspace:f[1]"
-        "rounding 0, floating:0, onworkspace:f[1]"
-        "fullscreen, class:Waydroid"
+        "match:class kitty, workspace 1"
+        "match:class firefox, workspace 2"
+        "match:class tidal-hifi workspace 3"
+        "match:class discord, workspace 4"
+        "match:class waydroid, fullscreen 1"
+        "match:class ^$, match:title ^$, match:xwayland true, match:float true; match:fullscreen false; match:pin false, no_focus 1"
+        "border_size 0, match:float 0, match:workspace w[tv1]"
+        "rounding 0, match:float 0, match:workspace w[tv1]"
+        "border_size 0, match:float 0, match:workspace f[1]"
+        "rounding 0, match:float 0, match:workspace f[1]"
       ];
 
       workspace = [
@@ -229,7 +226,9 @@
       ];
 
       layerrule = [
-        "blur,waybar"
+        "match:namespace waybar, blur true"
+        "match:namespace waybar, xray true"
+        #"match:namespace waybar, no_anim = true"
       ];
 
       render = {

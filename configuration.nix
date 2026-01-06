@@ -53,7 +53,7 @@
     gpu-screen-recorder.enable = true; # Required for screen recording
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [
+      plugins = with pkgs; [
         thunar-archive-plugin
         thunar-volman
         thunar-vcs-plugin
@@ -93,7 +93,7 @@
     };
     java = {
       enable = true;
-      package = pkgs.temurin-bin;
+      package = pkgs.temurin-bin-25;
     };
     steam = {
       enable = true;
@@ -191,7 +191,7 @@
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
-      #package = pkgs.kdePackages.sddm;
+      package = pkgs.kdePackages.sddm;
       settings.General.DisplayServer = "wayland";
     };
     xserver = {
@@ -210,7 +210,6 @@
         AllowUsers = [ "leonillo" ];
       };
     };
-    desktopManager.plasma6.enable = true;
     sunshine = {
       enable = true;
       capSysAdmin = true;
@@ -292,12 +291,8 @@
     lsfg-vk
     lsfg-vk-ui
     impala
-    (jetbrains.idea-community-bin.override {
-      forceWayland = true;
-    })
     nix-index
     fzf
-    sidequest
     shared-mime-info
     ffmpegthumbnailer
     webp-pixbuf-loader

@@ -28,7 +28,7 @@
     filezilla
     qpwgraph
     pavucontrol
-    oculante
+    #oculante
     mpv
     gimp
     kitty
@@ -46,16 +46,15 @@
     #winboat
     easyeffects
     qbittorrent
-    tidal-hifi
+    #tidal-hifi
     lmstudio
     krita
     
     # Gaming
     parsec-bin
-    heroic
+    #heroic
     (prismlauncher.override {
       jdks = [
-        #graalvmPackages.graalvm-oracle
         temurin-jre-bin-21
         temurin-jre-bin-17
         temurin-jre-bin-8
@@ -65,8 +64,7 @@
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
-    r2modman
-    faugus-launcher
+    #r2modman
 
     # Dev
     rustup
@@ -190,8 +188,8 @@
       flavor = "mocha";
     };
     kvantum = {
-      enable = true;
-      apply = true;
+      enable = false;
+      apply = false;
     };
   };
   
@@ -205,7 +203,6 @@
   };
 
   gtk.enable = true;
-  qt.style.catppuccin.enable = lib.mkForce false;
 
   # Session Variables
   home.sessionVariables.NIXOS_OZONE_WL = "1";
