@@ -109,6 +109,7 @@ let
           xorg.xcbutilwm
           xorg.xkeyboardconfig
           zlib
+          stdenv.cc.cc.lib
         ]
         ++ [ davinci-patched ];
  
@@ -118,6 +119,7 @@ let
  
       extraBwrapArgs = [
         ''--bind "$HOME"/.local/share/DaVinciResolve/Extras ${davinci-patched}/Extras''
+        ''--bind /run/opengl-driver/etc/OpenCL /etc/OpenCL''
       ];
  
       runScript = "${lib.getExe pkgs.bash} ${pkgs.writeText "davinci-wrapper" ''
@@ -164,5 +166,5 @@ let
     };
 in
 {
-  environment.systemPackages = [ davinci-resolve-studio-cracked ];
+  #environment.systemPackages = [ davinci-resolve-studio-cracked ];
 }

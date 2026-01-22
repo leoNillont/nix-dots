@@ -121,22 +121,19 @@
     xfconf.enable = true;
   };
   xdg = {
+    autostart.enable = true;
     portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gtk ]; # For file picker
-    };
-    mime.enable = true;
-    menus.enable = true;
-    terminal-exec = {
-      enable = true;
-      settings.default = [
-        "kitty.desktop"
-      ];
+      xdgOpenUsePortal = false;
     };
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
   virtualisation.waydroid.enable = true;
-  #virtualisation.docker.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
   # Hardware and power management
   hardware = {
@@ -173,7 +170,7 @@
     tumbler.enable = true;
     resolved = {
       enable = true;
-      dnssec = "allow-downgrade"; # This makes DNSSEC vulnerable to downgrade attacks, but ensures network will work, better than false I guess
+      dnssec = true; 
     };
     udisks2.enable = true;
     gvfs.enable = true;
@@ -225,6 +222,7 @@
       meslo-lgs-nf
       noto-fonts
       noto-fonts-color-emoji
+      nanum # Orca slicer crashes without ts
     ];
     enableDefaultPackages = true;
     fontconfig = {
@@ -298,8 +296,10 @@
     webp-pixbuf-loader
     ffmpeg-headless
     gdk-pixbuf
-    blender-hip
     waypipe
+    xdg-utils
+    glib
+    distrobox
   ];
 
   stylix = {

@@ -30,6 +30,7 @@
     pavucontrol
     #oculante
     mpv
+    vlc
     gimp
     kitty
     anydesk
@@ -43,12 +44,14 @@
       withVencord = true;
     })
     orca-slicer
+    prusa-slicer
     #winboat
     easyeffects
     qbittorrent
-    #tidal-hifi
+    tidal-hifi
     lmstudio
     krita
+    #freecad
     
     # Gaming
     parsec-bin
@@ -64,7 +67,7 @@
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
-    #r2modman
+    r2modman
 
     # Dev
     rustup
@@ -191,11 +194,12 @@
       enable = false;
       apply = false;
     };
+    vivaldi.enable = false;
   };
   
   stylix = {
     targets = {
-      waybar.enable = false;
+      waybar.enable = true;
       btop.enable = false;
       kitty.enable = false;
       yazi.enable = false;

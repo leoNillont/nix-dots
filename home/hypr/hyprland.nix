@@ -4,12 +4,14 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
+    package = null;
+    portalPackage = null;
     xwayland.enable = true;
     settings = {
       monitor = [
         "eDP-1,preferred,0x0,1.333333"
         "DP-1,highrr,0x0,1,vrr,1"
-        "HDMI-A-1,1920x1080@60,2560x-360,1,transform,3"
+        "HDMI-A-1,1920x1080@60,auto-center-right,1,transform,3"
       ];
 
       # Keybinds
@@ -51,7 +53,7 @@
         # Apps
         "$mod, X, exec, uwsm app -- kitty fish -C yy"
         "$mod SHIFT, X, exec, uwsm app -- thunar"
-        "$mod, B, exec, uwsm app -- floorp"
+        "$mod, B, exec, uwsm app -- vivaldi"
 
         # Screenshots
         ", Print, exec, hyprshot -m output --freeze --output-folder ~/Pictures/screenshots"
@@ -130,7 +132,7 @@
         "uwsm app -s b waybar" # TODO properly start these programs as systemd-services
         "uwsm app -s b mako"
         "[workspace 1 silent] uwsm app -- kitty"
-        "[workspace 2 silent] uwsm app -- floorp"
+        "[workspace 2 silent] uwsm app -- vivaldi"
         "[workspace 4 silent] uwsm app -- discordptb"
         "[workspace 5 silent] uwsm app -- steam -silent"
         "uwsm app -s b systemctl --user start hyprpolkitagent"
@@ -194,7 +196,7 @@
         gaps_out = 6;
         border_size = 2;
         "col.active_border" = lib.mkForce "rgb(cba6f7)";
-        "col.inactive_border" = "rgb(45475a)";
+        #"col.inactive_border" = "rgb(45475a)";
         #allow_tearing = true;
       };
 
@@ -218,6 +220,7 @@
         "rounding 0, match:float 0, match:workspace w[tv1]"
         "border_size 0, match:float 0, match:workspace f[1]"
         "rounding 0, match:float 0, match:workspace f[1]"
+        "match:class GenshinImpact.e, workspace 5"
       ];
 
       workspace = [

@@ -17,34 +17,32 @@
         vulkan-loader
         libva
         mesa.opencl
-        rocmPackages.rocblas
-        rocmPackages.rpp
       ];
     };
     bluetooth.enable = true;
     amdgpu = {
       initrd.enable = true;
-      opencl.enable = true;
+      #opencl.enable = true;
       overdrive = {
         enable = true;
         ppfeaturemask = "0xffffffff";
       };
     };
   };
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        clr
-        clr.icd
-        rocblas
-        hipblas
-        rpp
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  ];
+  #systemd.tmpfiles.rules = let
+  #  rocmEnv = pkgs.symlinkJoin {
+  #    name = "rocm-combined";
+  #    paths = with pkgs.rocmPackages; [
+  #      clr
+  #      clr.icd
+  #      rocblas
+  #      hipblas
+  #      rpp
+  #    ];
+  #  };
+  #in [
+  #  "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  #];
 
   environment.variables = {
     RUSTICL_ENABLE = "radeonsi";
@@ -54,7 +52,7 @@
     kernelParams = [
       "amd_pstate=active"
     ];
-    supportedFilesystems = [ "nfs" ];
+    #supportedFilesystems = [ "nfs" ];
     tmp.useTmpfs = lib.mkForce false;
   };
 
@@ -67,8 +65,7 @@
     fwupd.enable = true; 
     clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
     power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
-    rpcbind.enable = true; # needed for nfs
-    xserver.videoDrivers = [ "modesetting" ];
+    #rpcbind.enable = true; # needed for nfs
     resolved.dnssec = lib.mkForce "true";
   };
 
@@ -80,21 +77,21 @@
   };
     
   systemd = {
-    mounts = [{
-      type = "nfs";
-      mountConfig = {
-        Options = "noatime";
-      };
-      what = "192.168.1.96:/Datos";
-      where = "/media/NAS";
-    }];
-    automounts = [{
-      wantedBy = [ "multi-user.target" ];
-      automountConfig = {
-        TimeoutIdleSec = "600";
-      };
-      where = "/media/NAS";
-    }];
+    #mounts = [{
+    #  type = "nfs";
+    #  mountConfig = {
+    #    Options = "noatime";
+    #  };
+    #  what = "192.168.1.96:/Datos";
+    #  where = "/media/NAS";
+    #}];
+    #automounts = [{
+    #  wantedBy = [ "multi-user.target" ];
+    #  automountConfig = {
+    #    TimeoutIdleSec = "600";
+    #  };
+    #  where = "/media/NAS";
+    #}];
     # Setup lact and lactd
     packages = with pkgs; [ lact ];
     services.lactd.wantedBy = [ "multi-user.target" ];
@@ -118,6 +115,5 @@
   environment.systemPackages = with pkgs; [ 
     lact 
     nvtopPackages.amd 
-    blender-hip
   ];
 }
