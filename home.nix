@@ -26,8 +26,7 @@
 
     # GUI
     filezilla
-    qpwgraph
-    pavucontrol
+    hyprpwcenter
     #oculante
     mpv
     vlc
