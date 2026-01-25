@@ -4,7 +4,6 @@
   imports = [
     ./hardware.nix
     ./disko-config.nix
-    ./resolve.nix
   ];
 
   # Hardware configuration, this desktop has an AMD GPU
