@@ -211,9 +211,11 @@
       enable = true;
       capSysAdmin = true;
     };
+    gnome.gnome-keyring.enable = true;
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   fonts = {
     packages = with pkgs; [

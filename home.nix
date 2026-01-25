@@ -26,8 +26,9 @@
 
     # GUI
     filezilla
-    hyprpwcenter
-    #oculante
+    pavucontrol
+    qpwgraph
+    oculante
     mpv
     vlc
     gimp
@@ -52,8 +53,6 @@
     krita
     freecad
     protonmail-desktop
-    protonmail-bridge
-    protonmail-bridge-gui
     
     # Gaming
     parsec-bin

@@ -97,7 +97,7 @@
             car = "";
             default = [ "" "" "" ];
           };
-          on-click = "hyprpwcenter";
+          on-click = "pavucontrol";
         };
 
         "custom/waybar-mpris" = {
