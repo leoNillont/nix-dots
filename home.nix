@@ -51,7 +51,10 @@
     tidal-hifi
     lmstudio
     krita
-    #freecad
+    freecad
+    protonmail-desktop
+    protonmail-bridge
+    protonmail-bridge-gui
     
     # Gaming
     parsec-bin
@@ -68,6 +71,7 @@
       additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
     r2modman
+    osu-lazer-bin
 
     # Dev
     rustup
@@ -203,10 +207,15 @@
       btop.enable = false;
       kitty.enable = false;
       yazi.enable = false;
+      vencord.enable = false;
     };
   };
 
-  gtk.enable = true;
+  gtk = {
+    enable = true;
+    colorScheme = lib.mkForce "dark";
+  };
+  dconf.settings."org/gnome/desktop/interface".color-scheme = lib.mkForce "prefer-dark";
 
   # Session Variables
   home.sessionVariables.NIXOS_OZONE_WL = "1";

@@ -32,7 +32,7 @@
       "vm.watermark_scale_factor" = 125;
       "vm.page-cluster" = 0;
     };
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_lqx;
     kernelParams = [ "zswap.enabled=0" ];
     tmp = {
       useTmpfs = true;

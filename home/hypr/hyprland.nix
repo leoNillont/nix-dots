@@ -212,6 +212,7 @@
       windowrule = [
         "match:class kitty, workspace 1"
         "match:class firefox, workspace 2"
+        "match:class vivaldi, workspace 2"
         "match:class tidal-hifi workspace 3"
         "match:class discord, workspace 4"
         "match:class waydroid, fullscreen 1"
