@@ -11,6 +11,7 @@
       monitor = [
         "eDP-1,preferred,0x0,1.333333"
         "DP-1,highrr,0x0,1,vrr,1"
+        "DP-2,highrr,0x0,1,vrr,1"
         "HDMI-A-1,1920x1080@60,auto-center-right,1,transform,3"
       ];
 
@@ -212,7 +213,7 @@
       windowrule = [
         "match:class kitty, workspace 1"
         "match:class firefox, workspace 2"
-        "match:class vivaldi, workspace 2"
+        "match:class vivaldi-stable, workspace 2"
         "match:class tidal-hifi workspace 3"
         "match:class discord, workspace 4"
         "match:class waydroid, fullscreen 1"
@@ -236,7 +237,7 @@
       ];
 
       render = {
-        direct_scanout = 1;
+        direct_scanout = 0;
       };
 
       xwayland = {

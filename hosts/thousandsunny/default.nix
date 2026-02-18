@@ -21,7 +21,7 @@
     bluetooth.enable = true;
     amdgpu = {
       initrd.enable = true;
-      #opencl.enable = true;
+      opencl.enable = true;
       overdrive = {
         enable = true;
         ppfeaturemask = "0xffffffff";
@@ -52,7 +52,7 @@
       "amd_pstate=active"
     ];
     #supportedFilesystems = [ "nfs" ];
-    tmp.useTmpfs = lib.mkForce false;
+    #tmp.useTmpfs = lib.mkForce false;
   };
 
   powerManagement = {

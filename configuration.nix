@@ -1,9 +1,12 @@
 { pkgs, lib, ... }:
 
 {
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+    package = pkgs.lixPackageSets.stable.lix;
   };
   nixpkgs.config.allowUnfree = true; # Allow unfree packages
 
@@ -23,7 +26,7 @@
     };
     initrd.systemd.enable = true;
     kernel.sysctl = {
-      "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+      #"kernel.sched_cfs_bandwidth_slice_us" = 3000;
       "net.ipv4.tcp_fin_timeout" = 5;
       "kernel.split_lock_mitigate" = 0;
       "vm.max_map_count" = 2147483642;
@@ -32,14 +35,19 @@
       "vm.watermark_scale_factor" = 125;
       "vm.page-cluster" = 0;
     };
-    kernelPackages = pkgs.linuxPackages_lqx;
-    kernelParams = [ "zswap.enabled=0" ];
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    kernelParams = [ "zswap.enabled=0" "split_lock_detect=off" ];
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
     };
   };
   systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
+  systemd.oomd.enable = true;
+  services.udev.extraRules = ''
+    ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
+  '';
+  environment.variables = { RADV_PERFTEST = "gpl"; };
 
   # Enable and configure catppuccin globally
   catppuccin = {
@@ -102,7 +110,6 @@
     };
     gamemode = {
       enable = true;
-      settings.general.renice = 10;
     };
     virt-manager.enable = true; # QEMU/KVM
     hyprland = {
@@ -159,6 +166,7 @@
   '';
 
   services = {
+    ratbagd.enable = true;
     mullvad-vpn = {
       enable = true;
       package = pkgs.mullvad-vpn;
@@ -197,7 +205,7 @@
         variant = "colemak";
       };
     };
-    system76-scheduler.enable = true;
+    #system76-scheduler.enable = true;
     openssh = {
       enable = true;
       settings = {
@@ -212,6 +220,11 @@
       capSysAdmin = true;
     };
     gnome.gnome-keyring.enable = true;
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd"; # Set scx_bpfland for laptop maybe?
+      extraArgs = [ "--autopower" ];
+    };
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
@@ -224,7 +237,7 @@
       meslo-lgs-nf
       noto-fonts
       noto-fonts-color-emoji
-      nanum # Orca slicer crashes without ts
+      nanum # Orca slicer crashes without ts it seems
     ];
     enableDefaultPackages = true;
     fontconfig = {
@@ -302,7 +315,9 @@
     xdg-utils
     glib
     distrobox
+    arrpc
   ];
+  systemd.packages = with pkgs; [ arrpc ];
 
   stylix = {
     enable = true;

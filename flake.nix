@@ -8,6 +8,7 @@
       inputs.disko.nixosModules.disko
       inputs.catppuccin.nixosModules.catppuccin
       inputs.stylix.nixosModules.stylix
+      inputs.cachynix.nixosModules.default
 
       { home-manager.extraSpecialArgs = { inherit inputs; }; }
       home-manager.nixosModules.home-manager {
@@ -76,5 +77,7 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    cachynix.url = "github:Mrn157/CachyNix";
   };
 }

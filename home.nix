@@ -34,15 +34,21 @@
     gimp
     kitty
     anydesk
-    bottles
+    #bottles
     vivaldi
     floorp-bin
     waypaper
     kdePackages.filelight
     (discord-ptb.override {
-      withOpenASAR = true;
+      #withOpenASAR = true;
       withVencord = true;
     })
+    (discord.override {
+      #withOpenASAR = true;
+      withVencord = true;
+     })
+    vesktop
+    equibop
     orca-slicer
     prusa-slicer
     #winboat
@@ -52,7 +58,10 @@
     lmstudio
     krita
     freecad
-    protonmail-desktop
+    piper
+    element-desktop
+    fluffychat
+    signal-desktop
     
     # Gaming
     parsec-bin
@@ -64,16 +73,22 @@
         temurin-jre-bin-8
         temurin-jre-bin-25
         temurin-jre-bin
+        graalvmPackages.graalvm-oracle
+        graalvmPackages.graalvm-ce
       ];
       additionalPrograms = [ vlc ];
       additionalLibs = [ vlc opencl-headers ocl-icd ];
     })
     r2modman
     osu-lazer-bin
+    bs-manager
 
     # Dev
     rustup
     vscode
+    wayvr
+    jetbrains.idea
+    go
 
     # Misc
     grim
