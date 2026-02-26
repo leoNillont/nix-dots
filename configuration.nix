@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   nix = {
@@ -316,6 +316,7 @@
     glib
     distrobox
     arrpc
+    inputs.affinity-nix.packages.x86_64-linux.v3
   ];
   systemd.packages = with pkgs; [ arrpc ];
 

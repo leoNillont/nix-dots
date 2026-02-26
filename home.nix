@@ -34,7 +34,7 @@
     gimp
     kitty
     anydesk
-    #bottles
+    bottles
     vivaldi
     floorp-bin
     waypaper

@@ -79,5 +79,7 @@
     };
 
     cachynix.url = "github:Mrn157/CachyNix";
+
+    affinity-nix.url = "github:mrshmllow/affinity-nix";
   };
 }
