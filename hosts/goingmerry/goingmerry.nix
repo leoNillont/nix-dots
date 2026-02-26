@@ -22,7 +22,7 @@
       powerOnBoot = false;
     };
     framework = {
-      enableKmod = false;
+      enableKmod = true;
       laptop13 = {
         audioEnhancement = {
           enable = true;
@@ -32,9 +32,9 @@
     };
     amdgpu = {
       initrd.enable = true;
+      opencl.enable = true;
     };
   };
-  services.xserver.videoDrivers = [ "modesetting" ];
   environment.variables = {
     RUSTICL_ENABLE = "radeonsi";
   };
@@ -42,16 +42,29 @@
   # Fixes a bug that causes lots and lots of lag
   boot.kernelParams = [
     "amdgpu.dcdebugmask=0x10"
+    "amd_pstate=active"
   ];
 
 
   services = {
-    power-profiles-daemon.enable = true;
+    tuned.enable = true;
     fprintd.enable = true;
     fwupd.enable = true;
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+      extraArgs = [ "--autopower" ];
+    };
+    clight = {
+      enable = true;
+    };
+  };
+  location = {
+    latitude = 38.8977;
+    longitude = 1.4022;
   };
 
-  #environment.systemPackages = with pkgs; [ framework-tool wluma ]; #TODO make wluma declarative
+  environment.systemPackages = with pkgs; [ framework-tool clight-gui ];
   
   # Hostname Configuration, used so I don't have to use --flake on rebuild
   networking.hostName = "goingmerry";

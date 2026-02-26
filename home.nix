@@ -21,7 +21,6 @@
     pamixer
     wl-clipboard
     cliphist 
-    ffmpeg
     hyfetch
 
     # GUI
@@ -43,12 +42,6 @@
       #withOpenASAR = true;
       withVencord = true;
     })
-    (discord.override {
-      #withOpenASAR = true;
-      withVencord = true;
-     })
-    vesktop
-    equibop
     orca-slicer
     prusa-slicer
     #winboat
@@ -56,8 +49,8 @@
     qbittorrent
     tidal-hifi
     lmstudio
-    krita
-    freecad
+    #krita
+    #freecad
     piper
     element-desktop
     fluffychat
@@ -96,8 +89,8 @@
     nwg-bar
     playerctl
     mako
-    swaybg
     hyprpaper
+    swaybg
     hyprpolkitagent
     waybar-mpris
     rofi
@@ -145,15 +138,13 @@
       keymap = {
         mgr.prepend_keymap = [
           { run = "plugin mount"; on = [ "M" ]; }
+          { on = [ "<C-n>" ]; run = ''shell -- dragon-drop -x -i -T "$0"''; }
         ];
       };
       settings = {
         mgr = {
           show_hidden = true;
           show_symlink = true;
-          prepend_keymap = [
-            { on = [ "<C-n>" ]; run = ''shell -- dragon-drop -x -i -T "$0"''; } #ts don't work pmo
-          ];
         };
         plugins.prepend_fetchers = [
           { id = "git"; name = "*"; run = "git"; }
@@ -216,7 +207,7 @@
   
   stylix = {
     targets = {
-      waybar.enable = true;
+      waybar.enable = false;
       btop.enable = false;
       kitty.enable = false;
       yazi.enable = false;
@@ -234,5 +225,5 @@
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # State Version
-  home.stateVersion = "23.11"; # Don't change this
+  home.stateVersion = "26.05"; # Don't change this
 }

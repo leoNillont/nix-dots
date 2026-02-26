@@ -8,7 +8,6 @@
 
   # Hardware configuration, this desktop has an AMD GPU
   hardware = {
-    firmware = [ pkgs.linux-firmware ];
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -62,10 +61,13 @@
 
   services = {
     fwupd.enable = true; 
-    clight.enable = lib.mkForce false; # Disable clight (not needed on desktop)
-    power-profiles-daemon.enable = lib.mkForce false; # Conflicts with LACT, too lazy to fix
     #rpcbind.enable = true; # needed for nfs
     resolved.dnssec = lib.mkForce "true";
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+      extraArgs = [ "--autopower" ];
+    };
   };
 
   fileSystems = {

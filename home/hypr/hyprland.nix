@@ -100,7 +100,7 @@
 
         # Window resizing
         "$mod control, n, resizeactive, -40 0"
-        "$mod control, o, resizeactive, 40 40"
+        "$mod control, o, resizeactive, 40 0"
         "$mod control, e, resizeactive, 0 -40"
         "$mod control, i, resizeactive, 0 40"
       ];
@@ -145,7 +145,7 @@
 
       decoration = {
         rounding = 15;
-        inactive_opacity = 0.95;
+        inactive_opacity = 1.0;
         shadow.enabled = false;
         blur = {
           enabled = true;
@@ -214,7 +214,6 @@
         "match:class kitty, workspace 1"
         "match:class firefox, workspace 2"
         "match:class vivaldi-stable, workspace 2"
-        "match:class tidal-hifi workspace 3"
         "match:class discord, workspace 4"
         "match:class waydroid, fullscreen 1"
         "match:class ^$, match:title ^$, match:xwayland true, match:float true; match:fullscreen false; match:pin false, no_focus 1"
@@ -232,12 +231,12 @@
 
       layerrule = [
         "match:namespace waybar, blur true"
-        "match:namespace waybar, xray true"
+        #"match:namespace waybar, xray true"
         #"match:namespace waybar, no_anim = true"
       ];
 
       render = {
-        direct_scanout = 0;
+        direct_scanout = 1;
       };
 
       xwayland = {
@@ -245,7 +244,7 @@
       };
 
       cursor = {
-        enable_hyprcursor = false;
+        enable_hyprcursor = true;
       };
 
       env = [

@@ -5,6 +5,8 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      substituters = [ "https://nix-community.cachix.org" ];
+      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     };
     package = pkgs.lixPackageSets.stable.lix;
   };
@@ -47,7 +49,6 @@
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
   '';
-  environment.variables = { RADV_PERFTEST = "gpl"; };
 
   # Enable and configure catppuccin globally
   catppuccin = {
@@ -136,7 +137,7 @@
     };
   };
   virtualisation.libvirtd.enable = true; # Enable libvirt daemon
-  virtualisation.waydroid.enable = true;
+  #virtualisation.waydroid.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -144,11 +145,10 @@
 
   # Hardware and power management
   hardware = {
-    #xpadneo.enable = true; # Xbox controller driver
     enableAllFirmware = true;
     wirelessRegulatoryDatabase = true; # Required for framework laptop
   };
-  powerManagement.powertop.enable = true; # Enable powertop
+  #powerManagement.powertop.enable = true; # Enable powertop
   zramSwap  = {
     enable = true;
     priority = 100;
@@ -156,8 +156,10 @@
   };
 
   networking = {
-    wireless.iwd.enable = true;
-    dhcpcd.enable = true;
+    wireless.iwd = {
+      enable = true;
+      settings.General.EnableNetworkConfiguration = true;
+    };
     firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
     nameservers = [ "9.9.9.9" "1.1.1.1" ];
   };
@@ -166,6 +168,7 @@
   '';
 
   services = {
+    tlp.enable = lib.mkForce false;
     ratbagd.enable = true;
     mullvad-vpn = {
       enable = true;
@@ -191,13 +194,11 @@
       pulse.enable = true;
       jack.enable = true;
     };
-    pulseaudio.enable = lib.mkForce false;
     flatpak.enable = true;
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
       package = pkgs.kdePackages.sddm;
-      settings.General.DisplayServer = "wayland";
     };
     xserver = {
       xkb = {
@@ -205,7 +206,6 @@
         variant = "colemak";
       };
     };
-    #system76-scheduler.enable = true;
     openssh = {
       enable = true;
       settings = {
@@ -215,16 +215,11 @@
         AllowUsers = [ "leonillo" ];
       };
     };
-    sunshine = {
-      enable = true;
-      capSysAdmin = true;
-    };
+    #sunshine = {
+    #  enable = true;
+    #  capSysAdmin = true;
+    #};
     gnome.gnome-keyring.enable = true;
-    scx = {
-      enable = true;
-      scheduler = "scx_lavd"; # Set scx_bpfland for laptop maybe?
-      extraArgs = [ "--autopower" ];
-    };
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
@@ -276,8 +271,8 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "games" "video" "gamemode" "docker" "render" ];
-    initialPassword = "Patataxd4"; # Default password on install, must be changed later
+    extraGroups = [ "wheel" "libvirtd" "games" "video" "gamemode" "docker" "render" ];
+    initialHashedPassword = "$y$j9T$ReVR1vqESFLY8Y7dkJDb/.$7piDB7IUbIgbm/16XbzfnehT.bPFy4m7RZADZSysmz0"; # Default password on install, must be changed later
   };
 
   # System packages, installed globally
@@ -294,7 +289,6 @@
     gcc
     libnotify
     killall
-    hyprpolkitagent
     lzip
     linux-firmware
     powertop
@@ -306,10 +300,8 @@
     impala
     nix-index
     fzf
-    shared-mime-info
     ffmpegthumbnailer
     webp-pixbuf-loader
-    ffmpeg-headless
     gdk-pixbuf
     waypipe
     xdg-utils
@@ -317,6 +309,7 @@
     distrobox
     arrpc
     inputs.affinity-nix.packages.x86_64-linux.v3
+    ffmpeg
   ];
   systemd.packages = with pkgs; [ arrpc ];
 
@@ -328,6 +321,8 @@
   # Make apps run natively on Wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   # State version
-  system.stateVersion = "25.11"; # Do not change
+  system.stateVersion = "26.05"; # Do not change
 }
