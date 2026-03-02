@@ -244,7 +244,7 @@
       };
 
       cursor = {
-        enable_hyprcursor = true;
+        enable_hyprcursor = false;
       };
 
       env = [

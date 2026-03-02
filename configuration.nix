@@ -127,6 +127,9 @@
       defaultEditor = true;
     };
     xfconf.enable = true;
+    starship = {
+      enable = true;
+    };
   };
   xdg = {
     autostart.enable = true;
@@ -220,6 +223,10 @@
     #  capSysAdmin = true;
     #};
     gnome.gnome-keyring.enable = true;
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-vulkan;
+    };
   };
   security.rtkit.enable = true; # Required for pipewire
   security.polkit.enable = true;
@@ -310,6 +317,7 @@
     arrpc
     inputs.affinity-nix.packages.x86_64-linux.v3
     ffmpeg
+    oterm
   ];
   systemd.packages = with pkgs; [ arrpc ];
 
