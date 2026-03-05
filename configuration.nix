@@ -94,7 +94,7 @@
     git.enable = true;
     obs-studio = {
       enable = true;
-      enableVirtualCamera = false;
+      enableVirtualCamera = true;
       plugins = with pkgs.obs-studio-plugins; [
         obs-pipewire-audio-capture
         obs-vkcapture
@@ -218,10 +218,10 @@
         AllowUsers = [ "leonillo" ];
       };
     };
-    #sunshine = {
-    #  enable = true;
-    #  capSysAdmin = true;
-    #};
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+    };
     gnome.gnome-keyring.enable = true;
     ollama = {
       enable = true;

@@ -55,6 +55,7 @@
     element-desktop
     fluffychat
     signal-desktop
+    zoom-us
     
     # Gaming
     parsec-bin
@@ -82,6 +83,8 @@
     wayvr
     jetbrains.idea
     go
+    nodejs
+    python3
 
     # Misc
     grim
@@ -203,6 +206,7 @@
       apply = false;
     };
     vivaldi.enable = false;
+    waybar.enable = false;
   };
   
   stylix = {

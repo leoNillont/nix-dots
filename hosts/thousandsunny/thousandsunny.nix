@@ -14,7 +14,7 @@
       extraPackages = with pkgs; [
         vulkan-loader
         libva
-        mesa.opencl
+        #mesa.opencl
       ];
     };
     bluetooth.enable = true;
@@ -42,9 +42,9 @@
     "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
   ];
 
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  };
+  #environment.variables = {
+  #  RUSTICL_ENABLE = "radeonsi";
+  #};
 
   boot = {
     kernelParams = [

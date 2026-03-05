@@ -154,7 +154,7 @@
           new_optimizations = true;
           noise = 0.02;
           brightness = 0.90;
-          xray = false;
+          xray = true;
           ignore_opacity = true;
         };
       };
@@ -231,7 +231,7 @@
 
       layerrule = [
         "match:namespace waybar, blur true"
-        #"match:namespace waybar, xray true"
+        "match:namespace waybar, xray true"
         #"match:namespace waybar, no_anim = true"
       ];
 
@@ -245,6 +245,10 @@
 
       cursor = {
         enable_hyprcursor = false;
+        no_hardware_cursors = true;
+        #use_cpu_buffer = true;
+        #no_break_fs_vrr = true;
+        #min_refresh_rate = 48;
       };
 
       env = [
