@@ -27,21 +27,21 @@
       };
     };
   };
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        clr
-        clr.icd
-        rocblas
-        hipblas
-        rpp
-      ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-  ];
-
+  # systemd.tmpfiles.rules = let
+  #   rocmEnv = pkgs.symlinkJoin {
+  #     name = "rocm-combined";
+  #     paths = with pkgs.rocmPackages; [
+  #       clr
+  #       clr.icd
+  #       #rocblas
+  #       #hipblas
+  #       #rpp
+  #     ];
+  #   };
+  # in [
+  #   "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  # ];
+  #
   #environment.variables = {
   #  RUSTICL_ENABLE = "radeonsi";
   #};
