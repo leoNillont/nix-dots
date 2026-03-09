@@ -112,7 +112,7 @@
     gamemode = {
       enable = true;
     };
-    virt-manager.enable = true; # QEMU/KVM
+    #virt-manager.enable = true; # QEMU/KVM
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -125,6 +125,8 @@
     neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
     };
     xfconf.enable = true;
     starship = {
@@ -139,7 +141,7 @@
       xdgOpenUsePortal = false;
     };
   };
-  virtualisation.libvirtd.enable = true; # Enable libvirt daemon
+  #virtualisation.libvirtd.enable = true; # Enable libvirt daemon
   #virtualisation.waydroid.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -318,6 +320,7 @@
     inputs.affinity-nix.packages.x86_64-linux.v3
     ffmpeg
     oterm
+    lazygit
   ];
   systemd.packages = with pkgs; [ arrpc ];
 
