@@ -55,9 +55,6 @@
       scheduler = "scx_lavd";
       extraArgs = [ "--autopower" ];
     };
-    clight = {
-      enable = true;
-    };
   };
   location = {
     latitude = 38.8977;
