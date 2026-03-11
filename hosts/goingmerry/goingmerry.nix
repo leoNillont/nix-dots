@@ -46,10 +46,12 @@
     "pcie_aspm=force"
   ];
 
-  # Lanzaboote, secure boot
   boot = {
     loader.systemd-boot.enable = lib.mkForce false;
-    pkiBundle = "/var/lib/sbctl";
+    lanzaboote = {
+      pkiBundle = "/var/lib/sbctl";
+      enable = true;
+    };
   };
 
   services = {

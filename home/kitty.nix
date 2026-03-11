@@ -4,7 +4,7 @@
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     settings = {
       font_size = "12.0";
       background_opacity = lib.mkForce "0.8";

@@ -204,7 +204,7 @@
     tumbler.enable = true;
     resolved = {
       enable = true;
-      dnssec = true;
+      settings.Resolve.DNSSEC = true;
     };
     udisks2.enable = true;
     gvfs.enable = true;
@@ -346,7 +346,7 @@
     ffmpeg
     oterm
     lazygit
-    nixfmt-rfc-style
+    nixfmt
     statix
     sbctl
   ];
