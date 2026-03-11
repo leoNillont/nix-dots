@@ -1,9 +1,17 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
       substituters = [ "https://nix-community.cachix.org" ];
       trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
@@ -38,14 +46,21 @@
       "vm.page-cluster" = 0;
     };
     kernelPackages = pkgs.linuxPackages_cachyos-lto;
-    kernelParams = [ "zswap.enabled=0" "split_lock_detect=off" ];
+    kernelParams = [
+      "zswap.enabled=0"
+      "split_lock_detect=off"
+    ];
     tmp = {
       useTmpfs = true;
       cleanOnBoot = true;
     };
   };
-  systemd.services.systemd-udev-settle.enable = false; # Reduces boot time
-  systemd.oomd.enable = true;
+
+  systemd = {
+    services.systemd-udev-settle.enable = false; # Reduces boot time
+    oomd.enable = true;
+    packages = with pkgs; [ arrpc ];
+  };
   services.udev.extraRules = ''
     ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
   '';
@@ -154,7 +169,7 @@
     wirelessRegulatoryDatabase = true; # Required for framework laptop
   };
   #powerManagement.powertop.enable = true; # Enable powertop
-  zramSwap  = {
+  zramSwap = {
     enable = true;
     priority = 100;
     algorithm = "zstd"; # Better performance/compression ratio
@@ -166,7 +181,10 @@
       settings.General.EnableNetworkConfiguration = true;
     };
     firewall.trustedInterfaces = [ "virbr0" ]; # Fixes libvirt networking
-    nameservers = [ "9.9.9.9" "1.1.1.1" ];
+    nameservers = [
+      "9.9.9.9"
+      "1.1.1.1"
+    ];
   };
   boot.extraModprobeConfig = ''
     options cfg80211 ieee80211_regdom="ES"
@@ -186,7 +204,7 @@
     tumbler.enable = true;
     resolved = {
       enable = true;
-      dnssec = true; 
+      dnssec = true;
     };
     udisks2.enable = true;
     gvfs.enable = true;
@@ -220,19 +238,18 @@
         AllowUsers = [ "leonillo" ];
       };
     };
-    sunshine = {
-      enable = true;
-      capSysAdmin = true;
-    };
     gnome.gnome-keyring.enable = true;
-    ollama = {
-      enable = true;
-      package = pkgs.ollama-vulkan;
-    };
+    #ollama = {
+    #  enable = true;
+    #  package = pkgs.ollama-vulkan;
+    #};
   };
-  security.rtkit.enable = true; # Required for pipewire
-  security.polkit.enable = true;
-  security.pam.services.sddm.enableGnomeKeyring = true;
+
+  security = {
+    rtkit.enable = true; # Required for pipewire
+    polkit.enable = true;
+    pam.services.sddm.enableGnomeKeyring = true;
+  };
 
   fonts = {
     packages = with pkgs; [
@@ -280,7 +297,15 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "leoNillo";
-    extraGroups = [ "wheel" "libvirtd" "games" "video" "gamemode" "docker" "render" ];
+    extraGroups = [
+      "wheel"
+      "libvirtd"
+      "games"
+      "video"
+      "gamemode"
+      "docker"
+      "render"
+    ];
     initialHashedPassword = "$y$j9T$ReVR1vqESFLY8Y7dkJDb/.$7piDB7IUbIgbm/16XbzfnehT.bPFy4m7RZADZSysmz0"; # Default password on install, must be changed later
   };
 
@@ -321,8 +346,10 @@
     ffmpeg
     oterm
     lazygit
+    nixfmt-rfc-style
+    statix
+    sbctl
   ];
-  systemd.packages = with pkgs; [ arrpc ];
 
   stylix = {
     enable = true;

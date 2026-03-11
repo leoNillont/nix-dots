@@ -20,7 +20,7 @@
     fastfetch
     pamixer
     wl-clipboard
-    cliphist 
+    cliphist
     hyfetch
 
     # GUI
@@ -39,8 +39,9 @@
     waypaper
     kdePackages.filelight
     (discord-ptb.override {
-      #withOpenASAR = true;
+      withOpenASAR = true;
       withVencord = true;
+      withTTS = true;
     })
     orca-slicer
     prusa-slicer
@@ -56,7 +57,7 @@
     fluffychat
     signal-desktop
     zoom-us
-    
+
     # Gaming
     parsec-bin
     #heroic
@@ -71,7 +72,11 @@
         graalvmPackages.graalvm-ce
       ];
       additionalPrograms = [ vlc ];
-      additionalLibs = [ vlc opencl-headers ocl-icd ];
+      additionalLibs = [
+        vlc
+        opencl-headers
+        ocl-icd
+      ];
     })
     r2modman
     osu-lazer-bin
@@ -125,23 +130,38 @@
       '';
       plugins = [
         #{ name = "tide"; src = pkgs.fishPlugins.tide.src; }
-        { name = "done"; src = pkgs.fishPlugins.done.src; }
-        { name = "autopair"; src = pkgs.fishPlugins.autopair.src; }
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        {
+          name = "done";
+          src = pkgs.fishPlugins.done.src;
+        }
+        {
+          name = "autopair";
+          src = pkgs.fishPlugins.autopair.src;
+        }
+        {
+          name = "fzf-fish";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
       ];
     };
 
     btop.enable = true;
 
     home-manager.enable = true; # probably don't want to remove this :3
-    
+
     yazi = {
       enable = true;
       enableFishIntegration = true;
       keymap = {
         mgr.prepend_keymap = [
-          { run = "plugin mount"; on = [ "M" ]; }
-          { on = [ "<C-n>" ]; run = ''shell -- dragon-drop -x -i -T "$0"''; }
+          {
+            run = "plugin mount";
+            on = [ "M" ];
+          }
+          {
+            on = [ "<C-n>" ];
+            run = ''shell -- dragon-drop -x -i -T "$0"'';
+          }
         ];
       };
       settings = {
@@ -150,8 +170,16 @@
           show_symlink = true;
         };
         plugins.prepend_fetchers = [
-          { id = "git"; name = "*"; run = "git"; }
-          { id = "git"; name = "*/"; run = "git"; }
+          {
+            id = "git";
+            name = "*";
+            run = "git";
+          }
+          {
+            id = "git";
+            name = "*/";
+            run = "git";
+          }
         ];
       };
       plugins = {
@@ -208,7 +236,7 @@
     vivaldi.enable = false;
     waybar.enable = false;
   };
-  
+
   stylix = {
     targets = {
       waybar.enable = false;

@@ -36,54 +36,63 @@
       url = "github:mrshmllow/affinity-nix";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-  };
-  
-  outputs = { nixpkgs, home-manager, ... }@inputs: let
-    # Shared modules used across all configurations
-    sharedModules = [
-      ./configuration.nix
-      inputs.disko.nixosModules.disko
-      inputs.catppuccin.nixosModules.catppuccin
-      inputs.stylix.nixosModules.stylix
-      inputs.cachynix.nixosModules.default
-
-      { home-manager.extraSpecialArgs = { inherit inputs; }; }
-      home-manager.nixosModules.home-manager {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.leonillo = {
-            imports = [
-              ./home.nix
-              inputs.catppuccin.homeModules.catppuccin
-            ];
-          };
-        };
-      }
-    ];
-  in {
-    # NixOS System Configurations
-    nixosConfigurations = {
-      "thousandsunny" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = sharedModules ++ [ ./hosts/thousandsunny/thousandsunny.nix ];
-      };
-
-      "mobydick" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = sharedModules ++ [ ./hosts/mobydick/mobydick.nix ];
-      };
-
-      "goingmerry" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = sharedModules ++ [ 
-          ./hosts/goingmerry/goingmerry.nix  
-          inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-        ];
-      };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      # Shared modules used across all configurations
+      sharedModules = [
+        ./configuration.nix
+        inputs.disko.nixosModules.disko
+        inputs.catppuccin.nixosModules.catppuccin
+        inputs.stylix.nixosModules.stylix
+        inputs.cachynix.nixosModules.default
+
+        { home-manager.extraSpecialArgs = { inherit inputs; }; }
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.leonillo = {
+              imports = [
+                ./home.nix
+                inputs.catppuccin.homeModules.catppuccin
+              ];
+            };
+          };
+        }
+      ];
+    in
+    {
+      # NixOS System Configurations
+      nixosConfigurations = {
+        "thousandsunny" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = sharedModules ++ [ ./hosts/thousandsunny/thousandsunny.nix ];
+        };
+
+        "mobydick" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = sharedModules ++ [ ./hosts/mobydick/mobydick.nix ];
+        };
+
+        "goingmerry" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = sharedModules ++ [
+            ./hosts/goingmerry/goingmerry.nix
+            inputs.nixos-hardware.nixosModules.framework-13-7040-amd
+            inputs.lanzaboote.nixosModules.lanzaboote
+          ];
+        };
+      };
+    };
 }

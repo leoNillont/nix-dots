@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -14,7 +14,7 @@
       extraPackages = with pkgs; [
         vulkan-loader
         libva
-        mesa.opencl
+        #mesa.opencl
       ];
     };
     bluetooth = {
@@ -35,19 +35,25 @@
       opencl.enable = true;
     };
   };
-  environment.variables = {
-    RUSTICL_ENABLE = "radeonsi";
-  };
+  # environment.variables = {
+  #   RUSTICL_ENABLE = "radeonsi";
+  # };
 
   # Fixes a bug that causes lots and lots of lag
   boot.kernelParams = [
-    "amdgpu.dcdebugmask=0x10"
+    "amdgpu.dcdebugmask=0x0"
     "amd_pstate=active"
+    "pcie_aspm=force"
   ];
 
+  # Lanzaboote, secure boot
+  boot = {
+    loader.systemd-boot.enable = lib.mkForce false;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   services = {
-    tuned.enable = true;
+    #tuned.enable = true;
     fprintd.enable = true;
     fwupd.enable = true;
     scx = {
@@ -61,8 +67,11 @@
     longitude = 1.4022;
   };
 
-  environment.systemPackages = with pkgs; [ framework-tool clight-gui ];
-  
+  environment.systemPackages = with pkgs; [
+    framework-tool
+    clight-gui
+  ];
+
   # Hostname Configuration, used so I don't have to use --flake on rebuild
   networking.hostName = "goingmerry";
 }

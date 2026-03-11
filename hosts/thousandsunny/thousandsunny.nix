@@ -60,7 +60,7 @@
   };
 
   services = {
-    fwupd.enable = true; 
+    fwupd.enable = true;
     #rpcbind.enable = true; # needed for nfs
     resolved.dnssec = lib.mkForce "true";
     scx = {
@@ -68,16 +68,25 @@
       scheduler = "scx_lavd";
       extraArgs = [ "--autopower" ];
     };
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+    };
   };
 
   fileSystems = {
     "/media/DiscoExtra" = {
       device = "/dev/disk/by-id/ata-KINGSTON_SA400S37960G_50026B7381CEE10E-part1";
       fsType = "btrfs";
-      options = [ "discard=async" "noatime" "compress-force=zstd:4" "space_cache=v2" ];
+      options = [
+        "discard=async"
+        "noatime"
+        "compress-force=zstd:4"
+        "space_cache=v2"
+      ];
     };
   };
-    
+
   systemd = {
     #mounts = [{
     #  type = "nfs";
@@ -114,8 +123,8 @@
     hostName = "thousandsunny"; # with this I don't have to use --flake on rebuild
   };
 
-  environment.systemPackages = with pkgs; [ 
-    lact 
-    nvtopPackages.amd 
+  environment.systemPackages = with pkgs; [
+    lact
+    nvtopPackages.amd
   ];
 }
