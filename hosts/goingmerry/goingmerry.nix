@@ -51,11 +51,13 @@
     lanzaboote = {
       pkiBundle = "/var/lib/sbctl";
       enable = true;
+      autoGenerateKeys = true;
+      autoEnrollKeys = true;
     };
   };
 
   services = {
-    #tuned.enable = true;
+    tuned.enable = true;
     fprintd.enable = true;
     fwupd.enable = true;
     scx = {
