@@ -52,7 +52,7 @@
       pkiBundle = "/var/lib/sbctl";
       enable = true;
       autoGenerateKeys = true;
-      autoEnrollKeys = true;
+      autoEnrollKeys.enable = true;
     };
   };
 
