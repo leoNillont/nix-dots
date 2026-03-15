@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   # Import Modules
@@ -35,6 +35,7 @@
     anydesk
     bottles
     vivaldi
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     floorp-bin
     waypaper
     kdePackages.filelight
@@ -57,6 +58,7 @@
     fluffychat
     signal-desktop
     zoom-us
+    libreoffice-qt
 
     # Gaming
     parsec-bin
