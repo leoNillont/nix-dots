@@ -26,6 +26,7 @@
         ppfeaturemask = "0xffffffff";
       };
     };
+    keyboard.qmk.enable = true;
   };
   # systemd.tmpfiles.rules = let
   #   rocmEnv = pkgs.symlinkJoin {

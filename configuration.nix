@@ -61,9 +61,12 @@
     oomd.enable = true;
     packages = with pkgs; [ arrpc ];
   };
-  services.udev.extraRules = ''
-    ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
-  '';
+  services.udev = {
+    extraRules = ''
+      ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
+    '';
+    packages = with pkgs; [ via ];
+  };
 
   # Enable and configure catppuccin globally
   catppuccin = {

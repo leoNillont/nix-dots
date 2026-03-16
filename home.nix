@@ -59,6 +59,7 @@
     signal-desktop
     zoom-us
     libreoffice-qt
+    via
 
     # Gaming
     parsec-bin
