@@ -1,4 +1,9 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   # Import Modules
@@ -27,7 +32,7 @@
     filezilla
     pavucontrol
     qpwgraph
-    oculante
+    # oculante
     mpv
     vlc
     gimp
@@ -35,7 +40,6 @@
     anydesk
     bottles
     vivaldi
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     floorp-bin
     waypaper
     kdePackages.filelight
@@ -60,19 +64,17 @@
     zoom-us
     libreoffice-qt
     via
+    boxbuddy
 
     # Gaming
     parsec-bin
     #heroic
     (prismlauncher.override {
       jdks = [
-        temurin-jre-bin-21
-        temurin-jre-bin-17
         temurin-jre-bin-8
         temurin-jre-bin-25
         temurin-jre-bin
-        graalvmPackages.graalvm-oracle
-        graalvmPackages.graalvm-ce
+        zulu25
       ];
       additionalPrograms = [ vlc ];
       additionalLibs = [

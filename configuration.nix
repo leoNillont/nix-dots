@@ -13,8 +13,14 @@
         "flakes"
       ];
       auto-optimise-store = true;
-      substituters = [ "https://nix-community.cachix.org" ];
-      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://attic.xuyh0120.win/lantian"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+      ];
     };
     package = pkgs.lixPackageSets.stable.lix;
   };
@@ -45,7 +51,7 @@
       "vm.watermark_scale_factor" = 125;
       "vm.page-cluster" = 0;
     };
-    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
     kernelParams = [
       "zswap.enabled=0"
       "split_lock_detect=off"
@@ -134,7 +140,7 @@
     gamemode = {
       enable = true;
     };
-    #virt-manager.enable = true; # QEMU/KVM
+    virt-manager.enable = true; # QEMU/KVM
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -163,7 +169,14 @@
       xdgOpenUsePortal = false;
     };
   };
-  #virtualisation.libvirtd.enable = true; # Enable libvirt daemon
+  virtualisation = {
+    libvirtd = {
+      enable = true; # Enable libvirt daemon
+      qemu = {
+        swtpm.enable = true;
+      };
+    };
+  };
   #virtualisation.waydroid.enable = true;
   virtualisation.podman = {
     enable = true;
@@ -356,6 +369,7 @@
     nixfmt
     statix
     sbctl
+    swtpm
   ];
 
   stylix = {

@@ -27,23 +27,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cachynix = {
-      url = "github:Mrn157/CachyNix";
-      #inputs.nixpkgs.follows = "nixpkgs";
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel/release";
     };
 
     affinity-nix = {
       url = "github:mrshmllow/affinity-nix";
-      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -57,7 +50,7 @@
         inputs.disko.nixosModules.disko
         inputs.catppuccin.nixosModules.catppuccin
         inputs.stylix.nixosModules.stylix
-        inputs.cachynix.nixosModules.default
+        inputs.nix-cachyos-kernel.overlays.default
 
         { home-manager.extraSpecialArgs = { inherit inputs; }; }
         home-manager.nixosModules.home-manager

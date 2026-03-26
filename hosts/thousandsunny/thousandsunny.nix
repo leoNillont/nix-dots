@@ -14,6 +14,8 @@
       extraPackages = with pkgs; [
         vulkan-loader
         libva
+        mesa
+        libva-utils
         #mesa.opencl
       ];
     };
