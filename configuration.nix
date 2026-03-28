@@ -24,7 +24,12 @@
     };
     package = pkgs.lixPackageSets.stable.lix;
   };
-  nixpkgs.config.allowUnfree = true; # Allow unfree packages
+  nixpkgs = {
+    config.allowUnfree = true; # Allow unfree packages
+    overlays = [
+      inputs.nix-cachyos-kernel.overlays.default
+    ];
+  };
 
   home-manager.backupFileExtension = "hmbak"; # Backup file extension
 

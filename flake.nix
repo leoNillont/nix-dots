@@ -50,7 +50,6 @@
         inputs.disko.nixosModules.disko
         inputs.catppuccin.nixosModules.catppuccin
         inputs.stylix.nixosModules.stylix
-        inputs.nix-cachyos-kernel.overlays.default
 
         { home-manager.extraSpecialArgs = { inherit inputs; }; }
         home-manager.nixosModules.home-manager
